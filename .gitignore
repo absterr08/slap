@@ -25,5 +25,5 @@ bundle.js.map
 .DS_Store
 npm-debug.log
 
-# Ignore tests
+# Ignore test files
 test/*
