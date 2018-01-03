@@ -23,9 +23,7 @@ const Greeting = ({ username, logout }) => {
   }
 };
 
-
 const mapStateToProps = (state, ownProps) => {
-  //
   return {
     username: state.session.currentUser ? state.session.currentUser.username : ""
   };
