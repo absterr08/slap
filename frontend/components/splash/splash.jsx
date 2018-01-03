@@ -12,8 +12,8 @@ const Splash = () => (
         need a litle extra push in the right direction.</p>
       <Link to="/signup" className="demo-btn">Get started</Link>
 
-      <p>Already using Slap?
-      <Link to="/login"> Sign Up</Link>
+      <p>Already using Slap?&nbsp;
+      <Link to="/login" className="splash-link">Sign In</Link>
       </p>
     </div>
   </div>

@@ -15,7 +15,7 @@ const Greeting = ({ username, logout }) => {
     );
   } else {
     return (
-      <div>
+      <div className="greeting">
         <h1>Hi, {username}</h1>
         <button onClick={logout}>Log Out</button>
       </div>
