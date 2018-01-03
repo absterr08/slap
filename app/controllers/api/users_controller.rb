@@ -6,6 +6,7 @@ class Api::UsersController < ApplicationController
       login(@user)
       render :show
     else
+      # split the array
       render json: @user.errors.full_messages
     end
   end

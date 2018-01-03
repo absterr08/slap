@@ -11,3 +11,4 @@ Message.delete_all
 
 u1 = User.create!(username: "a", email: "a", password: "starwars")
 Message.create!(author_id: u1.id, channel_id: 1, body: "hey")
+Message.create!(author_id: u1.id, channel_id: 1, body: "hi!")

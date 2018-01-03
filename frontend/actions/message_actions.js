@@ -3,12 +3,14 @@ import * as MessageAPIUtil from '../util/message_api_util';
 export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
 
-const receiveMessages = (messages) => (
-  {
+const receiveMessages = ({messages}) => {
+  let messagesObj = {};
+  messages.map((msg, idx) => messagesObj[idx] = messages[idx]);
+  return {
     type: RECEIVE_MESSAGES,
-    messages
-  }
-);
+    messages: messagesObj
+  };
+};
 
 const receiveMessage = (message) => (
   {
@@ -18,11 +20,11 @@ const receiveMessage = (message) => (
 );
 
 export const fetchMessages = () => dispatch => (
-  MessageAPIUtil.fetchMessages().then( (messages) => dispatch(fetchMessages(messages)))
+  MessageAPIUtil.fetchMessages().then( (messages) => dispatch(receiveMessages(messages)))
 );
 
 export const fetchMessage = (messageId) => dispatch => (
-  MessageAPIUtil.fetchMessage(messageId).then( (message) => dispatch(fetchMessages(message)))
+  MessageAPIUtil.fetchMessage(messageId).then( (message) => dispatch(receiveMessage(message)))
 );
 
 export const createMessage = (message) => dispatch => (
