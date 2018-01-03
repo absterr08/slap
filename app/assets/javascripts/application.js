@@ -14,3 +14,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+
+// move this logic to server side using node
+(function() {
+  this.App || (this.App = {});
+
+  App.cable = ActionCable.createConsumer();
+}).call(this);
