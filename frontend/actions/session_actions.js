@@ -18,23 +18,25 @@ export const receiveSessionErrors = (errors) => {
   };
 };
 
+const errCallback = (err) => {
+  return dispatch(receiveSessionErrors(err.responseText));
+};
+
 export const login = (user) => (dispatch) => {
 	return SessionAPIUtil.login(user).then((user) =>
     dispatch(receiveCurrentUser(user)),
-    (err) => dispatch(receiveSessionErrors(err.responseJSON))
-  );
+    (err) => errCallback(err));
 };
+
 
 export const logout = () => (dispatch) => {
   return SessionAPIUtil.logout().then(() =>
     dispatch(receiveCurrentUser(null)),
-    (err) => dispatch(receiveSessionErrors(err.responseJSON))
-  );
+    (err) => errCallback(err));
 };
 
 export const signup = (user) => (dispatch) => {
   return SessionAPIUtil.signup(user).then((user) =>
     dispatch(receiveCurrentUser(user)),
-    (err) => dispatch(receiveSessionErrors(err.responseJSON))
-  );
+    (err) => errCallback(err));
 };
