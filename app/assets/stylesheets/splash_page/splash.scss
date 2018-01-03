@@ -1,3 +1,6 @@
+main {
+  font-family: 'Noticia Text', serif;
+}
 .splash-container {
   display: flex;
   margin: 0 auto;
@@ -12,10 +15,10 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 300px;
-  min-width: 350px;
+  min-height: 450px;
+  min-width: 500px;
   margin: 5%;
-  padding: 40px;
+  padding: 30px;
 }
 
 .main-info {
@@ -24,12 +27,13 @@
 }
 
 .main-info > h1, p {
-  font-family: "Times New Roman";
   width: 500px;
   margin-bottom: 20px;
+  color: #323648;
 }
 .main-info h1 {
   font-size: 4.8rem;
+  font-weight: 700;
 }
 
 .main-info p {
