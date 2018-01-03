@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SplashContainer from './splash_container';
 
 
@@ -9,7 +10,11 @@ const Splash = () => (
       <h1>Productivity starts here</h1>
       <p>Whip your team into shape with slap! A messaging app for teams that
         need a litle extra push in the right direction.</p>
-      <a className="demo-btn">Get started</a>
+      <Link to="/signup" className="demo-btn">Get started</Link>
+
+      <p>Already using Slap?
+      <Link to="/login"> Sign Up</Link>
+      </p>
     </div>
   </div>
 );
