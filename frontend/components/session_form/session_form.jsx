@@ -16,7 +16,6 @@ class SessionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.processForm(this.state);
-    this.props.history.push("/hello");
   }
 
   handleChange(field) {
@@ -56,7 +55,7 @@ class SessionForm extends React.Component {
 
           {emailForm}
 
-          <input type="text"
+          <input type="password"
             value={ this.state.password }
             placeholder="password"
             onChange={this.handleChange("password")}

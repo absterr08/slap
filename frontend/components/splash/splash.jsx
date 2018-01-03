@@ -8,7 +8,7 @@ const Splash = () => (
     <div className="splash-image"/>
     <div className="main-info">
       <h1>Productivity starts here</h1>
-      <p>Whip your team into shape with slap! A messaging app for teams that
+      <p>Whip your team into shape with Slap! A messaging app for teams that
         need a litle extra push in the right direction.</p>
       <Link to="/signup" className="demo-btn">Get started</Link>
 
