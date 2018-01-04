@@ -1,9 +1,10 @@
 import { fetchMessages } from '../../actions/message_actions'
 import { connect } from 'react-redux';
+import { values } from 'lodash';
 import Home from './home';
 const mapStateToProps = (state) => (
   {
-    messages: state.messages
+    messages: values(state.entities.messages)
   }
 )
 const mapDispatchToProps = (dispatch) => (

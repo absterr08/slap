@@ -1,5 +1,5 @@
 import React from 'react';
-import Channel from '../channels/channel';
+import ChannelContainer from '../channels/channel_container';
 import Greeting from './greeting';
 
 export default class Home extends React.Component {
@@ -25,10 +25,11 @@ export default class Home extends React.Component {
   }
 
   render() {
+    debugger
     return (
       <div>
         <Greeting />
-        <Channel />
+        <ChannelContainer messages={this.props.messages} />
       </div>
     )
   }

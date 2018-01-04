@@ -27,8 +27,8 @@ class Channel extends React.Component {
             })
           }
         </ul>
-        <form onSubmit={handleSubmit}>
-          <input type="text" onKeyUp={handleKeyUp}/>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <input type="text" onKeyUp={this.handleKeyUp}/>
         </form>
       </div>
     );
