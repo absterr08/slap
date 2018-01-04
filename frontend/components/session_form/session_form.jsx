@@ -41,7 +41,6 @@ class SessionForm extends React.Component {
                     onChange={ this.handleChange("email") }
                   />;
     }
-
     const errors = this.props.errors[0] ? <div className="session-errors-container">
       <div className="session-errors">{this.props.errors}</div>
     </div> : "";
