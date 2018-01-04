@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 
 class Channel extends React.Component {
 
-
+    componentDidMount() {
+      this.props.fetchMessages()
+    }
     handleSubmit(e) {
       e.preventDefault();
     };
@@ -23,7 +25,7 @@ class Channel extends React.Component {
       <div>
         <ul>
           {this.props.messages.map((msg) => {
-              return <li key={`chat.msg.${msg.id}`}>{msg.content}</li>;
+              return <li key={msg.id}>{msg.body}</li>;
             })
           }
         </ul>

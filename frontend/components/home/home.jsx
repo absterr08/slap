@@ -6,8 +6,6 @@ export default class Home extends React.Component {
 
   componentWillMount() {
 
-    this.props.fetchMessages(this.props.messages);
-
     if (typeof App !== 'undefined'){
       App.room = App.cable.subscriptions.create("RoomChannel", {
         connected: function() {},
@@ -25,11 +23,10 @@ export default class Home extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <div>
         <Greeting />
-        <ChannelContainer messages={this.props.messages} />
+        <ChannelContainer />
       </div>
     )
   }
