@@ -34,23 +34,18 @@ class Channel extends React.Component {
   render() {
     return (
       <div className="channel-container">
-        <ul className="messages-index">
+        <ul className="messages-container">
           {this.props.messages.map((message) => {
               return <Message key={message.id} message={message} user={this.props.user} />;
             })
           }
         </ul>
-        <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" onKeyUp={this.handleKeyUp.bind(this)}/>
-          <input type="submit" onKeyUp={this.handleKeyUp.bind(this)}/>
+        <form className="message-form" onSubmit={this.handleSubmit.bind(this)}>
+          <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp.bind(this)}/>
         </form>
       </div>
     );
   }
 }
-
-// Channel.propTypes = {
-//   messages: PropTypes.any
-// };
 
 export default Channel;

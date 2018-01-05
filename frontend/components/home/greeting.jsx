@@ -15,9 +15,9 @@ const Greeting = ({ username, logout }) => {
     );
   } else {
     return (
-      <div className="greeting">
-        <h1>Hi, {username}</h1>
-        <button onClick={logout}>Log Out</button>
+      <div className="channel-sidebar">
+        <h1 className="username">Hi, {username}</h1>
+        <button className="logout" onClick={logout}>Log Out</button>
       </div>
     )
   }

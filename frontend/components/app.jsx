@@ -10,7 +10,7 @@ import NavBar from './navbar/navbar';
 
 const App = () => (
   <div>
-      <Route path="/"  />
+      <Route exact path="/"  component={NavBar}/>
       <AuthRoute path="/login" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
       <Route exact path="/" component={Splash} />
