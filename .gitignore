@@ -27,3 +27,5 @@ npm-debug.log
 
 # Ignore test files
 test/*
+
+bugs.md

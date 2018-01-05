@@ -14,6 +14,8 @@ class Channel extends React.Component {
       this.props.fetchUsers();
     }
 
+    
+
     handleSubmit(e) {
       e.preventDefault();
       if (typeof App !== 'undefined'){
