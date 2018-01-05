@@ -5,6 +5,7 @@ import Root from './components/root';
 //testing
 import * as sessionActions from './actions/session_actions';
 import * as messageActions from './actions/message_actions';
+import * as MessageAPIUtil from './util/message_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.createMessage = messageActions.createMessage;
   window.updateMessage = messageActions.updateMessage;
   window.addLastMessage = messageActions.addLastMessage;
+  window.formatDateTime = MessageAPIUtil.formatDateTime;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });

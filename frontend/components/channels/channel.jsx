@@ -32,10 +32,6 @@ class Channel extends React.Component {
         if (typeof App !== 'undefined'){
           const message = { body: e.target.value, author_id: this.props.user.id };
           App.room.speak(message);
-          // debugger
-          // message['id'] =  this.props.messages.length;
-          // this.props.addMessage(message);
-          // this.props.addLastMessage();
           } //else{
         //   debugger
         //   this.props.addMessage({id: createdMessage.id, body: e.target.value});

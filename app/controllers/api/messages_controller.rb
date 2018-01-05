@@ -25,7 +25,6 @@ class Api::MessagesController < ApplicationController
   end
 
   def get_last_message_id
-    debugger
     render json: Message.last.id
   end
 

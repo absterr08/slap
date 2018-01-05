@@ -12,10 +12,7 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchMessages: () => dispatch(fetchMessages()),
-    fetchMessage: id => dispatch(fetchMessage(id)),
-    addLastMessage: () => dispatch(addLastMessage()),
-    addMessage: message => dispatch(receiveMessage(message))
+    fetchMessages: () => dispatch(fetchMessages())
   }
 );
 

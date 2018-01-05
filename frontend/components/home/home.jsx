@@ -12,8 +12,6 @@ export default class Home extends React.Component {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
-          // addLastMessage();
-          // debugger
           addMessage(JSON.parse(data['message']));
         },
         speak: function(message) {
