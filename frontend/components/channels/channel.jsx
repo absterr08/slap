@@ -11,6 +11,7 @@ class Channel extends React.Component {
 
     componentDidMount() {
       this.props.fetchMessages();
+      this.props.fetchUsers();
     }
 
     handleSubmit(e) {
@@ -43,7 +44,7 @@ class Channel extends React.Component {
       <div className="channel-container">
         <ul className="messages-container">
           {this.props.messages.map((message) => {
-              return <Message key={message.id} message={message} user={this.props.user} />;
+              return <Message key={message.id} message={message} user={this.props.getMessageAuthor(message.author_id)} />;
             })
           }
         </ul>
