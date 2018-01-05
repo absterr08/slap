@@ -19,11 +19,6 @@ export const receiveMessage = (message) => {
   }
 };
 
-const cb = (arg) => {
-  debugger
-}
-
-
 export const fetchMessages = () => dispatch => (
   MessageAPIUtil.fetchMessages().then( (messages) => dispatch(receiveMessages(messages)))
 );

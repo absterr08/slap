@@ -17,12 +17,10 @@ class Channel extends React.Component {
       e.preventDefault();
       if (typeof App !== 'undefined'){
         const message = { body: e.target.value, author_id: this.props.user.id };
-        // debugger
         App.room.speak(message);
-        this.props.addLastMessage();
       }else{
-        debugger
-        this.props.addMessage({id: createdMessage.id, body: e.target.value});
+        // debugger
+        // this.props.addMessage({id: createdMessage.id, body: e.target.value});
       }
       e.target.value = "";
     }
