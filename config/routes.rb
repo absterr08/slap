@@ -1,5 +1,17 @@
 Rails.application.routes.draw do
 
+  namespace :api do
+    get 'channels/index'
+  end
+
+  namespace :api do
+    get 'channels/show'
+  end
+
+  namespace :api do
+    get 'channels/create'
+  end
+
   root to: 'static_pages#root'
 
 
