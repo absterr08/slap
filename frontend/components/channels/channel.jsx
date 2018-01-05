@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Message from './message'
 
 class Channel extends React.Component {
 
@@ -14,7 +15,7 @@ class Channel extends React.Component {
     handleSubmit(e) {
       e.preventDefault();
       if (typeof App !== 'undefined'){
-        const message = { body: e.target.value, author_id: this.props.userId };
+        const message = { body: e.target.value, author_id: this.props.user.id };
         App.room.speak(message);
         this.props.addLastMessage();
       }else{
@@ -34,8 +35,8 @@ class Channel extends React.Component {
     return (
       <div className="channel-container">
         <ul className="messages-index">
-          {this.props.messages.map((msg) => {
-              return <li className="message" key={msg.id}>{msg.body}</li>;
+          {this.props.messages.map((message) => {
+              return <Message key={message.id} message={message} user={this.props.user} />;
             })
           }
         </ul>
