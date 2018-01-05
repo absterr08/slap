@@ -6,6 +6,7 @@ class Channel extends React.Component {
     constructor(props) {
       super(props);
       this.handleSubmit = this.handleSubmit.bind(this)
+      this.handleKeyUp = this.handleKeyUp.bind(this)
     }
 
     componentDidMount() {
@@ -40,8 +41,8 @@ class Channel extends React.Component {
             })
           }
         </ul>
-        <form className="message-form" onSubmit={this.handleSubmit.bind(this)}>
-          <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp.bind(this)}/>
+        <form className="message-form" onSubmit={this.handleSubmit}>
+          <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
         </form>
       </div>
     );
