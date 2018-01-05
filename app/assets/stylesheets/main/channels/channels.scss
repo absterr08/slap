@@ -1,0 +1,22 @@
+.app {
+  height: 100%;
+}
+
+.channel-container {
+  display: flex;
+  // flex-wrap: wrap;
+  align-content: flex-end;
+  flex-direction: column;
+  padding: 2% 0;
+  width: 88%;
+  height: 100%;
+  background: white;
+  padding-left: 15px;
+}
+
+.channel-sidebar {
+  width: 15%;
+  background-color: #4C3A4A;
+  color: white;
+  height: 1000px;
+}

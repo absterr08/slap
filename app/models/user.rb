@@ -5,6 +5,9 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+  has_many :messages,
+    foreign_key: "author_id"
+
   attr_reader :password
 
   def self.find_by_params(user, password)

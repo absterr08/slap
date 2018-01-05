@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-import { logout } from '../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 
 
 const Greeting = ({ username, logout }) => {
@@ -15,9 +15,9 @@ const Greeting = ({ username, logout }) => {
     );
   } else {
     return (
-      <div className="greeting">
-        <h1>Hi, {username}</h1>
-        <button onClick={logout}>Log Out</button>
+      <div className="channel-sidebar">
+        <h1 className="username">Hi, {username}</h1>
+        <button className="logout" onClick={logout}>Log Out</button>
       </div>
     )
   }

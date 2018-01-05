@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from './store/store'
-import Root from './components/root'
+import configureStore from './store/store';
+import Root from './components/root';
 //testing
-import * as SessionAPIUtil from './actions/session_actions';
+import * as sessionActions from './actions/session_actions';
+import * as messageActions from './actions/message_actions';
+import * as MessageAPIUtil from './util/message_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   let store;
   if (window.currentUser) {
-    const preloadedState = { session: {currentUser: window.currentUser } }
+    const preloadedState = { session: {currentUser: window.currentUser } };
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {
@@ -19,9 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={store}/>, root);
 
   //testing
-  window.signup = SessionAPIUtil.signup;
-  window.logout = SessionAPIUtil.logout;
-  window.login = SessionAPIUtil.login;
+  window.signup = sessionActions.signup;
+  window.logout = sessionActions.logout;
+  window.login = sessionActions.login;
+  window.fetchMessages = messageActions.fetchMessages;
+  window.fetchMessage = messageActions.fetchMessage;
+  window.createMessage = messageActions.createMessage;
+  window.updateMessage = messageActions.updateMessage;
+  window.addLastMessage = messageActions.addLastMessage;
+  window.formatDateTime = MessageAPIUtil.formatDateTime;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });
