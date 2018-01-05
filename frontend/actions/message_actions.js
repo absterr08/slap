@@ -12,12 +12,12 @@ const receiveMessages = ({messages}) => {
   };
 };
 
-export const receiveMessage = (message) => (
-  {
+export const receiveMessage = (message) => {
+  return {
     type: RECEIVE_MESSAGE,
     message
   }
-);
+};
 
 const cb = (arg) => {
   debugger
@@ -32,10 +32,10 @@ export const fetchMessage = (messageId) => dispatch => (
   MessageAPIUtil.fetchMessage(messageId).then( (message) => dispatch(receiveMessage(message)))
 );
 
-export const addLastMessage = () => dispatch => (
-  // MessageAPIUtil.getLastMessageId().then( (messageId) => dispatch(fetchMessage(messageId)))
-  MessageAPIUtil.getLastMessageId().then( (messageId) => cb(messageId))
-);
+export const addLastMessage = () => dispatch => {
+  MessageAPIUtil.getLastMessageId().then( (messageId) => dispatch(fetchMessage(messageId)))
+  // return MessageAPIUtil.getLastMessageId().then( (messageId) => cb(messageId))
+};
 
 export const updateMessage = (message) => dispatch => (
   MessageAPIUtil.updateMessage(message).then( (message) => dispatch(receiveMessage(message)))

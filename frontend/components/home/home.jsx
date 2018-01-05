@@ -7,11 +7,14 @@ export default class Home extends React.Component {
   componentWillMount() {
 
     if (typeof App !== 'undefined'){
+      const addMessage = this.props.addMessage;
       App.room = App.cable.subscriptions.create("RoomChannel", {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
-          // return store.dispatch(addMessage(data['message']));
+          // addLastMessage();
+          // debugger
+          addMessage(JSON.parse(data['message']));
         },
         speak: function(message) {
           return this.perform('speak', {

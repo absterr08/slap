@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :edit, :show, :index]
   end
 
-  get 'api/messages/get_last_message_id', to: 'api/messages#get_last_message_id'
+  get 'api/get_last_message_id', to: 'api/messages#get_last_message_id'
 
   mount ActionCable.server => '/cable'
 

@@ -5,32 +5,44 @@ class Channel extends React.Component {
 
     constructor(props) {
       super(props);
-      this.handleSubmit = this.handleSubmit.bind(this)
-      this.handleKeyUp = this.handleKeyUp.bind(this)
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
     componentDidMount() {
-      this.props.fetchMessages()
+      this.props.fetchMessages();
     }
 
     handleSubmit(e) {
       e.preventDefault();
       if (typeof App !== 'undefined'){
         const message = { body: e.target.value, author_id: this.props.user.id };
+        // debugger
         App.room.speak(message);
         this.props.addLastMessage();
       }else{
         debugger
-        this.props.addMessage({id: createdMessage.id, body: e.target.value})
+        this.props.addMessage({id: createdMessage.id, body: e.target.value});
       }
       e.target.value = "";
-    };
+    }
 
     handleKeyUp(e) {
       if(e.keyCode == 13){
-        this.handleSubmit(e)
+        if (typeof App !== 'undefined'){
+          const message = { body: e.target.value, author_id: this.props.user.id };
+          App.room.speak(message);
+          // debugger
+          // message['id'] =  this.props.messages.length;
+          // this.props.addMessage(message);
+          // this.props.addLastMessage();
+          } //else{
+        //   debugger
+        //   this.props.addMessage({id: createdMessage.id, body: e.target.value});
+        // }
+        e.target.value = "";
       }
-    };
+    }
 
   render() {
     return (
@@ -41,7 +53,7 @@ class Channel extends React.Component {
             })
           }
         </ul>
-        <form className="message-form" onSubmit={this.handleSubmit}>
+        <form className="message-form">
           <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
         </form>
       </div>

@@ -4,18 +4,19 @@ export const fetchMessages = () => (
   })
 );
 
-export const fetchMessage = (messageId) => (
-  $.ajax({
+export const fetchMessage = (messageId) => {
+  return $.ajax({
     url: `/api/messages/${messageId}`
-  })
-);
+  });
+};
 
 // is this gonna be ok with asynchronicity and stuff
-export const getLastMessageId = () => (
-  $.ajax({
-    url: '/api/messages/get_last_message_id'
-  })
-);
+export const getLastMessageId = () => {
+  return $.ajax({
+    url: '/api/get_last_message_id'
+  });
+};
+
 export const updateMessage = message => (
   $.ajax({
     method: 'PATCH',
