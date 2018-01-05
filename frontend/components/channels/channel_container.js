@@ -6,7 +6,8 @@ import Channel from './channel';
 const mapStateToProps = (state) => (
   {
     messages: values(state.entities.messages),
-    user: state.session.currentUser
+    user: state.session.currentUser,
+    // message_author: state.users[]
   }
 );
 
