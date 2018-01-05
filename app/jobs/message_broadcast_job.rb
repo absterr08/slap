@@ -8,6 +8,6 @@ class MessageBroadcastJob < ApplicationJob
   private
     def render_message(message)
       # R5: being able to render partials outside of scope of controller
-      ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message })
+      ApplicationController.renderer.render(partial: 'api/messages/message', locals: { message: message })
     end
 end

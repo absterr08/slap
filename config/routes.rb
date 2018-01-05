@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    get 'messages/index'
-  end
-
   root to: 'static_pages#root'
 
 
@@ -13,6 +9,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create, :edit, :show, :index]
   end
 
+  get 'api/messages/get_last_message_id', to: 'api/messages#get_last_message_id'
 
   mount ActionCable.server => '/cable'
 

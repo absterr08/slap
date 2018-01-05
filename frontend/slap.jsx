@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchMessage = messageActions.fetchMessage;
   window.createMessage = messageActions.createMessage;
   window.updateMessage = messageActions.updateMessage;
+  window.addLastMessage = messageActions.addLastMessage;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });

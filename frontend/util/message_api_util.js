@@ -10,11 +10,10 @@ export const fetchMessage = (messageId) => (
   })
 );
 
-export const createMessage = message => (
+// is this gonna be ok with asynchronicity and stuff
+export const getLastMessageId = () => (
   $.ajax({
-    method: 'POST',
-    url: '/api/messages',
-    data: { message }
+    url: '/api/messages/get_last_message_id'
   })
 );
 export const updateMessage = message => (

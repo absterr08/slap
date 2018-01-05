@@ -11,7 +11,7 @@ export default class Home extends React.Component {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
-          return store.dispatch(addMessage(data['message']));
+          // return store.dispatch(addMessage(data['message']));
         },
         speak: function(message) {
           return this.perform('speak', {

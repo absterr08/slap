@@ -2,35 +2,46 @@ import React, { Component, PropTypes } from 'react';
 
 class Channel extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
     componentDidMount() {
       this.props.fetchMessages()
     }
+
     handleSubmit(e) {
       e.preventDefault();
+      if (typeof App !== 'undefined'){
+        const message = { body: e.target.value, author_id: this.props.userId };
+        App.room.speak(message);
+        this.props.addLastMessage();
+      }else{
+        debugger
+        this.props.addMessage({id: createdMessage.id, body: e.target.value})
+      }
+      e.target.value = "";
     };
 
     handleKeyUp(e) {
       if(e.keyCode == 13){
-        if (typeof App !== 'undefined'){
-          App.room.speak(e.target.value);
-        }else{
-          addMessage({id: this.props.messages.length + 1, content: e.target.value})
-        }
-        e.target.value = "";
-      };
+        this.handleSubmit(e)
+      }
     };
 
   render() {
     return (
-      <div>
-        <ul>
+      <div className="channel-container">
+        <ul className="messages-index">
           {this.props.messages.map((msg) => {
-              return <li key={msg.id}>{msg.body}</li>;
+              return <li className="message" key={msg.id}>{msg.body}</li>;
             })
           }
         </ul>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" onKeyUp={this.handleKeyUp}/>
+          <input type="text" onKeyUp={this.handleKeyUp.bind(this)}/>
+          <input type="submit" onKeyUp={this.handleKeyUp.bind(this)}/>
         </form>
       </div>
     );

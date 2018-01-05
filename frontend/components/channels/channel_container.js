@@ -1,18 +1,20 @@
-import { fetchMessages } from '../../actions/message_actions'
+import { fetchMessages, addLastMessage } from '../../actions/message_actions'
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Channel from './channel';
 
 const mapStateToProps = (state) => (
   {
-    messages: values(state.entities.messages)
+    messages: values(state.entities.messages),
+    userId: state.session.currentUser.id
   }
 )
 
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchMessages: () => dispatch(fetchMessages())
-    
+    fetchMessages: () => dispatch(fetchMessages()),
+    fetchMessage: id => dispatch(fetchMessages(id)),
+    addLastMessage: () => dispatch(addLastMessage())
   }
 )
 
