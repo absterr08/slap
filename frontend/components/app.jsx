@@ -9,7 +9,7 @@ import NavBar from './navbar/navbar';
 
 
 const App = () => (
-  <div>
+  <div className="app">
       <Route exact path="/"  component={NavBar}/>
       <AuthRoute path="/login" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
