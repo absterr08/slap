@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addLastMessage = messageActions.addLastMessage;
   window.formatDateTime = MessageAPIUtil.formatDateTime;
   window.fetchUsers = userActions.fetchUsers;
+  window.fetchUsersThenMessages = userActions.fetchUsersThenMessages;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });
