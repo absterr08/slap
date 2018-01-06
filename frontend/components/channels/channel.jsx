@@ -10,11 +10,11 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-      this.props.fetchMessages();
       this.props.fetchUsers();
+      this.props.fetchMessages();
     }
 
-    
+
 
     handleSubmit(e) {
       e.preventDefault();
@@ -42,6 +42,7 @@ class Channel extends React.Component {
     }
 
   render() {
+    // debugger
     return (
       <div className="channel-container">
         <ul className="messages-container">

@@ -10,11 +10,13 @@ import NavBar from './navbar/navbar';
 
 const App = () => (
   <div className="app">
-      <Route exact path="/"  component={NavBar}/>
+    <AuthRoute path="/" component={NavBar}/>
+    <Switch>
       <AuthRoute path="/login" component={SessionFormContainer} />
       <AuthRoute path="/signup" component={SessionFormContainer} />
-      <Route exact path="/" component={Splash} />
-      <ProtectedRoute path="/hello" component={HomeContainer} />
+      <AuthRoute exact path="/" component={Splash} />
+      <ProtectedRoute path="/home" component={HomeContainer} />
+    </Switch>
   </div>
 );
 
