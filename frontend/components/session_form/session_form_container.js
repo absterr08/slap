@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const action = ownProps.match.path === "/signup" ? signup : login
+  const action = ownProps.match.path === "/signup" ? signup : login;
   return {
     processForm: user => dispatch(action(user))
   };

@@ -39,7 +39,12 @@
   line-height: 1.5;
 }
 
-.demo-btn {
+.signup-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.signup-btn {
   display: inline-block;
   padding: 19px 30px;
   line-height: 1.2rem;
@@ -56,7 +61,7 @@
   margin-bottom: 10px;
 }
 
-.demo-btn:hover {
+.signup-btn:hover {
   background: #1c299d;
 }
 
