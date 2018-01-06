@@ -10,9 +10,9 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-      // this.props.fetchUsersThenMessages();
-      this.props.fetchUsers();
-      this.props.fetchMessages();
+      this.props.fetchUsersThenMessages();
+      // this.props.fetchUsers();
+      // this.props.fetchMessages();
     }
 
 
