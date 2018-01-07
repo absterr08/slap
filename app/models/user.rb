@@ -11,6 +11,21 @@ class User < ApplicationRecord
 
   attr_reader :password
 
+
+  def self.generate_unique_guest_name
+    randomNumber = (100...999).to_a.sample
+    guestName = "guest#{randomNumber}"
+    if User.find_by_username(guestName)
+      guestName = generateUniqueGuestName
+    end
+    return guestName
+  end
+
+  def self.create_guest
+    guestName = User.generate_unique_guest_name
+    User.create(username: guestName, email: guestName, password: 'starwars')
+  end
+
   def self.find_by_params(user, password)
     user = User.find_by(username: user)
     return user if user && user.is_password?(password)

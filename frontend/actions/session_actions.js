@@ -40,3 +40,9 @@ export const signup = (user) => (dispatch) => {
     dispatch(receiveCurrentUser(user)),
     (err) => errCallback(err));
 };
+
+export const guestSignup = () => (dispatch) => {
+  return SessionAPIUtil.guestSignup().then((user) =>
+    dispatch(receiveCurrentUser(user)),
+    (err) => errCallback(err));
+};

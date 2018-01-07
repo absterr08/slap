@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.formatDateTime = MessageAPIUtil.formatDateTime;
   window.fetchUsers = userActions.fetchUsers;
   window.fetchUsersThenMessages = userActions.fetchUsersThenMessages;
+  window.fetchUser = userActions.fetchUser;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });

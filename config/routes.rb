@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   get 'api/get_last_message_id', to: 'api/messages#get_last_message_id'
+  post 'api/create_guest_user', to: 'api/users#create_guest_user'
 
   mount ActionCable.server => '/cable'
 

@@ -10,12 +10,18 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def create_guest_user
+    @user = User.create_guest
+    login(@user)
+    render :show
+  end
+
   def index
     @users = User.all
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def user_params

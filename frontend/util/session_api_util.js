@@ -6,6 +6,13 @@ export const signup = user => (
   })
 );
 
+export const guestSignup = () => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/create_guest_user'
+  })
+)
+
 export const login = user => (
   $.ajax({
     method: 'POST',

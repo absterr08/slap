@@ -1,4 +1,4 @@
-import { fetchUsersThenMessages } from '../../actions/user_actions';
+import { fetchUsersThenMessages, fetchUser } from '../../actions/user_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Channel from './channel';
@@ -14,6 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
   {
     fetchUsersThenMessages: () => dispatch(fetchUsersThenMessages()),
+    fetchUser: id => dispatch(fetchUser(id))
   }
 );
 

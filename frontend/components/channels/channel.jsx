@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import Message from './message'
 
 class Channel extends React.Component {
@@ -27,13 +27,19 @@ class Channel extends React.Component {
     }
 
   render() {
+    const messages = this.props.messages.map((message) => {
+      // debugger
+        if (!this.props.getMessageAuthor(message.author_id)) {
+          // debugger
+          this.props.fetchUser(message.author_id);
+        } else {
+          return <Message key={message.id} message={message} user={this.props.getMessageAuthor(message.author_id)} />;
+        }
+      });
     return (
       <div className="channel-container">
         <ul className="messages-container">
-          {this.props.messages.map((message) => {
-              return <Message key={message.id} message={message} user={this.props.getMessageAuthor(message.author_id)} />;
-            })
-          }
+          {messages}
         </ul>
         <form className="message-form">
           <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>

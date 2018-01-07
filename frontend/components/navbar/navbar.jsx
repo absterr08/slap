@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { login } from '../../actions/session_actions';
+import { login, guestSignup } from '../../actions/session_actions';
 
 
-const NavBar = ({ demoLogin }) => {
+const NavBar = ({ guestSignup }) => {
 
   return (
     <div className="nav-bar">
@@ -12,7 +12,7 @@ const NavBar = ({ demoLogin }) => {
         <Link to="/" className="slap-logo" />
         <p className="slap-text">slap</p>
       </div>
-      <button onClick={demoLogin} className="guest-btn">Guest Login</button>
+      <button onClick={guestSignup} className="guest-btn">Guest Login</button>
     </div>
   );
 };
@@ -20,7 +20,8 @@ const NavBar = ({ demoLogin }) => {
 
 const mapDispatchToProps = dispatch => (
   {
-    demoLogin: () => dispatch(login({ username: 'guestUser', password: 'starwars' }))
+    demoLogin: () => dispatch(login({ username: 'guestUser', password: 'starwars' })),
+    guestSignup: () => dispatch(guestSignup())
   }
 )
 
