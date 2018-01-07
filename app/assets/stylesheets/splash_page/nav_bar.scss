@@ -1,16 +1,14 @@
 .nav-bar {
-    display: flex;
-    position: fixed;
-    top: 0px;
-    background: #fff;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    height: 65px;
-    width: 100%;
-    z-index: 2;
-}
-
-.nav-logo {
-  padding-left: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  height: 69px;
+  width: 100%;
+  z-index: 2;
 }
 
 .slap-logo {
@@ -24,9 +22,23 @@
 }
 
 .slap-text {
+  font-family: 'Quicksand', sans-serif;
   position: relative;
   left: 60px;
   top: 15px;
   font-family: sans-serif;
   font-size: 25px;
+}
+
+.guest-btn {
+  font-family: 'Quicksand', sans-serif;
+  display: inline-block;
+  color: #6d6f7b;
+  transition: all 420ms cubic-bezier(.165,.84,.44,1);
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 4px;
+  text-align: center;
+  width: 157px;
+  height: 36px;
 }

@@ -51,6 +51,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+input, div {
+  box-shadow: none;
+  border: none;
+}
 body {
   font-family: 'Noticia Text', serif;
 }

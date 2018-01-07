@@ -1,33 +1,68 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { login } from '../../actions/session_actions'
+import { receiveSessionErrors } from '../../actions/session_actions';
 
+class Splash extends React.Component {
 
-const Splash = ({ demoLogin }) => (
-  <div className="splash-container">
-    <div className="splash-image"/>
-    <div className="main-info">
-      <h1>Productivity starts here</h1>
-      <p>Whip your team into shape with Slap! A messaging app for teams that
-        need a litle extra push in the right direction.</p>
-      <div className="signup-button-container">
-        <Link to="/signup" className="signup-btn">Get started</Link>
-        <button onClick={demoLogin} className="signup-btn">Guest Login</button>
-      </div>
-
-      <p>Already using Slap?&nbsp;
-      <Link to="/login" className="splash-link">Sign In</Link>
-      </p>
-    </div>
-  </div>
-);
-
-
-const mapDispatchToProps = dispatch => (
-  {
-    demoLogin: () => dispatch(login({ username: 'guestUser', password: 'starwars' }))
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: ""
+    };
   }
-)
 
-export default connect(null, mapDispatchToProps)(Splash);
+  validateEmail(e) {
+    if (this.state.email === "") {
+      e.preventDefault();
+      this.props.receiveSessionErrors("Please enter an email address.");
+    } else {
+      this.props.receiveSessionErrors("");
+    }
+  }
+
+  handleSubmit(e) {
+    this.props.history.push("/signup");
+  }
+
+  handleChange(e) {
+    this.setState({ email: e.target.value });
+  }
+  render() {
+    const errors = this.props.errors[0] ?
+      <p className="splash-errors">{this.props.errors}</p> : "";
+
+    return(
+      <div className="splash-container">
+        <div className="splash-image"/>
+        <div className="main-info">
+          <h1>Productivity starts here</h1>
+          <p className="slap-description">Whip your team into shape with Slap! A messaging app for teams that
+            need a litle extra push in the right direction.</p>
+          {errors}
+          <div className="signup-container">
+            <input className="email-input" type="email" placeholder="Email address" value={ this.state.email } onChange={ this.handleChange.bind(this) }/>
+            <Link to={`/signup/${this.state.email}`} className="signup-btn" onClick={this.validateEmail.bind(this)}>Get started</Link>
+          </div>
+          <p className="signin-text">Already using Slap?&nbsp;
+          <Link to="/login" className="signin-link">Sign In</Link>
+          </p>
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    errors: state.errors.session
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    receiveSessionErrors: errors => dispatch(receiveSessionErrors(errors))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
