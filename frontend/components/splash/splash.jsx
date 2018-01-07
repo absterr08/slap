@@ -28,7 +28,7 @@ class Splash extends React.Component {
           <p className="slap-description">Whip your team into shape with Slap! A messaging app for teams that
             need a litle extra push in the right direction.</p>
           <div className="signup-container">
-            <input type="text" placeholder="email@example.com" value={ this.state.email }/>
+            <input type="text" placeholder="email@example.com" value={ this.state.email } onChange={ this.handleChange }/>
             <Link to="/signup" className="signup-btn">Get started</Link>
           </div>
           <p className="signin-text">Already using Slap?&nbsp;
