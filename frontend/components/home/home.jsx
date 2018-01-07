@@ -1,6 +1,7 @@
 import React from 'react';
-import ChannelContainer from '../channels/channel_container';
-import Greeting from './greeting';
+import ChannelContainer from '../channel/channel_container';
+import ChannelSidebarHeader from './channel_sidebar/sidebar_header';
+// import ChannelSidebarMain from './channel_sidebar/sidebar_main';
 
 export default class Home extends React.Component {
 
@@ -26,7 +27,9 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <Greeting />
+        <div className="channel-sidebar">
+          <ChannelSidebarHeader />
+        </div>
         <ChannelContainer />
       </div>
     )
