@@ -1,4 +1,6 @@
-json.extract! @channel, :name, :description, :is_dm
+json.channel do
+  json.extract! @channel, :id, :name, :description, :is_dm
+end
 
 json.messages do
   json.array! @channel.messages, partial: 'api/messages/message', as: :message

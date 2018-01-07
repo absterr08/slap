@@ -4,7 +4,7 @@ import channels from './channels_reducer';
 import users from './users_reducer';
 
 export default combineReducers({
-  messages,
   channels,
+  messages,
   users
 });
