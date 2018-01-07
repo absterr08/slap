@@ -6,13 +6,13 @@ import {login, signup, receiveSessionErrors} from '../../actions/session_actions
 const mapStateToProps = (state, ownProps) => {
   return {
     loggedIn: !!state.session.currentUser,
-    formType: ownProps.match.path === "/signup" ? "signup" : "login",
+    formType: ownProps.match.path === "/signup/:email" ? "signup" : "login",
     errors: state.errors.session
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const action = ownProps.match.path === "/signup" ? signup : login;
+  const action = ownProps.match.path === "/signup/:email" ? signup : login;
   return {
     processForm: user => dispatch(action(user))
   };
