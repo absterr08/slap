@@ -14,7 +14,7 @@ export default (state = {}, action) => {
         acc[message.id] = message;
         return acc;
       }, {});
-      return merge({}, state, messages);
+      return messages;
     default:
       return state;
   }
