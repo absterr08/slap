@@ -1,4 +1,4 @@
-import { fetchMessages, addLastMessage, receiveMessage } from '../../actions/message_actions';
+import { fetchMessages, receiveMessage } from '../../actions/message_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Home from './home';
@@ -10,7 +10,6 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     fetchMessages: () => dispatch(fetchMessages()),
-    addLastMessage: () => dispatch(addLastMessage()),
     addMessage: message => dispatch(receiveMessage(message))
   }
 );

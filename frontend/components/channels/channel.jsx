@@ -28,9 +28,7 @@ class Channel extends React.Component {
 
   render() {
     const messages = this.props.messages.map((message) => {
-      // debugger
         if (!this.props.getMessageAuthor(message.author_id)) {
-          // debugger
           this.props.fetchUser(message.author_id);
         } else {
           return <Message key={message.id} message={message} user={this.props.getMessageAuthor(message.author_id)} />;
