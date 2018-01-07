@@ -7,9 +7,9 @@ import * as sessionActions from './actions/session_actions';
 import * as messageActions from './actions/message_actions';
 import * as channelActions from './actions/channel_actions';
 import * as userActions from './actions/user_actions';
-import * as MessageAPIUtil from './util/message_api_util';
-import * as UserAPIUtil from './util/user_api_util';
-import * as ChannelAPIUtil from './util/channel_api_util';
+import * as MessageApiUtil from './util/message_api_util';
+import * as UserApiUtil from './util/user_api_util';
+import * as ChannelApiUtil from './util/channel_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.createMessage = messageActions.createMessage;
   window.updateMessage = messageActions.updateMessage;
   window.addLastMessage = messageActions.addLastMessage;
-  window.formatDateTime = MessageAPIUtil.formatDateTime;
+  window.formatDateTime = MessageApiUtil.formatDateTime;
   window.fetchUsers = userActions.fetchUsers;
   window.fetchUsersThenMessages = userActions.fetchUsersThenMessages;
   window.fetchUser = userActions.fetchUser;

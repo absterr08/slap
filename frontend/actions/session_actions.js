@@ -1,4 +1,4 @@
-import * as SessionAPIUtil from '../util/session_api_util.js';
+import * as SessionApiUtil from '../util/session_api_util.js';
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 
@@ -23,26 +23,26 @@ const errCallback = (err) => {
 };
 
 export const login = (user) => (dispatch) => {
-	return SessionAPIUtil.login(user).then((user) =>
+	return SessionApiUtil.login(user).then((user) =>
     dispatch(receiveCurrentUser(user)),
     (err) => errCallback(err));
 };
 
 
 export const logout = () => (dispatch) => {
-  return SessionAPIUtil.logout().then(() =>
+  return SessionApiUtil.logout().then(() =>
     dispatch(receiveCurrentUser(null)),
     (err) => errCallback(err));
 };
 
 export const signup = (user) => (dispatch) => {
-  return SessionAPIUtil.signup(user).then((user) =>
+  return SessionApiUtil.signup(user).then((user) =>
     dispatch(receiveCurrentUser(user)),
     (err) => errCallback(err));
 };
 
 export const guestSignup = () => (dispatch) => {
-  return SessionAPIUtil.guestSignup().then((user) =>
+  return SessionApiUtil.guestSignup().then((user) =>
     dispatch(receiveCurrentUser(user)),
     (err) => errCallback(err));
 };

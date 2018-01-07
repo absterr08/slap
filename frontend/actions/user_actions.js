@@ -1,5 +1,5 @@
-import * as UserAPIUtil from '../util/user_api_util';
-import * as MessageAPIUtil from '../util/message_api_util';
+import * as UserApiUtil from '../util/user_api_util';
+import * as MessageApiUtil from '../util/message_api_util';
 import { fetchMessages, receiveMessages } from './message_actions';
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
@@ -19,15 +19,15 @@ const receiveUser = (user) => {
 };
 
 export const fetchUsers = () => dispatch => (
-  UserAPIUtil.fetchUsers().then(users => dispatch(receiveUsers(users)))
+  UserApiUtil.fetchUsers().then(users => dispatch(receiveUsers(users)))
 );
 export const fetchUser = userId => dispatch => {
-  return UserAPIUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)))
+  return UserApiUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)))
 };
 
 export const fetchUsersThenMessages = () => dispatch => {
-  UserAPIUtil.fetchUsers().then( users => {
-    MessageAPIUtil.fetchMessages().then( messages => {
+  UserApiUtil.fetchUsers().then( users => {
+    MessageApiUtil.fetchMessages().then( messages => {
       dispatch(receiveUsers(users));
       dispatch(receiveMessages(messages));
     });

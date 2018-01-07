@@ -1,4 +1,4 @@
-import * as ChannelAPIUtil from '../util/channel_api_util';
+import * as ChannelApiUtil from '../util/channel_api_util';
 
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
@@ -18,9 +18,9 @@ const receiveChannel = payload => (
 )
 
 export const fetchChannels = () => dispatch => (
-  ChannelAPIUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))
+  ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))
 )
 
 export const fetchChannel = (channelId) =>  dispatch => (
-  ChannelAPIUtil.fetchChannel(channelId).then( channel => dispatch(receiveChannel(channel)))
+  ChannelApiUtil.fetchChannel(channelId).then( channel => dispatch(receiveChannel(channel)))
 )
