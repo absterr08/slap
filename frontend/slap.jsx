@@ -8,6 +8,7 @@ import * as messageActions from './actions/message_actions';
 import * as userActions from './actions/user_actions';
 import * as MessageAPIUtil from './util/message_api_util';
 import * as UserAPIUtil from './util/user_api_util';
+import * as ChannelAPIUtil from './util/channel_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchUsers = userActions.fetchUsers;
   window.fetchUsersThenMessages = userActions.fetchUsersThenMessages;
   window.fetchUser = userActions.fetchUser;
+  window.fetchChannels = ChannelAPIUtil.fetchChannels;
+  window.fetchChannel = ChannelAPIUtil.fetchChannel;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });
