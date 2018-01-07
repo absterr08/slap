@@ -12,6 +12,10 @@ class Splash extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.receiveSessionErrors("");
+  }
+
   validateEmail(e) {
     if (this.state.email === "") {
       e.preventDefault();
