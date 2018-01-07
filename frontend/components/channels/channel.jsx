@@ -36,12 +36,15 @@ class Channel extends React.Component {
       });
     return (
       <div className="channel-container">
-        <ul className="messages-container">
-          {messages}
-        </ul>
-        <form className="message-form">
-          <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
-        </form>
+        <div className="channel-header">header</div>
+        <div className="messages-container">
+          <ul className="messages-list">
+            {messages}
+          </ul>
+          <form className="message-form">
+            <input className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
+          </form>
+      </div>
       </div>
     );
   }

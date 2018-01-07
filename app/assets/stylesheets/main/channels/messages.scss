@@ -1,14 +1,22 @@
-.message-container {
-  display: flex;
-  flex-direction: column;
-  height: 96%;
-  width: 100%;
+.messages-list {
+  margin-bottom: 15px;
+  padding-bottom: 5px;
   overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  width: 100%;
 }
 //
 // .message-container * {
 //   margin: 5px;
 // }
+
+.messages-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
 .message-header {
   display: flex;
@@ -37,20 +45,18 @@
 }
 
 .message-form {
-  display: inline-block;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 10%;
+  padding-bottom: 24px;
+  height: 40px;
+  -webkit-transition: all .3s ease;
 }
 
 .message-form-input {
   padding: 7px;
-  border: 2px solid #a0a0a2;
+  border: 1px solid rgba(160,160,162,0.7);
   border-radius: 5px;
   font-family: 'Lato', sans-serif;
   margin: 5px;
-  // box-sizing: border-box;
   font-size: 1.0rem;
-  width: 80%;
+  width: 90%;
+  min-width: 500px;
 }
