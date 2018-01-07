@@ -7,7 +7,9 @@ export default (state = {}, action) => {
     case RECEIVE_CHANNELS:
       return merge({}, state, action.channels);
     case RECEIVE_CHANNEL:
-      return action.channels;
+      const channel = action.payload.channel;
+      channel.message_ids = action.payload.items.map(item => item.id);
+      return merge({}, state, { [action.id]})
     defalt:
       return state;
   }
