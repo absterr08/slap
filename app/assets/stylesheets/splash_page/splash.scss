@@ -34,14 +34,10 @@
   font-weight: 700;
 }
 
-.main-info p {
+.main-info > .slap-description, Link {
   font-size: 20px;
   line-height: 1.5;
-}
-
-.signup-button-container {
-  display: flex;
-  justify-content: space-between;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .signup-btn {
@@ -50,7 +46,7 @@
   line-height: 1.2rem;
   background: #3f46ad;
   color: #fff;
-  font-size: 14px;
+  font-size: 16px;
   text-transform: uppercase;
   cursor: pointer;
   text-shadow: 0 1px 1px rgba(0,0,0,0.1);
@@ -59,19 +55,35 @@
   box-shadow: none;
   transition: 0.2s;
   margin-bottom: 10px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .signup-btn:hover {
   background: #1c299d;
 }
 
-.splash-link {
+
+.signin-link {
   color: #3f46ad;
   cursor: pointer;
   text-decoration: none;
   border-bottom: 1px solid #3f46ad;
   transition: all 420ms cubic-bezier(.165,.84,.44,1);
   word-break: break-word;
+}
+
+// .main-info > .signin-text .signin-link {
+//   font-family: 'Quicksand', sans-serif;
+//
+// }
+
+.signin-text.signin-link {
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
+}
+.signin-text {
+  font-size: 14px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 

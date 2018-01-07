@@ -36,7 +36,7 @@ class SessionForm extends React.Component {
     let emailForm;
     if (this.props.formType === "signup") {
       emailForm = <input type="text"
-                    placeholder="email@example.com"
+                    
                     value={ this.state.email }
                     onChange={ this.handleChange("email") }
                   />;
