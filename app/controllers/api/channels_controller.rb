@@ -16,6 +16,11 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def find_channel_by_name
+    @channel = Channel.find_by_name(params[:name])
+    render :show
+  end
+
   def channel_params
     params.require(:channel).permit(:name, :description, :is_dm)
   end

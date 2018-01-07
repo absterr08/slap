@@ -8,7 +8,7 @@ const SidebarMain = ({ channels, fetchChannels }) => {
   return (
     <ul className="channel-list">
       { channels.map((channel, idx) => {
-        return <ChannelIndexItem key={idx} channel={ channel } />
+        return <ChannelIndexItem key={ idx } channel={ channel } />
         })
       }
     </ul>

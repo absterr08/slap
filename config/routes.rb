@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   post 'api/create_guest_user', to: 'api/users#create_guest_user'
+  get 'api/find_channel_by_name/:name', to: 'api/channels#find_channel_by_name', defaults: {format: :json}
 
   mount ActionCable.server => '/cable'
 

@@ -10,6 +10,12 @@ export const fetchChannel = (channelId) => (
   })
 )
 
+export const fetchChannelByName = (channelName) => (
+  $.ajax({
+    url: `/api/find_channel_by_name/${channelName}`
+  })
+)
+
 export const createChannel = (channel) => (
   $.ajax({
     method: "POST",

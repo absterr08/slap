@@ -6,6 +6,7 @@ import Home from './home';
 const mapStateToProps = (state) => (
   {
     channels: values(state.entities.channels),
+    defaultChannel: values(state.entities.channels)[0],
     messages: values(state.entities.messages)
   }
 );

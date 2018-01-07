@@ -7,7 +7,7 @@ import { logout } from '../../../actions/session_actions';
 const ChannelSidebar = ({ username, logout }) => {
     return (
       <div className="channel-sidebar-header">
-        <h1 className="username">Hi, {username}</h1>
+        <h1 className="username">{username}</h1>
         <button className="logout" onClick={logout}>Log Out</button>
       </div>
     )
