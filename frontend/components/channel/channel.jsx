@@ -30,7 +30,7 @@ class Channel extends React.Component {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
           const message = { body: e.target.value, author_id: this.props.user.id };
-          App.room.speak(message);
+          App[`room${this.props.channelId}`].speak(message);
           } //else{
         //   debugger
         //   this.props.addMessage({id: createdMessage.id, body: e.target.value});

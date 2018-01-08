@@ -18,8 +18,9 @@ export const createChannel = (channel) => (
   })
 )
 
-export const createChannelSubscriptions = channels => {
-  // debugger
+// probably bad practice to put this here since addMessage is dispatching stuff?
+export const createChannelSubscriptions = (channels, addMessage) => {
+  debugger
   if (typeof App !== 'undefined'){
     channels.forEach(channel => {
         App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
