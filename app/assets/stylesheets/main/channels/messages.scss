@@ -61,3 +61,12 @@
   width: 95%;
   min-width: 500px;
 }
+
+.message-form-input:focus {
+  outline: none;
+  border: 1px solid black;
+}
+
+.message-form-input::placeholder {
+  font-weight: lighter;
+}

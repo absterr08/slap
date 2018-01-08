@@ -7,10 +7,16 @@ import ChannelIndexItem from './channel_index_item';
 const SidebarMain = ({ channels }) => {
   return (
     <ul className="channel-list">
-      { channels.map((channel, idx) => {
-        return <ChannelIndexItem key={ idx } channel={ channel } />
-        })
-      }
+      <ul className="channel-sublist">
+        <li className="sidebar-label">Channels</li>
+        { channels.map((channel, idx) => {
+          return <ChannelIndexItem key={ idx } channel={ channel } />
+          })
+        }
+      </ul>
+      <ul className="channel-sublist">
+        <li className="sidebar-label">Direct Messages</li>
+      </ul>
     </ul>
   )
 }
