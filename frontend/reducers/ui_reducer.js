@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
-
-import session from './errors/session_errors_reducer';
+import currentChannel from './ui/current_channel_reducer';
 
 export default combineReducers({
-  session
+  currentChannel
 });

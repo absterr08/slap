@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import messages from './messages_reducer';
-import channels from './channels_reducer';
-import users from './users_reducer';
+import messages from './entities/messages_reducer';
+import channels from './entities/channels_reducer';
+import users from './entities/users_reducer';
 
 export default combineReducers({
   channels,

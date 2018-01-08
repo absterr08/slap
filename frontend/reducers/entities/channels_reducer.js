@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { RECEIVE_CHANNELS, RECEIVE_CHANNEL } from '../actions/channel_actions';
+import { RECEIVE_CHANNELS, RECEIVE_CHANNEL } from '../../actions/channel_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -18,3 +18,6 @@ export default (state = {}, action) => {
       return state;
   }
 }
+
+//access local storage in UI slice
+//localStorage.setItem("currentChannel", )
