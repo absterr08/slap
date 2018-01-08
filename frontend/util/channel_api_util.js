@@ -16,6 +16,12 @@ export const fetchChannelByName = (channelName) => (
   })
 )
 
+export const getChannelByName = channelName => {
+  return fetchChannelByName(channelName)
+  // debugger
+  // return promise.responseJSON
+}
+
 export const createChannel = (channel) => (
   $.ajax({
     method: "POST",

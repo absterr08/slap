@@ -21,20 +21,26 @@ export default class Home extends React.Component {
         }
       });
     }
-  }
-
-  componentDidMount() {
     this.props.fetchChannels();
   }
 
+
   render() {
+    let channelContainer;
+    const pathChannel = this.props.match.params.channelId;
+    if (pathChannel) {
+      channelContainer = <ChannelContainer channelId={pathChannel} />
+    } else if (this.props.defaultChannel) {
+      channelContainer = <ChannelContainer channelId={this.props.defaultChannel} />
+    }
+
     return (
       <div className="main-container">
         <div className="channel-sidebar">
           <ChannelSidebarHeader />
           <ChannelSidebarMain channels={this.props.channels} />
         </div>
-        <ChannelContainer name={this.props.defaultChannel}/>
+        {channelContainer}
       </div>
     )
   }

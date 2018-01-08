@@ -39,7 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchUser = userActions.fetchUser;
   window.fetchChannels = channelActions.fetchChannels;
   window.fetchChannel = channelActions.fetchChannel;
-  window.fetchChannelByName = channelActions.fetchChannelByName;
+  window.fetchChannelByName = ChannelApiUtil.fetchChannelByName;
+  window.getChannelByName = ChannelApiUtil.getChannelByName;
   window.getState = store.getState;
   window.dispatch = store.dispatch;
 });

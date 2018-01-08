@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const ChannelIndexItem = ({ channel }) => {
   return (
     <li className="channel-list-item">
-      <Link to={ `/messages/${channel.name}` }>{channel.name}</Link>
+      <Link to={ `/messages/${channel.id}` }>{channel.name}</Link>
     </li>
   )
 }

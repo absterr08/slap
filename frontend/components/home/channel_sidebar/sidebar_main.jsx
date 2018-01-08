@@ -4,7 +4,7 @@ import { values } from 'lodash';
 import { fetchChannels } from '../../../actions/channel_actions';
 import ChannelIndexItem from './channel_index_item';
 
-const SidebarMain = ({ channels, fetchChannels }) => {
+const SidebarMain = ({ channels }) => {
   return (
     <ul className="channel-list">
       { channels.map((channel, idx) => {

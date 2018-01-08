@@ -1,10 +1,12 @@
 import { fetchUsersThenMessages, fetchUser } from '../../actions/user_actions';
-import { fetchChannelByName } from '../../actions/channel_actions';
+import { fetchChannel} from '../../actions/channel_actions';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
 import Channel from './channel';
 
 const mapStateToProps = (state) => {
+  // debugger
   return {
     messages: values(state.entities.messages),
     user: state.session.currentUser,
@@ -14,11 +16,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchChannel: name => dispatch(fetchChannelByName(name)),
     fetchUsersThenMessages: () => dispatch(fetchUsersThenMessages()),
-    fetchUser: id => dispatch(fetchUser(id))
+    fetchUser: id => dispatch(fetchUser(id)),
+    fetchChannel: id => dispatch(fetchChannel(id))
   }
 );
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Channel);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Channel));

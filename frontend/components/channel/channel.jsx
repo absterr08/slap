@@ -1,6 +1,8 @@
 import React from 'react';
 import Message from './message'
 
+import { getChannelByName } from '../../util/channel_api_util';
+
 class Channel extends React.Component {
 
     constructor(props) {
@@ -9,8 +11,20 @@ class Channel extends React.Component {
     }
 
     componentDidMount() {
-      // this.props.fetchChannel()
-      this.props.fetchUsersThenMessages();
+      if (!this.props.match.params.channelId) {
+        this.props.history.push(`/messages/${this.props.channelId}`)
+      }
+      this.props.fetchChannel(this.props.channelId)
+    }
+
+    componentWillReceiveProps(nextProps) {
+      if (!nextProps.match.params.channelId) {
+        // debugger
+        this.props.history.goBack();
+      } else if (this.props.channelId !== nextProps.match.params.channelId) {
+        // debugger
+        this.props.fetchChannel(nextProps.match.params.channelId)
+      }
     }
 
 
@@ -28,6 +42,7 @@ class Channel extends React.Component {
     }
 
   render() {
+    // debugger
     const messages = this.props.messages.map((message) => {
         if (!this.props.getMessageAuthor(message.author_id)) {
           this.props.fetchUser(message.author_id);
