@@ -50,8 +50,9 @@
   display: flex;
   justify-content: space-between;
   height: 26px;
+  cursor: pointer;
 }
 
-.add-button {
-  cursor: pointer;
+.add-button:hover {
+  color: rgb(202,196,201);
 }
