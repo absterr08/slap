@@ -26,7 +26,12 @@ export const createChannelSubscriptions = (channels, addMessage) => {
           connected: function() {},
           disconnected: function() {},
           received: function(data) {
-            addMessage(JSON.parse(data['message']));
+            // debugger
+            const messageChannelId = JSON.parse(data.message).channel_id;
+            const channelId = JSON.parse(this.identifier).room;
+            if (messageChannelId === channelId) {
+              addMessage(JSON.parse(data['message']));
+            }
           },
           speak: function(message) {
             return this.perform('speak', {

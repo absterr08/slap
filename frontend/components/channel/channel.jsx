@@ -12,16 +12,16 @@ class Channel extends React.Component {
 
     componentDidMount() {
       if (!this.props.match.params.channelId) {
-        this.props.history.push(`/messages/${this.props.channelId}`)
+        this.props.history.push(`/messages/${this.props.channelId}`);
       }
-      this.props.fetchChannel(this.props.channelId)
+      this.props.fetchChannel(this.props.channelId);
     }
 
     componentWillReceiveProps(nextProps) {
       if (!nextProps.match.params.channelId) {
         this.props.history.goBack();
       } else if (this.props.channelId !== nextProps.match.params.channelId) {
-        this.props.fetchChannel(nextProps.match.params.channelId)
+        this.props.fetchChannel(nextProps.match.params.channelId);
       }
     }
 
