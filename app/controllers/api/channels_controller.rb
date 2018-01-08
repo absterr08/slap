@@ -1,6 +1,7 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.all
+    debugger
+    @channels = current_user.channels
   end
 
   def show
@@ -14,11 +15,6 @@ class Api::ChannelsController < ApplicationController
     else
       render json: @channel.errors.full_messages.join(', ')
     end
-  end
-
-  def find_channel_by_name
-    @channel = Channel.find_by_name(params[:name])
-    render :show
   end
 
   def channel_params

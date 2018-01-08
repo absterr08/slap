@@ -10,18 +10,6 @@ export const fetchChannel = (channelId) => (
   })
 )
 
-export const fetchChannelByName = (channelName) => (
-  $.ajax({
-    url: `/api/find_channel_by_name/${channelName}`
-  })
-)
-
-export const getChannelByName = channelName => {
-  return fetchChannelByName(channelName)
-  // debugger
-  // return promise.responseJSON
-}
-
 export const createChannel = (channel) => (
   $.ajax({
     method: "POST",
@@ -29,3 +17,41 @@ export const createChannel = (channel) => (
     data: { channel }
   })
 )
+
+export const createChannelSubscriptions = channels => {
+  // debugger
+  if (typeof App !== 'undefined'){
+    channels.forEach(channel => {
+        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
+          connected: function() {},
+          disconnected: function() {},
+          received: function(data) {
+            addMessage(JSON.parse(data['message']));
+          },
+          speak: function(message) {
+            return this.perform('speak', {
+              message: message
+            });
+          }
+        });
+      }
+    )
+  }
+}
+export const createChannelSubscription = ()  => {
+  debugger
+  if (typeof App !== 'undefined'){
+      App.room = App.cable.subscriptions.create({channel: "RoomChannel", room: "coolroom"}, {
+        connected: function() {},
+        disconnected: function() {},
+        received: function(data) {
+          addMessage(JSON.parse(data['message']));
+        },
+        speak: function(message) {
+          return this.perform('speak', {
+            message: message
+          });
+        }
+      });
+    }
+}

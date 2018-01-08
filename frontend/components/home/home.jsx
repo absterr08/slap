@@ -3,25 +3,13 @@ import ChannelContainer from '../channel/channel_container';
 import ChannelSidebarHeader from './channel_sidebar/sidebar_header';
 import ChannelSidebarMain from './channel_sidebar/sidebar_main';
 
+import { createChannelSubscriptions } from '../../util/channel_api_util';
+
 export default class Home extends React.Component {
 
   componentWillMount() {
-    if (typeof App !== 'undefined'){
-      const addMessage = this.props.addMessage;
-      App.room = App.cable.subscriptions.create("RoomChannel", {
-        connected: function() {},
-        disconnected: function() {},
-        received: function(data) {
-          addMessage(JSON.parse(data['message']));
-        },
-        speak: function(message) {
-          return this.perform('speak', {
-            message: message
-          });
-        }
-      });
-    }
-    this.props.fetchChannels();
+    this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels));
+    const addMessage = this.props.addMessage;
   }
 
 
