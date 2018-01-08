@@ -8,6 +8,7 @@ export default (state = {}, action) => {
     // case RECEIVE_MESSAGES:
     //   return merge({}, state, action.messages);
     case RECEIVE_MESSAGE:
+      debugger
       return merge({}, state, { [action.message.id]: action.message });
     case RECEIVE_CHANNEL:
       const messages = action.payload.messages.reduce((acc, message) => {

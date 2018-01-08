@@ -24,11 +24,6 @@ class Api::MessagesController < ApplicationController
     end
   end
 
-  def get_last_message_id
-    render json: Message.last.id
-  end
-
-
   def message_params
     params.require(:message).permit(:body, :author_id, :channel_id, :parent_message_id)
   end

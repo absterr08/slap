@@ -39,7 +39,7 @@ const formatTime = date => {
   hours = hours > 12 ? hours - 12 : hours;
   const minutes = date.getMinutes();
   const period = date.getHours() < 12 ? 'AM' : 'PM';
-  return `${hours}:${minutes} ${period}`;
+  return minutes < 10 ? `${hours}:0${minutes} ${period}` : `${hours}:${minutes} ${period}`;
 };
 
 
