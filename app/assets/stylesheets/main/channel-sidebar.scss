@@ -10,3 +10,24 @@
 .logout:hover {
   text-decoration: underline;
 }
+
+.channel-sidebar {
+  min-width: 220px;
+  height: 100%;
+  background-color: #4C3A4A;
+  color: white;
+}
+
+.channel-list-item {
+  padding-left: 15px;
+  padding-right: 12px;
+  height: 26px;
+}
+
+.channel-list-item:hover {
+  background-color: #3E313C;
+}
+
+.channel-lsit-item--selected {
+  background-color: #4C9689;
+}

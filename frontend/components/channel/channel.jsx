@@ -49,7 +49,7 @@ class Channel extends React.Component {
       });
     return (
       <div className="channel-container">
-        <div className="channel-header"></div>
+        <div className="channel-header">{this.props.channelName}</div>
         <div className="messages-container">
           <ul className="messages-list">
             {messages}
