@@ -8,7 +8,7 @@ import Channel from './channel';
 const mapStateToProps = (state) => {
   // debugger
   return {
-    messages: values(state.entities.messages),
+    messages: values(state.ui.currentChannel.messages),
     user: state.session.currentUser,
     getMessageAuthor: authorId => (state.entities.users[authorId])
   };

@@ -18,6 +18,11 @@ export default class Home extends React.Component {
     const pathChannel = this.props.match.params.channelId;
     if (pathChannel) {
       channelContainer = <ChannelContainer channelId={pathChannel} />
+    // this breaks :((
+    // } else if (localStorage.getItem("currentChannel")) {
+    //   const channelId = parseInt(localStorage.getItem("currentChannel"));
+    //   // debugger
+    //   channelContainer = <ChannelContainer channelId={channelId} />;
     } else if (this.props.defaultChannel) {
       channelContainer = <ChannelContainer channelId={this.props.defaultChannel} />
     }
