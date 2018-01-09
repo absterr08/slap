@@ -13,43 +13,53 @@ class ChannelForm extends React.Component {
       name: "",
       description: ""
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   closeModal() {
     this.props.toggleModal();
   }
 
-  handleSubmit(e) {
-    this.props.createChannel(this.state);
-    this.closeModal();
-  }
-
   handleInput(field) {
     return (e) => {
-      this.setState({[field]: e.target.value});
+      this.setState({[field]: e.target.value}
+      if (this.state.name !== "") {
+        document.getElementById("channelSubmit").toggleClass("active")
+      });
     };
+  }
+
+  handleSubmit(e) {
+    if (this.state.name!== "") {
+      this.props.createChannel(this.state);
+      this.closeModal();
+    }
   }
 
   render() {
     if (this.props.render) {
       return (
         <div className="new-channel-container">
-          <div className="toggle-close" onClick={this.closeModal}>x</div>
+          <div className="toggle-close-container" onClick={this.closeModal}>
+            <div className="toggle-close">x</div>
+          </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Create a channel</h1>
-            <p className="channel-form-info">Channels are where your members communicate. Theyre best organized around a topic - #leads, for example.</p>
-            <label className="channel-form-label">Name
-              <input className="channel-form-input"></input>
-            </label>
-            <label className="channel-form-label">Purpse
-              <input className="channel-form-input"></input>
-            </label>
-            <label className="channel-form-label">Send invites to:
-              <input className="channel-form-input"></input>
-            </label>
+            <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
+            <p className="channel-form-label">Name</p>
+            <input className="channel-form-input"></input>
+
+            <p className="channel-form-label">Purpose</p>
+            <input className="channel-form-input"></input>
+
+  {  //        <p>Send invites to:</p>
+      //        <input className="channel-form-input"></input
+    }
+
             <div className="channel-form-buttons">
               <button className="channel-form-cancel">Cancel</button>
-              <input className="channel-form-submit" type="submit" value="Create Channel"></input>
+              <input className="channel-form-submit" id="channel-submit" type="submit" value="Create Channel"></input>
             </div>
           </form>
         </div>
@@ -69,9 +79,9 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    toggleModal: () => dispatch(receieveNewChannelModal("channel")),
+    toggleModal: () => dispatch(receiveNewChannelModal("channel")),
     createChannel: channel => dispatch(createChannel(channel))
   }
 );
 
-export default connect(mapStateToProps, null)(ChannelForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelForm);
