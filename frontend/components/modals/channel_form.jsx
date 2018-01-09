@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
+import { receiveMessage } from '../../actions/message_actions';
 
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
@@ -22,12 +23,11 @@ class ChannelForm extends React.Component {
     this.props.toggleModal();
   }
 
-
-    handleInput(field) {
-      return (e) => {
-        this.setState({[field]: e.target.value});
-      };
-    }
+  handleInput(field) {
+    return (e) => {
+      this.setState({[field]: e.target.value});
+    };
+  }
 
     toggleActive() {
       if (this.state.name !== "") {
@@ -40,10 +40,34 @@ class ChannelForm extends React.Component {
 
   handleSubmit(e) {
     if (this.state.name!== "") {
-      this.props.createChannel(this.state);
+      this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
       this.closeModal();
     }
   }
+
+
+  createChannelSubscription() {
+    const addMessage = this.props.addMessage.bind(this);
+    if (typeof App !== 'undefined'){
+        App[`room${this.props.channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: this.props.channelId}, {
+          connected: function() {},
+          disconnected: function() {},
+          received: function(data) {
+            const messageChannelId = JSON.parse(data.message).channel_id;
+            const channelId = JSON.parse(this.identifier).room;
+            if (messageChannelId === channelId) {
+              addMessage(JSON.parse(data['message']));
+            }
+          },
+          speak: function(message) {
+            return this.perform('speak', {
+              message: message
+            });
+          }
+        });
+      }
+  }
+
 
   render() {
     if (this.props.render) {
@@ -81,14 +105,16 @@ class ChannelForm extends React.Component {
 
 const mapStateToProps = (state) => (
   {
-    render: state.ui.modals.newChannel
+    render: state.ui.modals.newChannel,
+    channelId: state.ui.currentChannel.id
   }
 );
 
 const mapDispatchToProps = (dispatch) => (
   {
     toggleModal: () => dispatch(receiveNewChannelModal("channel")),
-    createChannel: channel => dispatch(createChannel(channel))
+    createChannel: channel => dispatch(createChannel(channel)),
+    addMessage: message => dispatch(receiveMessage(message))
   }
 );
 
