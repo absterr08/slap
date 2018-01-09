@@ -51,9 +51,11 @@ class Channel extends React.Component {
       <div className="channel-container">
         <div className="channel-header">#{this.props.channelName}</div>
         <div className="messages-container">
-          <ul className="messages-list">
-            {messages}
-          </ul>
+          <div className="messages-list-container">
+            <ul className="messages-list">
+              {messages}
+            </ul>
+          </div>
           <form className="message-form">
             <input placeholder={`message #${this.props.channelName}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
           </form>
