@@ -17,6 +17,7 @@ class ChannelForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleActive = this.toggleActive.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   closeModal() {
@@ -30,12 +31,13 @@ class ChannelForm extends React.Component {
     };
   }
 
-    toggleActive(e) {
-      if (e.keyCode === 13) {
-        debugger
-        e.preventDefault();
-        this.handleSubmit(e);
-      }
+  handleKeyPress(e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      this.handleSubmit(e);
+    }
+  }
+    toggleActive() {
       if (this.state.name !== "") {
         $(document.getElementById("channel-submit")).addClass("active");
       }
@@ -87,7 +89,7 @@ class ChannelForm extends React.Component {
             <h1 className="channel-form-header">Create a channel</h1>
             <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
             <p className="channel-form-label">Name</p>
-            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive}></input>
+            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
 
             <p className="channel-form-label">Purpose</p>
             <input className="channel-form-input"></input>
