@@ -113,12 +113,11 @@
   background-color: #717274;
   color: #fff;
   opacity: .35;
-  -moz-opacity: .35;
-  -khtml-opacity: .35;
   box-shadow: none;
-  pointer-events: none;
 }
 
-.channel-form-submit:active {
-  color: #2ea664;
+.active {
+  background-color: #2ea664;
+  opacity: 100;
+  cursor: pointer;
 }

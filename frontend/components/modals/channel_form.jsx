@@ -8,12 +8,13 @@ class ChannelForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       name: "",
       description: ""
     };
+    this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleActive = this.toggleActive.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
@@ -21,14 +22,21 @@ class ChannelForm extends React.Component {
     this.props.toggleModal();
   }
 
-  handleInput(field) {
-    return (e) => {
-      this.setState({[field]: e.target.value})
-      if (this.state.name !== "") {
-        document.getElementById("channelSubmit").toggleClass("active");
+
+    handleInput(field) {
+      return (e) => {
+        this.setState({[field]: e.target.value});
       };
-    };
-  }
+    }
+
+    toggleActive() {
+      if (this.state.name !== "") {
+        $(document.getElementById("channel-submit")).addClass("active");
+      }
+      if (this.state.name === "") {
+        $(document.getElementById("channel-submit")).removeClass("active");
+      }
+    }
 
   handleSubmit(e) {
     if (this.state.name!== "") {
@@ -48,7 +56,7 @@ class ChannelForm extends React.Component {
             <h1 className="channel-form-header">Create a channel</h1>
             <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
             <p className="channel-form-label">Name</p>
-            <input className="channel-form-input"></input>
+            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive}></input>
 
             <p className="channel-form-label">Purpose</p>
             <input className="channel-form-input"></input>
@@ -58,7 +66,7 @@ class ChannelForm extends React.Component {
     }
 
             <div className="channel-form-buttons">
-              <button className="channel-form-cancel">Cancel</button>
+              <button className="channel-form-cancel" onClick={this.closeModal}>Cancel</button>
               <input className="channel-form-submit" id="channel-submit" type="submit" value="Create Channel"></input>
             </div>
           </form>
