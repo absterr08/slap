@@ -9,8 +9,8 @@ class ChannelForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      description: ""
+      users: [],
+      search: ""
     };
     this.handleInput = this.handleInput.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,9 +25,7 @@ class ChannelForm extends React.Component {
   }
 
   handleInput(field) {
-    return (e) => {
-      this.setState({[field]: e.target.value});
-    };
+    this.setState({search: e.target.value});
   }
 
   handleKeyPress(e) {
@@ -36,14 +34,15 @@ class ChannelForm extends React.Component {
       this.handleSubmit(e);
     }
   }
-    toggleActive() {
-      if (this.state.name !== "") {
-        $(document.getElementById("channel-submit")).addClass("active");
-      }
-      if (this.state.name === "") {
-        $(document.getElementById("channel-submit")).removeClass("active");
-      }
+
+  toggleActive() {
+    if (this.state.name !== "") {
+      $(document.getElementById("channel-submit")).addClass("active");
     }
+    if (this.state.name === "") {
+      $(document.getElementById("channel-submit")).removeClass("active");
+    }
+  }
 
   handleSubmit(e) {
     if (this.state.name!== "") {
@@ -53,30 +52,6 @@ class ChannelForm extends React.Component {
     }
   }
 
-
-  createChannelSubscription() {
-    const addMessage = this.props.addMessage.bind(this);
-    if (typeof App !== 'undefined'){
-        App[`room${this.props.channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: this.props.channelId}, {
-          connected: function() {},
-          disconnected: function() {},
-          received: function(data) {
-            const messageChannelId = JSON.parse(data.message).channel_id;
-            const channelId = JSON.parse(this.identifier).room;
-            if (messageChannelId === channelId) {
-              addMessage(JSON.parse(data['message']));
-            }
-          },
-          speak: function(message) {
-            return this.perform('speak', {
-              message: message
-            });
-          }
-        });
-      }
-  }
-
-
   render() {
     if (this.props.render) {
       return (
@@ -85,10 +60,8 @@ class ChannelForm extends React.Component {
             <div className="toggle-close">x</div>
           </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
-            <h1 className="channel-form-header">Create a channel</h1>
-            <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
-            <p className="channel-form-label">Name</p>
-            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
+            <h1 className="channel-form-header">Direct messages</h1>
+            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyDown={this.handleKeyPress}></input>
 
             <p className="channel-form-label">Purpose</p>
             <input className="channel-form-input"></input>
