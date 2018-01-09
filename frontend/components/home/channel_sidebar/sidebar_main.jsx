@@ -9,7 +9,7 @@ const SidebarMain = ({ channels, toggleModal }) => {
   return (
     <ul className="channel-list">
       <ul className="sidebar-label" onClick={toggleModal("channel")}>
-        <li>Channel</li>
+        <li>Channels</li>
         <li><div className="add-button">+</div></li>
       </ul>
       <ul className="channel-sublist">

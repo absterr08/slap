@@ -20,6 +20,7 @@ class ChannelForm extends React.Component {
   }
 
   closeModal() {
+    this.setState({name: "", description: ""});
     this.props.toggleModal();
   }
 
