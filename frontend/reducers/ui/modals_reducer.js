@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import { RECEIVE_NEW_CHANNEL_MODAL, RECEIVE_NEW_DM_MODAL } from '../../actions/modal_actions';
 
 const defaultState = {
-  newChannel: true,
+  newChannel: false,
   newDM: false
 };
 

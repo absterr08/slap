@@ -116,6 +116,9 @@
   box-shadow: none;
 }
 
+.channel-form-submit:focus {
+  border: none;
+}
 .active {
   background-color: #2ea664;
   opacity: 100;

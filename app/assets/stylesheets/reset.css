@@ -56,6 +56,11 @@ input, div {
   box-shadow: none;
   border: none;
 }
+
+button:focus {
+  outline: none;
+}
+
 body {
   font-family: 'Quicksand', sans-serif;
 }
