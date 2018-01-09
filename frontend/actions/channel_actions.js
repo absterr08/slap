@@ -7,24 +7,24 @@ const receiveChannels = channels => {
   return {
     type: RECEIVE_CHANNELS,
     channels
-  }
-}
+  };
+};
 
 const receiveChannel = payload => (
   {
     type: RECEIVE_CHANNEL,
     payload
   }
-)
+);
 
 export const fetchChannels = () => dispatch => (
   ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))
-)
+);
 
 export const fetchChannel = (channelId) =>  dispatch => (
   ChannelApiUtil.fetchChannel(channelId).then( channel => dispatch(receiveChannel(channel)))
-)
+);
 
-export const fetchChannelByName = (channelName) => dispatch => (
-  ChannelApiUtil.fetchChannelByName(channelName).then( channel => dispatch(receiveChannel(channel)))
-)
+export const createChannel = channel => dispatch => (
+  ChannelApiUtil.createChannel(channel).then( channel => dispatch(receiveChannel(channel)))
+);

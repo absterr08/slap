@@ -2,13 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import { fetchChannels } from '../../../actions/channel_actions';
-import { receieveNewChannelModal, receieveNewDMModal } from '../../../actions/modal_actions';
+import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 
-const SidebarMain = ({ channels, toggleNewChannelModal, toggleNewDMModal }) => {
+const SidebarMain = ({ channels, toggleModal }) => {
   return (
     <ul className="channel-list">
-      <ul className="sidebar-label" onClick={toggleNewChannelModal}>
+      <ul className="sidebar-label" onClick={toggleModal("channel")}>
         <li>Channel</li>
         <li><div className="add-button">+</div></li>
       </ul>
@@ -18,7 +18,7 @@ const SidebarMain = ({ channels, toggleNewChannelModal, toggleNewDMModal }) => {
           })
         }
       </ul>
-      <ul className="sidebar-label" onClick={toggleNewDMModal}>
+      <ul className="sidebar-label" onClick={toggleModal("DM")}>
         <li>Direct Messages</li>
         <li><div className="add-button">+</div></li>
       </ul>
@@ -38,9 +38,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchChannels: () => dispatch(fetchChannels()),
-    toggleNewChannelModal: () => dispatch(receieveNewChannelModal()),
-    toggleNewDMModal: () => dispatch(receieveNewDMModal())
-  }
+    toggleModal: modalType => () => dispatch(receiveNewChannelModal(modalType)) }
 }
 
 

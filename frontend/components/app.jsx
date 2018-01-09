@@ -7,10 +7,13 @@ import HomeContainer from './home/home_container';
 import ChannelContainer from './channel/channel_container';
 import Splash from './splash/splash';
 import NavBar from './navbar/navbar';
+import DMForm from './modals/DM_form';
+import ChannelForm from './modals/channel_form';
 
 
 const App = () => (
   <div className="app">
+    <ChannelForm />
     <AuthRoute path="/" component={NavBar}/>
     <Switch>
       <AuthRoute path="/login" component={SessionFormContainer} />
