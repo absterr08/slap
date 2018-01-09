@@ -30,7 +30,12 @@ class ChannelForm extends React.Component {
     };
   }
 
-    toggleActive() {
+    toggleActive(e) {
+      if (e.keyCode === 13) {
+        debugger
+        e.preventDefault();
+        this.handleSubmit(e);
+      }
       if (this.state.name !== "") {
         $(document.getElementById("channel-submit")).addClass("active");
       }
@@ -41,6 +46,7 @@ class ChannelForm extends React.Component {
 
   handleSubmit(e) {
     if (this.state.name!== "") {
+      e.preventDefault();
       this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
       this.closeModal();
     }
