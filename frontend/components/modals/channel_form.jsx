@@ -23,10 +23,10 @@ class ChannelForm extends React.Component {
 
   handleInput(field) {
     return (e) => {
-      this.setState({[field]: e.target.value}
+      this.setState({[field]: e.target.value})
       if (this.state.name !== "") {
-        document.getElementById("channelSubmit").toggleClass("active")
-      });
+        document.getElementById("channelSubmit").toggleClass("active");
+      };
     };
   }
 
