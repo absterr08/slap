@@ -1,15 +1,19 @@
-import { connect } from 'react-redux';
 import React from 'react';
+import { connect } from 'react-redux';
+import { values } from 'lodash';
+import merge from 'lodash/merge';
 
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
+import UserIndexItem from './user_index_item';
+import SelectedUserIndexItem from './selected_user_index_item';
 
-class ChannelForm extends React.Component {
+class DMForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      users: [],
+      users: {},
       search: ""
     };
     this.handleInput = this.handleInput.bind(this);
@@ -17,6 +21,24 @@ class ChannelForm extends React.Component {
     this.toggleActive = this.toggleActive.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.addUser = this.addUser.bind(this);
+    this.removeUser = this.removeUser.bind(this);
+  }
+
+  addUser(user) {
+    return () => {
+      const newState = merge({}, this.state.users);
+      newState[user.id] = user;
+      this.setState({ users: newState });
+    };
+  }
+
+  removeUser(user) {
+    return () => {
+      const newState = merge({}, this.state.users);
+      delete newState[user.id];
+      this.setState({ users: newState });
+    };
   }
 
   closeModal() {
@@ -24,7 +46,7 @@ class ChannelForm extends React.Component {
     this.props.toggleModal();
   }
 
-  handleInput(field) {
+  handleInput(e) {
     this.setState({search: e.target.value});
   }
 
@@ -61,18 +83,30 @@ class ChannelForm extends React.Component {
           </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Direct messages</h1>
-            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyDown={this.handleKeyPress}></input>
-
-            <p className="channel-form-label">Purpose</p>
-            <input className="channel-form-input"></input>
+            <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
+            <input className="channel-form-submit" id="channel-submit" type="submit" value="Go"></input>
 
   {  //        <p>Send invites to:</p>
       //        <input className="channel-form-input"></input
     }
-
-            <div className="channel-form-buttons">
-              <button className="channel-form-cancel" onClick={this.closeModal}>Cancel</button>
-              <input className="channel-form-submit" id="channel-submit" type="submit" value="Create Channel"></input>
+            <ul className="selected-users-list">
+              { values(this.state.users).map((user) => {
+                return <SelectedUserIndexItem
+                  key={user.id}
+                  user={user}
+                  removeUser={this.removeUser(user)}/>;
+                })
+              }
+            </ul>
+            <div className="user-search-container">
+              <ul className="user-search-list">
+                { this.props.users.map((user) => {
+                  return <UserIndexItem
+                    key={user.id}
+                    user={user}
+                    addUser={this.addUser(user)}/>;
+                }) }
+              </ul>
             </div>
           </form>
         </div>
@@ -86,8 +120,9 @@ class ChannelForm extends React.Component {
 
 const mapStateToProps = (state) => (
   {
-    render: state.ui.modals.newChannel,
-    channelId: state.ui.currentChannel.id
+    render: state.ui.modals.newDM,
+    channelId: state.ui.currentChannel.id,
+    users: values(state.entities.users)
   }
 );
 
@@ -98,4 +133,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelForm);
+export default connect(mapStateToProps, mapDispatchToProps)(DMForm);

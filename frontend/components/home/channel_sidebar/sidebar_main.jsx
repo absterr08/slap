@@ -20,7 +20,7 @@ const SidebarMain = ({ channels, toggleModal }) => {
       </ul>
       <ul className="sidebar-label" onClick={toggleModal("DM")}>
         <li>Direct Messages</li>
-        <li><div className="add-button"></div></li>
+        <li><div className="add-button">+</div></li>
       </ul>
       <ul className="channel-sublist">
       </ul>

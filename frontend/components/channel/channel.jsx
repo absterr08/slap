@@ -10,7 +10,7 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentDidMount() {
+    componentWillMount() {
       if (!this.props.match.params.channelId) {
         this.props.history.push(`/messages/${this.props.channelId}`);
       }
@@ -18,9 +18,10 @@ class Channel extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-      if (!nextProps.match.params.channelId) {
-        this.props.history.goBack();
-      } else if (this.props.channelId !== nextProps.match.params.channelId) {
+      // if (!nextProps.match.params.channelId) {
+      //   this.props.history.goBack();
+      // } else
+      if (this.props.channelId !== nextProps.match.params.channelId) {
         this.props.fetchChannel(nextProps.match.params.channelId);
       }
     }
