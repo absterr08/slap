@@ -11,25 +11,26 @@ class Channel extends React.Component {
     }
 
     componentWillMount() {
-      if (!this.props.match.params.channelId) {
-        console.log('case: no params.channelId, pushing a path => rerender.')
-        this.props.history.push(`/messages/${this.props.channelId}`);
-      }
+      // if (!this.props.match.params.channelId) {
+      //   console.log('case: no params.channelId, pushing a path => rerender.')
+      //   this.props.history.push(`/messages/${this.props.channelId}`);
+      // }
       // this.props.fetchUsersThenMessages().then( () => this.props.fetchChannel(this.props.channelId));
       // this.props.fetchUsersThenMessagesThenChannel(this.props.channelId);
       // debugger
     }
 
-    componentWillReceiveProps(nextProps) {
-      console.log('compWIllReceieve')
-      if (!nextProps.match.params.channelId) {
-        console.log('case: no params.channelId')
-        this.props.history.goBack();
-      } else if (this.props.channelId !== nextProps.match.params.channelId) {
-        console.log('case: next channel is different; fetching channel')
-        this.props.fetchChannel(nextProps.match.params.channelId);
-      }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //   console.log('compWIllReceieve')
+    //   if (!nextProps.match.params.channelId) {
+    //     console.log('case: no params.channelId')
+    //     this.props.history.goBack();
+    //   } else if (this.props.channelId !== nextProps.match.params.channelId) {
+    //     debugger
+    //     console.log('case: next channel is different; fetching channel')
+    //     this.props.fetchChannel(nextProps.match.params.channelId);
+    //   }
+    // }
 
 
     handleKeyUp(e) {
