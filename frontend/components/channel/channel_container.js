@@ -10,15 +10,14 @@ const mapStateToProps = (state) => {
   return {
     channelName: state.ui.currentChannel.name,
     messages: values(state.ui.currentChannel.messages),
-    user: state.session.currentUser,
-    getMessageAuthor: authorId => (state.entities.users[authorId])
-  };
+    user: state.session.currentUser
+  }
 };
 
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchUsersThenMessages: () => dispatch(fetchUsersThenMessages()),
-    fetchUser: id => dispatch(fetchUser(id)),
+    // fetchUsersThenMessagesThenChannel: channelId => dispatch(fetchUsersThenMessages()).then( () => dispatch(fetchChannel(channelId))),
+    // fetchUser: id => dispatch(fetchUser(id)),
     fetchChannel: id => dispatch(fetchChannel(id))
   }
 );

@@ -26,7 +26,7 @@ export const fetchUser = userId => dispatch => {
 };
 
 export const fetchUsersThenMessages = () => dispatch => {
-  UserApiUtil.fetchUsers().then( users => {
+  return UserApiUtil.fetchUsers().then( users => {
     MessageApiUtil.fetchMessages().then( messages => {
       dispatch(receiveUsers(users));
       dispatch(receiveMessages(messages));

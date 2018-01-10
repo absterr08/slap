@@ -10,10 +10,22 @@ export default class Home extends React.Component {
   componentWillMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
+    this.props.fetchUsers();
+    this.props.fetchMessages();
+    this.props.fetchChannel(this.props.match.params.channelId)
+  }
+
+  componentDidMount() {
+    // debugger
+    // this.props.fetchUsersThenMessagesThenChannel(this.props.params.match.channelId);
+    // this.props.fetchUsers();
+    // this.props.fetchMessages();
+    // this.props.fetchChannel(this.props.match.params.channelId)
   }
 
 
   render() {
+    console.log('rendering home')
     let channelContainer;
     const pathChannel = this.props.match.params.channelId;
     if (pathChannel) {
