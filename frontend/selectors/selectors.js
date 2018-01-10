@@ -21,6 +21,5 @@ export const selectOtherUsers = state => {
     }
     return acc;
   }, {});
-  debugger
   return values(otherUsers);
 };
