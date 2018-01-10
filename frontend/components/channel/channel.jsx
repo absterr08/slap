@@ -14,12 +14,25 @@ class Channel extends React.Component {
     }
 
   componentDidMount() {
+    this.props.fetchChannel(this.props.match.params.channelId)
     // debugger
     const messagesDiv = document.querySelector('.messages-list-container');
     // console.log(messagesDiv)
     // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
     // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
     // console.log(messagesDiv.scrollTop);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('compWIllReceieve');
+    if (!nextProps.match.params.channelId) {
+      const channelId = parseInt(localStorage.getItem("currentChannel"));
+      this.props.history.push(`/messages/${channelId}`);
+    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      console.log('case: next channel is different; fetching channel');
+      this.props.fetchChannel(nextProps.match.params.channelId);
+    }
   }
 
 
@@ -27,6 +40,7 @@ class Channel extends React.Component {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
           const message = { body: e.target.value, author_id: this.props.user.id };
+          // debugger
           console.log('speaking!')
           App[`room${this.props.channelId}`].speak(message);
           } //else{

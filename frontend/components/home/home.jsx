@@ -13,25 +13,28 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    // const addMessage = this.props.addMessage.bind(this);
+    // this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
-      this.props.history.push(`/messages/${this.props.defaultChannel}`);
+      // debugger
+      this.props.history.push(`/messages/${this.props.currentUser.channels[0].id}`);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('compWIllReceieve')
-    if (!nextProps.match.params.channelId) {
-      const channelId = parseInt(localStorage.getItem("currentChannel"));
-      this.props.history.push(`/messages/${channelId}`)
-    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      console.log('case: next channel is different; fetching channel')
-      this.props.fetchChannel(nextProps.match.params.channelId);
-    }
+    // console.log('compWIllReceieve');
+    // if (!nextProps.match.params.channelId) {
+    //   const channelId = parseInt(localStorage.getItem("currentChannel"));
+    //   this.props.history.push(`/messages/${channelId}`);
+    // } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+    //   console.log('case: next channel is different; fetching channel');
+    //   this.props.fetchChannel(nextProps.match.params.channelId);
+    // }
   }
 
 
   render() {
-    console.log('rendering home')
+    console.log('rendering home');
     let channelContainer;
     const pathChannel = this.props.match.params.channelId;
     if (pathChannel) {
@@ -51,7 +54,7 @@ export default class Home extends React.Component {
           <ChannelSidebarHeader />
           <ChannelSidebarMain channels={this.props.channels} />
         </div>
-        {channelContainer}
+        <ChannelContainer />
       </div>
     )
   }

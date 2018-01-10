@@ -2,6 +2,7 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.channels = Channel.all
     if @user.save
       login(@user)
       render :show
@@ -12,6 +13,7 @@ class Api::UsersController < ApplicationController
 
   def create_guest_user
     @user = User.create_guest
+    @user.channels = Channel.all
     login(@user)
     render :show
   end

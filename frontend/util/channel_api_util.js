@@ -34,6 +34,7 @@ export const createChannelSubscriptions = (channels, addMessage) => {
             }
           },
           speak: function(message) {
+            // debugger
             return this.perform('speak', {
               message: message
             });
