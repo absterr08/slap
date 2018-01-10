@@ -7,11 +7,12 @@ import { selectCurrentChannelMessages } from '../../selectors/messages_selector'
 import Channel from './channel';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     channelName: state.ui.currentChannel.name,
+    channelId: ownProps.match.params.channelId,
     messages: values(selectCurrentChannelMessages(state)),
-    user: state.session.currentUser
+    user: state.session.currentUser.user
   }
 };
 

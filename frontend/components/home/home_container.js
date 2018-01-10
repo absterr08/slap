@@ -9,7 +9,8 @@ const mapStateToProps = (state) => (
     channels: values(state.entities.channels),
     defaultChannel: Object.keys(state.entities.channels)[0],
     getChannel: id => state.entities.channels.id,
-    messages: values(state.entities.messages)
+    messages: values(state.entities.messages),
+    currentUser: state.session.currentUser
   }
 );
 const mapDispatchToProps = (dispatch) => (

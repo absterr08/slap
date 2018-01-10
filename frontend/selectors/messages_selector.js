@@ -7,4 +7,4 @@ export const selectCurrentChannelMessages = state => {
   const filteredMessages = Object.assign({}, allMessages);
   channelMessageIds.map( id => delete filteredMessages[id]);
   return filteredMessages;
-}
+};
