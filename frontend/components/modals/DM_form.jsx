@@ -5,6 +5,7 @@ import merge from 'lodash/merge';
 
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
+import { fetchUsers } from '../../actions/user_actions';
 import UserIndexItem from './user_index_item';
 import SelectedUserIndexItem from './selected_user_index_item';
 
@@ -23,6 +24,10 @@ class DMForm extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.addUser = this.addUser.bind(this);
     this.removeUser = this.removeUser.bind(this);
+  }
+
+  componentDidMount () {
+    this.props.fetchUsers();
   }
 
   addUser(user) {
@@ -78,6 +83,7 @@ class DMForm extends React.Component {
   }
 
   render() {
+    // debugger
     if (this.props.render) {
       return (
         <div className="new-channel-container">
@@ -107,9 +113,9 @@ class DMForm extends React.Component {
               <ul className="user-search-list">
                 { this.props.users.map((user) => {
                   return <UserIndexItem
-                    key={user.id}
-                    user={user}
-                    addUser={this.addUser(user)}
+                    key={user.user.id}
+                    user={user.user}
+                    addUser={this.addUser(user.user)}
                     toggleActive={this.toggleActive}/>;
                 }) }
               </ul>
@@ -135,7 +141,8 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = (dispatch) => (
   {
     toggleModal: () => dispatch(receiveNewChannelModal("dm")),
-    createChannel: channel => dispatch(createChannel(channel))
+    createChannel: channel => dispatch(createChannel(channel)),
+    fetchUsers: () => dispatch(fetchUsers())
   }
 );
 
