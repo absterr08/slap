@@ -16,7 +16,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.props.match.params.channelId) {
+    if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
+      // debugger
       this.props.history.push(`/messages/${this.props.defaultChannel}`);
     }
     // debugger

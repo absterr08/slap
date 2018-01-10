@@ -32,6 +32,15 @@ class Channel extends React.Component {
     //   }
     // }
 
+  componentDidMount() {
+    // debugger
+    const messagesDiv = document.querySelector('.messages-list-container');
+    // console.log(messagesDiv)
+    // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
+    // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
+    // console.log(messagesDiv.scrollTop);
+  }
+
 
     handleKeyUp(e) {
       if(e.keyCode == 13){
