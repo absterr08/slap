@@ -3,22 +3,21 @@ import { fetchChannel} from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
+import { selectCurrentChannelMessages } from '../../selectors/messages_selector';
 import Channel from './channel';
 
-const mapStateToProps = (state) => {
-  // debugger
+
+const mapStateToProps = (state, ownProps) => {
   return {
     channelName: state.ui.currentChannel.name,
-    messages: values(state.ui.currentChannel.messages),
-    user: state.session.currentUser,
-    getMessageAuthor: authorId => (state.entities.users[authorId])
-  };
+    channelId: ownProps.match.params.channelId,
+    messages: values(selectCurrentChannelMessages(state)),
+    user: state.session.currentUser.user
+  }
 };
 
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchUsersThenMessages: () => dispatch(fetchUsersThenMessages()),
-    fetchUser: id => dispatch(fetchUser(id)),
     fetchChannel: id => dispatch(fetchChannel(id))
   }
 );

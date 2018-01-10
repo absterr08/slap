@@ -11,20 +11,29 @@ class Channel extends React.Component {
     }
 
     componentWillMount() {
-      if (!this.props.match.params.channelId) {
-        this.props.history.push(`/messages/${this.props.channelId}`);
-      }
-      this.props.fetchChannel(this.props.channelId);
     }
 
-    componentWillReceiveProps(nextProps) {
-      // if (!nextProps.match.params.channelId) {
-      //   this.props.history.goBack();
-      // } else
-      if (this.props.channelId !== nextProps.match.params.channelId) {
-        this.props.fetchChannel(nextProps.match.params.channelId);
-      }
+  componentDidMount() {
+    this.props.fetchChannel(this.props.match.params.channelId)
+    // debugger
+    const messagesDiv = document.querySelector('.messages-list-container');
+    // console.log(messagesDiv)
+    // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
+    // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
+    // console.log(messagesDiv.scrollTop);
+
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('compWIllReceieve');
+    if (!nextProps.match.params.channelId) {
+      const channelId = parseInt(localStorage.getItem("currentChannel"));
+      this.props.history.push(`/messages/${channelId}`);
+    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      console.log('case: next channel is different; fetching channel');
+      this.props.fetchChannel(nextProps.match.params.channelId);
     }
+  }
 
 
     handleKeyUp(e) {
@@ -41,13 +50,10 @@ class Channel extends React.Component {
     }
 
   render() {
+    console.log('rendering channel')
     const messages = this.props.messages.map((message) => {
-        if (!this.props.getMessageAuthor(message.author_id)) {
-          this.props.fetchUser(message.author_id);
-        } else {
-          return <Message key={message.id} message={message} user={this.props.getMessageAuthor(message.author_id)} />;
-        }
-      });
+      return <Message key={message.id} message={message}/>;
+    });
     return (
       <div className="channel-container">
         <div className="channel-header">#{this.props.channelName}</div>

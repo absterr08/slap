@@ -5,8 +5,8 @@ import { RECEIVE_CHANNEL } from '../../actions/channel_actions';
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    // case RECEIVE_USERS:
-    //   return merge({}, state, action.users);
+    case RECEIVE_USERS:
+      return merge({}, state, action.users);
     case RECEIVE_USER:
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_CHANNEL:

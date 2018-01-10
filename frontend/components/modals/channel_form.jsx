@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import { receiveMessage } from '../../actions/message_actions';
+import { withRouter } from 'react-router-dom';
 
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
@@ -48,8 +49,12 @@ class ChannelForm extends React.Component {
 
   handleSubmit(e) {
     if (this.state.name!== "") {
+      let nextId;
       e.preventDefault();
-      this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
+      this.props.createChannel(this.state).then(
+        (channelAction) => {
+          this.props.history.push(`/messages/${channelAction.payload.channel.id}`)}).then(
+        () => this.createChannelSubscription() );
       this.closeModal();
     }
   }
@@ -127,4 +132,4 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChannelForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelForm));

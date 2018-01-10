@@ -10,7 +10,7 @@ export default (state = {}, action) => {
       currentChannel.id = action.payload.channel.id;
       currentChannel.name = action.payload.channel.name;
       currentChannel.messages = action.payload.messages;
-      localStorage.setItem("currentChannel", `${currentChannel}`);
+      localStorage.setItem("currentChannel", `${currentChannel.id}`);
       return currentChannel;
     case RECEIVE_MESSAGE:
       if (state.id === action.message.channel_id) {
