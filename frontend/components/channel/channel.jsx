@@ -27,6 +27,7 @@ class Channel extends React.Component {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
           const message = { body: e.target.value, author_id: this.props.user.id };
+          console.log('speaking!')
           App[`room${this.props.channelId}`].speak(message);
           } //else{
         //   debugger
