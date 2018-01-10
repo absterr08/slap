@@ -11,7 +11,7 @@ export default (state = {}, action) => {
       const channel = action.payload.channel;
 
       channel.messageIds = action.payload.messages.map(message => message.id);
-      channel.userIds = action.payload.users.map(user => user.id);
+      channel.userIds = action.payload.users.map(user => user.user.id);
       return merge({}, state, { [channel.id]: channel});
 
     default:

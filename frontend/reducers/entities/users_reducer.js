@@ -11,7 +11,7 @@ export default (state = {}, action) => {
       return merge({}, state, { [action.user.id]: action.user});
     case RECEIVE_CHANNEL:
       const users = action.payload.users.reduce((acc, user) => {
-        acc[user.id] = user;
+        acc[user.user.id] = user.user;
         return acc;
       }, {});
       return users;

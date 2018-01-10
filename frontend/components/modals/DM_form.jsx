@@ -113,9 +113,9 @@ class DMForm extends React.Component {
               <ul className="user-search-list">
                 { this.props.users.map((user) => {
                   return <UserIndexItem
-                    key={user.user.id}
-                    user={user.user}
-                    addUser={this.addUser(user.user)}
+                    key={user.id}
+                    user={user}
+                    addUser={this.addUser(user)}
                     toggleActive={this.toggleActive}/>;
                 }) }
               </ul>
