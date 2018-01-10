@@ -58,10 +58,11 @@ class DMForm extends React.Component {
   }
 
   toggleActive() {
-    if (this.state.name !== "") {
+    // debugger
+    if (values(this.state.users)[0]) {
       $(document.getElementById("channel-submit")).addClass("active");
     }
-    if (this.state.name === "") {
+    if (!values(this.state.users)[0]) {
       $(document.getElementById("channel-submit")).removeClass("active");
     }
   }
@@ -83,9 +84,10 @@ class DMForm extends React.Component {
           </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Direct messages</h1>
-            <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
-            <input className="channel-form-submit" id="channel-submit" type="submit" value="Go"></input>
-
+            <div className="dm-form-inputs">
+              <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
+              <input className="channel-form-submit" id="channel-submit" type="submit" value="Go"></input>
+            </div>
   {  //        <p>Send invites to:</p>
       //        <input className="channel-form-input"></input
     }
@@ -94,7 +96,8 @@ class DMForm extends React.Component {
                 return <SelectedUserIndexItem
                   key={user.id}
                   user={user}
-                  removeUser={this.removeUser(user)}/>;
+                  removeUser={this.removeUser(user)}
+                  toggleActive={this.toggleActive}/>;
                 })
               }
             </ul>
@@ -104,7 +107,8 @@ class DMForm extends React.Component {
                   return <UserIndexItem
                     key={user.id}
                     user={user}
-                    addUser={this.addUser(user)}/>;
+                    addUser={this.addUser(user)}
+                    toggleActive={this.toggleActive}/>;
                 }) }
               </ul>
             </div>

@@ -1,3 +1,9 @@
+.dm-form-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
 .user-search-container {
   padding-top: 35px;
 
@@ -21,8 +27,9 @@
   border: 1px solid #cbe7f7;
   border-radius: 6px;
 }
-.selected-users-list {
 
+.selected-users-list {
+  display: flex;
 }
 
 .selected-user-list-item {
@@ -35,9 +42,15 @@
   border-radius: .2rem;
   font-weight: 700;
   font-size: 15px;
-  padding-left: 32px;
   padding-right: 24px;
   cursor: pointer;
   flex: none;
   margin: 5px;
+  width: 50px;
+}
+
+.selected-username {
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #fff;
 }
