@@ -68,7 +68,9 @@ class DMForm extends React.Component {
   }
 
   handleSubmit(e) {
-    if (this.state.name!== "") {
+    if (this.state.users[0]) {
+      const dm = {}
+      debugger
       e.preventDefault();
       this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
       this.closeModal();
