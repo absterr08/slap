@@ -6,7 +6,6 @@ import { values } from 'lodash';
 import Channel from './channel';
 
 const mapStateToProps = (state) => {
-  // debugger
   return {
     channelName: state.ui.currentChannel.name,
     messages: values(state.ui.currentChannel.messages),
@@ -16,8 +15,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    // fetchUsersThenMessagesThenChannel: channelId => dispatch(fetchUsersThenMessages()).then( () => dispatch(fetchChannel(channelId))),
-    // fetchUser: id => dispatch(fetchUser(id)),
     fetchChannel: id => dispatch(fetchChannel(id))
   }
 );

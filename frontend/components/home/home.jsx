@@ -10,37 +10,20 @@ export default class Home extends React.Component {
   componentWillMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
-    // this.props.fetchUsers();
-    // this.props.fetchMessages();
-    // this.props.fetchChannel(this.props.match.params.channelId)
   }
 
   componentDidMount() {
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
-      // debugger
       this.props.history.push(`/messages/${this.props.defaultChannel}`);
     }
-    // debugger
-    // this.props.fetchUsersThenMessagesThenChannel(this.props.params.match.channelId);
-    // this.props.fetchUsers();
-    // this.props.fetchMessages();
-    // this.props.fetchChannel(this.props.match.params.channelId)
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('compWIllReceieve')
-    // debugger
     if (!nextProps.match.params.channelId) {
-      // debugger
       const channelId = parseInt(localStorage.getItem("currentChannel"));
       this.props.history.push(`/messages/${channelId}`)
-      // if (this.props.match.params.channelId) {
-      //   console.log('refreshed')
-      // }
-      // console.log('case: no params.channelId')
-      // this.props.history.goBack();
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      // debugger
       console.log('case: next channel is different; fetching channel')
       this.props.fetchChannel(nextProps.match.params.channelId);
     }

@@ -11,26 +11,7 @@ class Channel extends React.Component {
     }
 
     componentWillMount() {
-      // if (!this.props.match.params.channelId) {
-      //   console.log('case: no params.channelId, pushing a path => rerender.')
-      //   this.props.history.push(`/messages/${this.props.channelId}`);
-      // }
-      // this.props.fetchUsersThenMessages().then( () => this.props.fetchChannel(this.props.channelId));
-      // this.props.fetchUsersThenMessagesThenChannel(this.props.channelId);
-      // debugger
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //   console.log('compWIllReceieve')
-    //   if (!nextProps.match.params.channelId) {
-    //     console.log('case: no params.channelId')
-    //     this.props.history.goBack();
-    //   } else if (this.props.channelId !== nextProps.match.params.channelId) {
-    //     debugger
-    //     console.log('case: next channel is different; fetching channel')
-    //     this.props.fetchChannel(nextProps.match.params.channelId);
-    //   }
-    // }
 
   componentDidMount() {
     // debugger
@@ -57,15 +38,9 @@ class Channel extends React.Component {
 
   render() {
     console.log('rendering channel')
-    // debugger
     const messages = this.props.messages.map((message) => {
-        // if (!this.props.getMessageAuthor(message.author_id)) {
-          // debugger
-        //   this.props.fetchUser(message.author_id);
-        // } else {
-          return <Message key={message.id} message={message}/>;
-        // }
-      });
+      return <Message key={message.id} message={message}/>;
+    });
     return (
       <div className="channel-container">
         <div className="channel-header">#{this.props.channelName}</div>
