@@ -3,7 +3,7 @@ import { fetchChannel} from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
-import { selectCurrentChannelMessages } from '../../selectors/messages_selector';
+import { selectCurrentChannelMessages } from '../../selectors/selectors';
 import Channel from './channel';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SelectedUserIndexItem = ({ user, removeUser }) => {
+const SelectedUserIndexItem = ({ user, removeUser, toggleActive }) => {
   return (
     <li className="selected-user-list-item" onClick={ removeUser }>
       <div className="user-img"></div>

@@ -12,6 +12,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
+    debugger
     @channel = Channel.new(channel_params)
     @channel.users = User.all
     if @channel.save

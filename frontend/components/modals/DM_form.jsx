@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { values } from 'lodash';
 import merge from 'lodash/merge';
 
+import { selectOtherUsers } from '../../selectors/selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 import { fetchUsers } from '../../actions/user_actions';
@@ -73,8 +74,12 @@ class DMForm extends React.Component {
   }
 
   handleSubmit(e) {
-    if (this.state.users[0]) {
-      const dm = {}
+    if (values(this.state.users)[0]) {
+
+      const dm = {is_dm: true,
+        users: values(this.state.users),
+        current_user: this.props.current_user
+      }
       debugger
       e.preventDefault();
       this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
@@ -94,7 +99,7 @@ class DMForm extends React.Component {
             <h1 className="channel-form-header">Direct messages</h1>
             <div className="dm-form-inputs">
               <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
-              <input className="channel-form-submit" id="channel-submit" type="submit" value="Go"></input>
+              <input className="channel-form-submit active" id="channel-submit" type="submit" value="Go"></input>
             </div>
   {  //        <p>Send invites to:</p>
       //        <input className="channel-form-input"></input
@@ -104,7 +109,7 @@ class DMForm extends React.Component {
                 return <SelectedUserIndexItem
                   key={user.id}
                   user={user}
-                  removeUser={this.removeUser(user)}
+                  removeUser={this.removeUser(user, this.toggleActive)}
                   toggleActive={this.toggleActive}/>;
                 })
               }
@@ -115,7 +120,7 @@ class DMForm extends React.Component {
                   return <UserIndexItem
                     key={user.id}
                     user={user}
-                    addUser={this.addUser(user)}
+                    addUser={this.addUser(user, this.toggleActive)}
                     toggleActive={this.toggleActive}/>;
                 }) }
               </ul>
@@ -134,7 +139,8 @@ const mapStateToProps = (state) => (
   {
     render: state.ui.modals.newDM,
     channelId: state.ui.currentChannel.id,
-    users: values(state.entities.users)
+    users: selectOtherUsers(state),
+    currentUser: state.session.currentUser
   }
 );
 
