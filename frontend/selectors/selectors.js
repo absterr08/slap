@@ -27,14 +27,26 @@ export const selectOtherUsers = state => {
   }
 };
 
-export const selectDMs = state => {
-  values(state.entities.channels).reduce((acc, channel) => {
-    if (channel.is_dm) {
-      acc[channel.id] = channel;
+export const selectDms = state => {
+  return values(state.entities.channels).reduce((acc, channel) => {
+    // debugger
+    if (channel.channel.is_dm) {
+      acc[channel.channel.id] = channel;
     }
     return acc;
   }, {});
 };
+
+export const selectPublicChannels = state => {
+  return values(state.entities.channels).reduce((acc, channel) => {
+    if (!channel.channel.is_dm) {
+      // debugger
+      acc[channel.channel.id] = channel;
+    }
+    return acc;
+  }, {});
+};
+
 
 export const selectPrivateChannels = state => {
 

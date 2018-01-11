@@ -53,7 +53,7 @@ export default class Home extends React.Component {
       <div className="main-container">
         <div className="channel-sidebar">
           <ChannelSidebarHeader />
-          <ChannelSidebarMain channels={this.props.channels} />
+          <ChannelSidebarMain />
         </div>
         <ChannelContainer />
       </div>

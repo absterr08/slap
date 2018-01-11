@@ -7,6 +7,10 @@ json.users do
   json.array! channel.users.map {|user| user.id}
 end
 
+json.usernames do
+  json.array! channel.users.map {|user| user.username}
+end
+
 json.messages do
   json.array! channel.messages.map {|message| message.id}
 end

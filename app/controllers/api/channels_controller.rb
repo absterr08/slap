@@ -1,9 +1,10 @@
 class Api::ChannelsController < ApplicationController
   def index
-    @channels = Channel.where(is_dm: false)
-    # maybe add a private_channel column?
-    @privateChannels = current_user.channels
-    @dms = current_user.channels.where(is_dm: true)
+    # @channels = Channel.where(is_dm: false)
+    # # maybe add a private_channel column?
+    # @privateChannels = current_user.channels
+    # @dms = current_user.channels.where(is_dm: true)
+    @channels = current_user.channels
   end
 
   def show
@@ -25,7 +26,6 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
-    debugger
     userIds = params[:channel][:users].map {|id| id.to_i}
     @channel = Channel.new
     @channel.is_dm = true
