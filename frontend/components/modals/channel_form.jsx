@@ -84,36 +84,31 @@ class ChannelForm extends React.Component {
 
 
   render() {
-    if (this.props.render) {
-      return (
-        <div className="new-channel-container">
-          <div className="toggle-close-container" onClick={this.closeModal}>
-            <div className="toggle-close">x</div>
-          </div>
-          <form className="channel-form-container" onSubmit={this.handleSubmit}>
-            <h1 className="channel-form-header">Create a channel</h1>
-            <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
-            <p className="channel-form-label">Name</p>
-            <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
-
-            <p className="channel-form-label">Purpose</p>
-            <input className="channel-form-input"></input>
-
-  {  //        <p>Send invites to:</p>
-      //        <input className="channel-form-input"></input
-    }
-
-            <div className="channel-form-buttons">
-              <button className="channel-form-cancel" onClick={this.closeModal}>Cancel</button>
-              <input className="channel-form-submit" id="channel-submit" type="submit" value="Create Channel"></input>
-            </div>
-          </form>
+    return (
+      <div className="new-channel-container">
+        <div className="toggle-close-container" onClick={this.closeModal}>
+          <div className="toggle-close">x</div>
         </div>
-      );
-    }
-    else {
-      return <div></div>;
-    }
+        <form className="channel-form-container" onSubmit={this.handleSubmit}>
+          <h1 className="channel-form-header">Create a channel</h1>
+          <p className="channel-form-info">{`Channels are where your members communicate. They're best organized around a topic - #leads, for example.`}</p>
+          <p className="channel-form-label">Name</p>
+          <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
+
+          <p className="channel-form-label">Purpose</p>
+          <input className="channel-form-input"></input>
+
+{  //        <p>Send invites to:</p>
+    //        <input className="channel-form-input"></input
+  }
+
+          <div className="channel-form-buttons">
+            <button className="channel-form-cancel" onClick={this.closeModal}>Cancel</button>
+            <input className="channel-form-submit" id="channel-submit" type="submit" value="Create Channel"></input>
+          </div>
+        </form>
+      </div>
+    );
   }
 }
 

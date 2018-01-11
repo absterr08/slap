@@ -37,6 +37,9 @@ class Channel extends React.Component {
     }
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+  }
 
     handleKeyUp(e) {
       if(e.keyCode == 13){
@@ -82,8 +85,9 @@ class Channel extends React.Component {
               {messages}
             </ul>
           </div>
-          <form className="message-form">
-            <input placeholder={`message ${title}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
+          <form className="message-form" onSubmit={this.handleSubmit}>
+            <input placeholder={`message ${title}`} className="message-form-input" type="text"
+              onKeyUp={this.handleKeyUp}/>
           </form>
       </div>
       </div>

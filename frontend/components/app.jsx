@@ -13,8 +13,6 @@ import ChannelForm from './modals/channel_form';
 
 const App = () => (
   <div className="app">
-    <ChannelForm />
-    <DMForm />
     <AuthRoute path="/" component={NavBar}/>
     <Switch>
       <AuthRoute path="/login" component={SessionFormContainer} />
