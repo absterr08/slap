@@ -35,8 +35,11 @@
 .channel-list-item {
   height: 26px;
   line-height: 26px;
-  color: rgb(202,196,201);
+  color: #cac4c9;
   padding-left: 16px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 16px;
 }
 
 .channel-list-item:hover {
@@ -77,4 +80,16 @@
 
 .add-button:hover {
   color: rgb(202,196,201);
+}
+
+.delete-dm {
+  width: 15px;
+  height: 15px;
+  text-align: center;
+  line-height: 18px;
+}
+
+.delete-dm:hover {
+  border: 2px solid #cac4c9;
+  border-radius: 50%;
 }
