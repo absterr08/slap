@@ -2,13 +2,13 @@ export const fetchChannels = () => (
   $.ajax({
     url: `/api/channels`
   })
-)
+);
 
 export const fetchChannel = (channelId) => (
   $.ajax({
     url: `/api/channels/${channelId}`
   })
-)
+);
 
 export const createChannel = (channel) => (
   $.ajax({
@@ -16,17 +16,17 @@ export const createChannel = (channel) => (
     url: `/api/channels`,
     data: { channel }
   })
-)
+);
 
 // probably bad practice to put this here since addMessage is dispatching stuff?
 export const createChannelSubscriptions = (channels, addMessage) => {
+  // debugger
   if (typeof App !== 'undefined'){
     channels.forEach(channel => {
-        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
+        App[`room${channel.channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.channel.id}, {
           connected: function() {},
           disconnected: function() {},
           received: function(data) {
-            // debugger
             const messageChannelId = JSON.parse(data.message).channel_id;
             const channelId = JSON.parse(this.identifier).room;
             if (messageChannelId === channelId) {
@@ -34,19 +34,19 @@ export const createChannelSubscriptions = (channels, addMessage) => {
             }
           },
           speak: function(message) {
-            // debugger
             return this.perform('speak', {
               message: message
             });
           }
         });
       }
-    )
+    );
   }
-}
-export const createChannelSubscription = ()  => {
+};
+export const createChannelSubscription = (channelId, addMessage)  => {
+  debugger
   if (typeof App !== 'undefined'){
-      App.room = App.cable.subscriptions.create({channel: "RoomChannel", room: "coolroom"}, {
+      App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
@@ -59,4 +59,14 @@ export const createChannelSubscription = ()  => {
         }
       });
     }
+};
+
+export const selectDmNames = (dm, username)=> {
+  const selectedNames = []
+  dm.usernames.map(name => {
+    if (name != username) {
+      selectedNames.push(name)
+    }
+  })
+  return selectedNames;
 }

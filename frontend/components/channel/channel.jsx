@@ -2,6 +2,7 @@ import React from 'react';
 import Message from './message'
 
 import { getChannelByName } from '../../util/channel_api_util';
+import { selectDmNames } from '../../util/channel_api_util';
 
 class Channel extends React.Component {
 
@@ -30,6 +31,7 @@ class Channel extends React.Component {
       const channelId = parseInt(localStorage.getItem("currentChannel"));
       this.props.history.push(`/messages/${channelId}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      // debugger
       console.log('case: next channel is different; fetching channel');
       this.props.fetchChannel(nextProps.match.params.channelId);
     }
@@ -39,7 +41,7 @@ class Channel extends React.Component {
     handleKeyUp(e) {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
-          const message = { body: e.target.value, author_id: this.props.user.id };
+          const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.stateChannelId };
           App[`room${this.props.channelId}`].speak(message);
           } //else{
         //   debugger
@@ -51,20 +53,30 @@ class Channel extends React.Component {
 
   render() {
     console.log('rendering channel')
+    // debugger
+
+    let title;
+    if (this.props.isDm) {
+      title = selectDmNames(this.props.channel, this.props.user.username).join(', ')
+
+    } else {
+      title = `# ${this.props.channelName}`;
+    }
+
     const messages = this.props.messages.map((message) => {
       return <Message key={message.id} message={message}/>;
     });
     return (
       <div className="channel-container">
-        <div className="channel-header">#{this.props.channelName}</div>
-        <div className="messages-container">
-          <div className="messages-list-container">
+        <div className="channel-header">{title}</div>
+        <div id="???" className="messages-container">
+          <div id="!!!" className="messages-list-container">
             <ul className="messages-list">
               {messages}
             </ul>
           </div>
           <form className="message-form">
-            <input placeholder={`message #${this.props.channelName}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
+            <input placeholder={`message ${title}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
           </form>
       </div>
       </div>
@@ -73,3 +85,6 @@ class Channel extends React.Component {
 }
 
 export default Channel;
+
+//document.getElementById().scrollTop = 100000
+// call on willReceieve & didUpdate

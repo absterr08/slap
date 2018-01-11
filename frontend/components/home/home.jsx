@@ -15,6 +15,7 @@ export default class Home extends React.Component {
   componentDidMount() {
     // const addMessage = this.props.addMessage.bind(this);
     // this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
+    this.props.fetchMessages();
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
       // debugger
       this.props.history.push(`/messages/${this.props.currentUser.channels[0].id}`);
@@ -35,10 +36,10 @@ export default class Home extends React.Component {
 
   render() {
     console.log('rendering home');
-    let channelContainer;
-    const pathChannel = this.props.match.params.channelId;
-    if (pathChannel) {
-      channelContainer = <ChannelContainer channelId={pathChannel} />;
+    // let channelContainer;
+    // const pathChannel = this.props.match.params.channelId;
+    // if (pathChannel) {
+    //   channelContainer = <ChannelContainer channelId={pathChannel} />;
     // this breaks :((
     // } else if (localStorage.getItem("currentChannel")) {
     //   const channelId = parseInt(localStorage.getItem("currentChannel"));
@@ -46,13 +47,13 @@ export default class Home extends React.Component {
     //   channelContainer = <ChannelContainer channelId={channelId} />;
     // } else if (this.props.defaultChannel) {
     //   channelContainer = <ChannelContainer channelId={this.props.defaultChannel} />;
-    }
+    // }
 
     return (
       <div className="main-container">
         <div className="channel-sidebar">
           <ChannelSidebarHeader />
-          <ChannelSidebarMain channels={this.props.channels} />
+          <ChannelSidebarMain />
         </div>
         <ChannelContainer />
       </div>

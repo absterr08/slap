@@ -15,7 +15,7 @@ const ChannelSidebar = ({ username, logout }) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    username: state.session.currentUser.username
+    username: state.session.currentUser.user.username
   };
 };
 

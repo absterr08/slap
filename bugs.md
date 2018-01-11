@@ -10,3 +10,4 @@
 #TASKS
   * move Message.create from #speak to messages#create
   * fix refreshing from leaving current channel and going to default
+  * fix channel rerendering. fetchChannel in sidebar_index_item instead of channel component?

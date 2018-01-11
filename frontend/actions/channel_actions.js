@@ -4,18 +4,20 @@ export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 
 const receiveChannels = channels => {
+  // debugger
   return {
     type: RECEIVE_CHANNELS,
     channels
   };
 };
 
-const receiveChannel = payload => (
-  {
+const receiveChannel = payload => {
+  // debugger
+  return {
     type: RECEIVE_CHANNEL,
     payload
   }
-);
+;}
 
 export const fetchChannels = () => dispatch => (
   ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))

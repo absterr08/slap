@@ -1,11 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { selectDmNames } from '../../../util/channel_api_util';
 
 
-const ChannelIndexItem = ({ channel }) => {
+
+const ChannelIndexItem = ({ channel, currentUsername }) => {
+  const channelInfo = channel.channel;
+  let title;
+  if (currentUsername) {
+    title = selectDmNames(channel, currentUsername).join(', ')
+
+  } else {
+    title = channelInfo.name;
+  }
   return (
     <li className="channel-list-item">
-      <Link to={ `/messages/${channel.id}` }># {channel.name}</Link>
+      <Link to={ `/messages/${channelInfo.id}` }># {title}</Link>
     </li>
   )
 }
