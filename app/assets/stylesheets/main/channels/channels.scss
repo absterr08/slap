@@ -23,3 +23,17 @@
   font-family: sans-serif;
   font-size: 20px;
 }
+
+.channel-header-content {
+  display: flex;
+  align-items: center;
+}
+
+.channel-header-icon {
+  background: image-url('slap-logo.png');
+  height: 30px;
+  width: 30px;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  padding-left: 5px;
+}

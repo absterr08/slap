@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.message-container:hover {
+  background-color: #f9f9f9;
+}
+
 .message-content {
   display:flex;
   flex-direction: column;
