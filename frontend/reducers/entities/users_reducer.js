@@ -1,6 +1,7 @@
 import merge from 'lodash/merge';
 import { RECEIVE_USERS, RECEIVE_USER } from '../../actions/user_actions';
 import { RECEIVE_CHANNEL } from '../../actions/channel_actions';
+import { RECEIVE_CURRENT_USER } from '../../actions/user_actions'
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -15,6 +16,8 @@ export default (state = {}, action) => {
     //     return acc;
     //   }, {});
     //   return users;
+    case RECEIVE_CURRENT_USER:
+      return {};
     default:
       return state;
   }

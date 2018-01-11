@@ -35,10 +35,10 @@ export default class Home extends React.Component {
 
   render() {
     console.log('rendering home');
-    let channelContainer;
-    const pathChannel = this.props.match.params.channelId;
-    if (pathChannel) {
-      channelContainer = <ChannelContainer channelId={pathChannel} />;
+    // let channelContainer;
+    // const pathChannel = this.props.match.params.channelId;
+    // if (pathChannel) {
+    //   channelContainer = <ChannelContainer channelId={pathChannel} />;
     // this breaks :((
     // } else if (localStorage.getItem("currentChannel")) {
     //   const channelId = parseInt(localStorage.getItem("currentChannel"));
@@ -46,7 +46,7 @@ export default class Home extends React.Component {
     //   channelContainer = <ChannelContainer channelId={channelId} />;
     // } else if (this.props.defaultChannel) {
     //   channelContainer = <ChannelContainer channelId={this.props.defaultChannel} />;
-    }
+    // }
 
     return (
       <div className="main-container">

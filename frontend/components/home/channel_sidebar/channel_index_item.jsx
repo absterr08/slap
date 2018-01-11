@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 
 const ChannelIndexItem = ({ channel }) => {
+  const channelInfo = channel.channel;
   return (
     <li className="channel-list-item">
-      <Link to={ `/messages/${channel.id}` }># {channel.name}</Link>
+      <Link to={ `/messages/${channelInfo.id}` }># {channelInfo.name}</Link>
     </li>
   )
 }

@@ -1,19 +1,19 @@
 import merge from 'lodash/merge';
 import { RECEIVE_CHANNELS, RECEIVE_CHANNEL } from '../../actions/channel_actions';
+import { RECEIVE_CURRENT_USER } from '../../actions/user_actions'
 
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_CHANNELS:
-      return merge({}, state, action.channels);
-
+      return merge({}, state, action.channels.channels);
     case RECEIVE_CHANNEL:
+      // debugger
       const channel = action.payload.channel;
-
-      channel.messageIds = action.payload.messages.map(message => message.id);
-      channel.userIds = action.payload.users.map(user => user.user.id);
-      return merge({}, state, { [channel.id]: channel});
-
+      return merge({}, state, { [channel.id]: action.payload});
+    case RECEIVE_CURRENT_USER:
+      // debugger
+      return {};
     default:
       return state;
   }
