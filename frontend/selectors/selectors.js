@@ -17,9 +17,21 @@ export const selectOtherUsers = state => {
     if (user.user.id != currUserId) {
       console.log(user.user.id);
       acc[user.user.id] = user.user;
-      return acc;
     }
     return acc;
   }, {});
   return values(otherUsers);
+};
+
+export const selectDMs = state => {
+  values(state.entities.channels).reduce((acc, channel) => {
+    if (channel.is_dm) {
+      acc[channel.id] = channel;
+    }
+    return acc;
+  }, {});
+};
+
+export const selectPrivateChannels = state => {
+
 };

@@ -57,8 +57,8 @@ class Channel extends React.Component {
     return (
       <div className="channel-container">
         <div className="channel-header">#{this.props.channelName}</div>
-        <div className="messages-container">
-          <div className="messages-list-container">
+        <div id="???" className="messages-container">
+          <div id="!!!" className="messages-list-container">
             <ul className="messages-list">
               {messages}
             </ul>
@@ -73,3 +73,6 @@ class Channel extends React.Component {
 }
 
 export default Channel;
+
+//document.getElementById().scrollTop = 100000
+// call on willReceieve & didUpdate

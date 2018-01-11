@@ -77,12 +77,11 @@ class DMForm extends React.Component {
     if (values(this.state.users)[0]) {
 
       const dm = {is_dm: true,
-        users: values(this.state.users),
-        current_user: this.props.current_user
+        users: Object.keys(this.state.users),
+        current_user: this.props.currentUser
       }
-      debugger
       e.preventDefault();
-      this.props.createChannel(this.state).then( () => this.createChannelSubscription() );
+      this.props.createChannel(dm).then( () => this.createChannelSubscription() );
       this.closeModal();
     }
   }
