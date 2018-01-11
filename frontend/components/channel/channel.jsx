@@ -55,12 +55,14 @@ class Channel extends React.Component {
     console.log('rendering channel')
     // debugger
 
-    let title;
+    let title, iconType;
     if (this.props.isDm) {
       title = selectDmNames(this.props.channel, this.props.user.username).join(', ')
+      iconType = "dm-header-icon"
 
     } else {
-      title = `# ${this.props.channelName}`;
+      title = `${this.props.channelName}`;
+      iconType = "channel-header-icon"
     }
 
     const messages = this.props.messages.map((message) => {
@@ -68,7 +70,12 @@ class Channel extends React.Component {
     });
     return (
       <div className="channel-container">
-        <div className="channel-header">{title}</div>
+        <div className="channel-header">
+          <div className="channel-header-content">
+            <div className={iconType}></div>
+            <div>{title}</div>
+          </div>
+        </div>
         <div id="???" className="messages-container">
           <div id="!!!" className="messages-list-container">
             <ul className="messages-list">

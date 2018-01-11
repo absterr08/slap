@@ -11,7 +11,6 @@ const ChannelSubscriptions = ({ channels, addMessage, addChannel, currentUser })
     channels.forEach(channel => {
         App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
           received: function(data) {
-            debugger
             const messageChannelId = JSON.parse(data.message).channel_id;
             const channelId = JSON.parse(this.identifier).room;
             if (messageChannelId === channelId) {
@@ -26,7 +25,7 @@ const ChannelSubscriptions = ({ channels, addMessage, addChannel, currentUser })
         });
       }
     );
-    // 
+    //
     // App.channels = App.cable.subscriptions.create({channel: "RoomChannel", room: "channels"}, {
     //   received: function(data) {
     //     debugger

@@ -21,7 +21,6 @@ export default (state = {}, action) => {
         currentChannel.messages.push(action.message.id);
         return currentChannel;
       }
-      debugger
       return state;
     case RECEIVE_CURRENT_USER:
       return {};
