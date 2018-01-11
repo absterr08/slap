@@ -69,6 +69,7 @@ class DMForm extends React.Component {
 
   toggleActive() {
     if (values(this.state.users)[0]) {
+      //dont use dom manip in react. instead, dynamically set class in render
       $(document.getElementById("channel-submit")).addClass("active");
     }
     if (!values(this.state.users)[0]) {
@@ -95,7 +96,6 @@ class DMForm extends React.Component {
   }
 
   render() {
-    if (this.props.render) {
       return (
         <div className="new-channel-container">
           <div className="toggle-close-container" onClick={this.closeModal}>
@@ -135,20 +135,19 @@ class DMForm extends React.Component {
         </div>
       );
     }
-    else {
-      return <div></div>;
-    }
   }
-}
 
-const mapStateToProps = (state) => (
-  {
+
+const mapStateToProps = (state) => {
+  // debugger
+  const selector = selectOtherUsers;
+  return {
     render: state.ui.modals.newDM,
     channelId: state.ui.currentChannel.id,
     users: selectOtherUsers(state),
     currentUser: state.session.currentUser
   }
-);
+};
 
 const mapDispatchToProps = (dispatch) => (
   {

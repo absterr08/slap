@@ -10,7 +10,9 @@ const mapStateToProps = (state) => (
     defaultChannel: Object.keys(state.entities.channels)[0],
     getChannel: id => state.entities.channels.id,
     messages: values(state.entities.messages),
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    renderChannelForm: state.ui.modals.newChannel,
+    renderDMForm: state.ui.modals.newDM
   }
 );
 const mapDispatchToProps = (dispatch) => (
