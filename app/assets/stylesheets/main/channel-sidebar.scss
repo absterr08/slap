@@ -43,7 +43,12 @@
   background-color: #3E313C;
 }
 
-.channel-lsit-item--selected {
+.selected-li {
+  background-color: #4C9689;
+  color: #fff;
+}
+
+.selected-li:hover {
   background-color: #4C9689;
 }
 

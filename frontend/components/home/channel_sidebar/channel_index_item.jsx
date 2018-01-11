@@ -4,26 +4,35 @@ import { selectDmNames } from '../../../util/channel_api_util';
 
 
 
-const ChannelIndexItem = ({ channel, currentUsername }) => {
-  const channelInfo = channel.channel;
-  let title, iconType;
-  if (currentUsername) {
-    title = selectDmNames(channel, currentUsername).join(', ')
-    iconType = "dm-list-item-icon"
-  } else {
-    title = channelInfo.name;
-    iconType = "channel-list-item-icon"
+class ChannelIndexItem extends React.Component {
+
+  toggleActive(e) {
+    // debugger
+    $('.selected-li').removeClass('selected-li');
+    $(e.currentTarget).addClass('selected-li');
   }
-  return (
-      <Link to={ `/messages/${channelInfo.id}` }>
-        <li className="channel-list-item">
-          <div className="channel-list-item-container">
-            <div className={iconType}></div>
-            <div className="chennel-list-item-name">{title}</div>
-          </div>
-        </li>
-      </Link>
-  )
+
+  render() {
+    const channelInfo = this.props.channel.channel;
+    let title, iconType;
+    if (this.props.currentUsername) {
+      title = selectDmNames(this.props.channel, this.props.currentUsername).join(', ')
+      iconType = "dm-list-item-icon"
+    } else {
+      title = channelInfo.name;
+      iconType = "channel-list-item-icon"
+    }
+    return (
+        <Link to={ `/messages/${channelInfo.id}` }>
+          <li className="channel-list-item" onClick={this.toggleActive}>
+            <div className="channel-list-item-container">
+              <div className={iconType}></div>
+              <div className="channel-list-item-name">{title}</div>
+            </div>
+          </li>
+        </Link>
+    )
+  }
 }
 
 export default ChannelIndexItem;
