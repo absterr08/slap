@@ -19,7 +19,7 @@ export default class Home extends React.Component {
     // this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
     this.props.fetchMessages();
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
-      debugger
+      // debugger
       this.props.history.push(`/messages/${this.props.currentUser.channels[0].id}`);
     }
   }
