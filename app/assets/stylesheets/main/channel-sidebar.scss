@@ -77,11 +77,23 @@
   height: 26px;
   cursor: pointer;
   padding-left: 16px;
-  padding-right: 16px;
+  padding-right: 12px;
+}
+
+.add-button {
+  border: 1px solid #cac4c9;
+  color: #cac4c9;
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 13px;
 }
 
 .add-button:hover {
-  color: rgb(202,196,201);
+  color: #fff;
+  border: 1px solid #fff;
 }
 
 .delete-dm {
