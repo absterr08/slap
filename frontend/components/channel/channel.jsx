@@ -2,6 +2,7 @@ import React from 'react';
 import Message from './message'
 
 import { getChannelByName } from '../../util/channel_api_util';
+import { selectDmNames } from '../../util/channel_api_util';
 
 class Channel extends React.Component {
 
@@ -53,12 +54,21 @@ class Channel extends React.Component {
   render() {
     console.log('rendering channel')
     // debugger
+
+    let title;
+    if (this.props.isDm) {
+      title = selectDmNames(this.props.channel, this.props.user.username).join(', ')
+
+    } else {
+      title = `# ${this.props.channelName}`;
+    }
+
     const messages = this.props.messages.map((message) => {
       return <Message key={message.id} message={message}/>;
     });
     return (
       <div className="channel-container">
-        <div className="channel-header">#{this.props.channelName}</div>
+        <div className="channel-header">{title}</div>
         <div id="???" className="messages-container">
           <div id="!!!" className="messages-list-container">
             <ul className="messages-list">
@@ -66,7 +76,7 @@ class Channel extends React.Component {
             </ul>
           </div>
           <form className="message-form">
-            <input placeholder={`message #${this.props.channelName}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
+            <input placeholder={`message ${title}`} className="message-form-input" type="text" onKeyUp={this.handleKeyUp}/>
           </form>
       </div>
       </div>

@@ -9,8 +9,8 @@ export default (state = {}, action) => {
   let currentChannel = {};
   switch (action.type) {
     case RECEIVE_CHANNEL:
-      // debugger
       currentChannel.id = action.payload.channel.id;
+      currentChannel.isDm = action.payload.channel.is_dm;
       currentChannel.name = action.payload.channel.name;
       currentChannel.messages = action.payload.messages;
       localStorage.setItem("currentChannel", `${currentChannel.id}`);
