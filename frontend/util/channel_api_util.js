@@ -44,7 +44,6 @@ export const createChannelSubscriptions = (channels, addMessage) => {
   }
 };
 export const createChannelSubscription = (channelId, addMessage)  => {
-  debugger
   if (typeof App !== 'undefined'){
       App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         connected: function() {},

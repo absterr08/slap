@@ -7,7 +7,6 @@ import { selectDmNames } from '../../../util/channel_api_util';
 class ChannelIndexItem extends React.Component {
 
   toggleActive(e) {
-    // debugger
     $('.selected-li').removeClass('selected-li');
     $(e.currentTarget).addClass('selected-li');
   }
