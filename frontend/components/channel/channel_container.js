@@ -11,6 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     channelName: state.ui.currentChannel.name,
     channelId: ownProps.match.params.channelId,
+    stateChannelId: state.ui.currentChannel.id,
     messages: values(selectCurrentChannelMessages(state)),
     user: state.session.currentUser.user
   }

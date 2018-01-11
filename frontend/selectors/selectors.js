@@ -1,11 +1,15 @@
 import { values } from 'lodash';
 
 export const selectCurrentChannelMessages = state => {
-  // debugger
   const allMessages = state.entities.messages;
-  const channelMessageIds = values(state.ui.currentChannel.messages);
+  let channelMessageIds = values(state.ui.currentChannel.messages);
   const filteredMessages = Object.assign({}, allMessages);
-  channelMessageIds.map( id => delete filteredMessages[id]);
+  Object.keys(filteredMessages).map( id =>  {
+    let intId = parseInt(id)
+    if (!channelMessageIds.includes(intId)) {
+      delete filteredMessages[intId];
+    }
+  });
   return filteredMessages;
 };
 

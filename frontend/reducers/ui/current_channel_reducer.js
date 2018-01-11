@@ -18,9 +18,10 @@ export default (state = {}, action) => {
     case RECEIVE_MESSAGE:
       if (state.id === action.message.channel_id) {
         currentChannel = merge({}, state);
-        currentChannel.messages.push(action.message);
+        currentChannel.messages.push(action.message.id);
         return currentChannel;
       }
+      debugger
       return state;
     case RECEIVE_CURRENT_USER:
       return {};
