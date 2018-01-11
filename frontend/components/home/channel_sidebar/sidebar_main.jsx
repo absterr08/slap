@@ -25,7 +25,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser }) => {
       </ul>
       <ul className="channel-sublist">
         { dms.map((dm, idx) => {
-          return <ChannelIndexItem key={ idx } channel={ dm } currentUsername={currentUser} />
+          return <ChannelIndexItem key={ idx } channel={ dm } currentUsername={currentUser.username} />
           })
         }
       </ul>
@@ -38,7 +38,7 @@ const mapStateToProps = state => {
   return {
     channels: values(selectPublicChannels(state)),
     dms: values(selectDms(state)),
-    currentUser: state.session.currentUser.user.username
+    currentUser: state.session.currentUser.user
   }
 }
 
