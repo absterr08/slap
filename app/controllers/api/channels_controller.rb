@@ -12,7 +12,6 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create
-    debugger
     if params[:channel][:is_dm] === "true"
       create_dm
       return
@@ -30,7 +29,7 @@ class Api::ChannelsController < ApplicationController
     userIds = params[:channel][:users].map {|id| id.to_i}
     @channel = Channel.new
     @channel.is_dm = true
-    @channel.name = "dm#{Channel.last.id + 1}"
+    @channel.name = "room#{Channel.last.id + 1}"
     if @channel.save
       userIds.each do |id|
         ChannelSubscription.create(user_id: id, channel_id: @channel.id)

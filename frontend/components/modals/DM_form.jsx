@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
 import merge from 'lodash/merge';
 
@@ -7,6 +8,8 @@ import { selectOtherUsers } from '../../selectors/selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 import { fetchUsers } from '../../actions/user_actions';
+import { receiveMessage } from '../../actions/message_actions';
+import { createChannelSubscription } from '../../util/channel_api_util';
 import UserIndexItem from './user_index_item';
 import SelectedUserIndexItem from './selected_user_index_item';
 
@@ -49,6 +52,7 @@ class DMForm extends React.Component {
 
   closeModal() {
     this.setState({name: "", description: ""});
+    this.setState({users: {}, search: ""});
     this.props.toggleModal();
   }
 
@@ -79,9 +83,13 @@ class DMForm extends React.Component {
       const dm = {is_dm: true,
         users: Object.keys(this.state.users),
         current_user: this.props.currentUser
-      }
+      };
       e.preventDefault();
-      this.props.createChannel(dm).then( () => this.createChannelSubscription() );
+      const addMessage = this.props.addMessage.bind(this);
+      this.props.createChannel(dm).then( (dm) => {
+        createChannelSubscription(dm.payload.channel.id, addMessage);
+        this.props.history.push(`/messages/${dm.payload.channel.id}`);
+      });
       this.closeModal();
     }
   }
@@ -147,8 +155,9 @@ const mapDispatchToProps = (dispatch) => (
   {
     toggleModal: () => dispatch(receiveNewChannelModal("dm")),
     createChannel: channel => dispatch(createChannel(channel)),
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchUsers: () => dispatch(fetchUsers()),
+    addMessage: message => dispatch(receiveMessage(message))
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(DMForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DMForm));

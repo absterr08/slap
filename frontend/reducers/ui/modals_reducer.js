@@ -3,7 +3,7 @@ import { RECEIVE_NEW_CHANNEL_MODAL, RECEIVE_NEW_DM_MODAL } from '../../actions/m
 
 const defaultState = {
   newChannel: false,
-  newDM: true
+  newDM: false
 };
 
 export default (state = defaultState, action) => {

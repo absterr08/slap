@@ -10,17 +10,17 @@ export const selectCurrentChannelMessages = state => {
 };
 
 export const selectOtherUsers = state => {
-  const allUsers = state.entities.users;
-  const currUserId = state.session.currentUser.user.id;
-  const otherUsers = values(allUsers).reduce( (acc, user) => {
-    console.log(user);
-    if (user.user.id != currUserId) {
-      console.log(user.user.id);
-      acc[user.user.id] = user.user;
-    }
-    return acc;
-  }, {});
-  return values(otherUsers);
+  if (state.session.currentUser) {
+    const allUsers = state.entities.users;
+    const currUserId = state.session.currentUser.user.id;
+    const otherUsers = values(allUsers).reduce( (acc, user) => {
+      if (user.user.id != currUserId) {
+        acc[user.user.id] = user.user;
+      }
+      return acc;
+    }, {});
+    return values(otherUsers);
+  }
 };
 
 export const selectDMs = state => {

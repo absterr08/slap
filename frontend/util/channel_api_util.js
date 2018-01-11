@@ -2,13 +2,13 @@ export const fetchChannels = () => (
   $.ajax({
     url: `/api/channels`
   })
-)
+);
 
 export const fetchChannel = (channelId) => (
   $.ajax({
     url: `/api/channels/${channelId}`
   })
-)
+);
 
 export const createChannel = (channel) => (
   $.ajax({
@@ -16,7 +16,7 @@ export const createChannel = (channel) => (
     url: `/api/channels`,
     data: { channel }
   })
-)
+);
 
 // probably bad practice to put this here since addMessage is dispatching stuff?
 export const createChannelSubscriptions = (channels, addMessage) => {
@@ -41,12 +41,12 @@ export const createChannelSubscriptions = (channels, addMessage) => {
           }
         });
       }
-    )
+    );
   }
-}
-export const createChannelSubscription = ()  => {
+};
+export const createChannelSubscription = (channelId, addMessage)  => {
   if (typeof App !== 'undefined'){
-      App.room = App.cable.subscriptions.create({channel: "RoomChannel", room: "coolroom"}, {
+      App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
@@ -59,4 +59,4 @@ export const createChannelSubscription = ()  => {
         }
       });
     }
-}
+};
