@@ -14,9 +14,14 @@ const ChannelIndexItem = ({ channel, currentUsername }) => {
     title = channelInfo.name;
   }
   return (
-    <li className="channel-list-item">
-      <Link to={ `/messages/${channelInfo.id}` }># {title}</Link>
-    </li>
+      <Link to={ `/messages/${channelInfo.id}` }>
+        <li className="channel-list-item">
+          <div className="channel-list-item-container">
+            <div className="channel-list-item-logo"></div>
+            <div className="chennel-list-item-name">{title}</div>
+          </div>
+        </li>
+      </Link>
   )
 }
 
