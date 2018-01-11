@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 import { RECEIVE_CHANNELS, RECEIVE_CHANNEL } from '../../actions/channel_actions';
-import { RECEIVE_CURRENT_USER } from '../../actions/user_actions'
+import { RECEIVE_CURRENT_USER } from '../../actions/session_actions'
 
 export default (state = {}, action) => {
   Object.freeze(state);
@@ -12,7 +12,7 @@ export default (state = {}, action) => {
       const channel = action.payload.channel;
       return merge({}, state, { [channel.id]: action.payload});
     case RECEIVE_CURRENT_USER:
-      // debugger
+      debugger
       return {};
     default:
       return state;

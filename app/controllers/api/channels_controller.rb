@@ -25,6 +25,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
+    debugger
     userIds = params[:channel][:users].map {|id| id.to_i}
     @channel = Channel.new
     @channel.is_dm = true

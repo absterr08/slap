@@ -68,7 +68,6 @@ class DMForm extends React.Component {
   }
 
   toggleActive() {
-    // debugger
     if (values(this.state.users)[0]) {
       $(document.getElementById("channel-submit")).addClass("active");
     }
@@ -84,6 +83,7 @@ class DMForm extends React.Component {
         users: Object.keys(this.state.users),
         current_user: this.props.currentUser
       };
+      dm.users.push(this.props.currentUser.user.id)
       e.preventDefault();
       const addMessage = this.props.addMessage.bind(this);
       this.props.createChannel(dm).then( (dm) => {
@@ -95,7 +95,6 @@ class DMForm extends React.Component {
   }
 
   render() {
-    // debugger
     if (this.props.render) {
       return (
         <div className="new-channel-container">

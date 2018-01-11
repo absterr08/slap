@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 import { RECEIVE_NEW_CHANNEL_MODAL, RECEIVE_NEW_DM_MODAL } from '../../actions/modal_actions';
-import { RECEIVE_CURRENT_USER } from '../../actions/user_actions'
+import { RECEIVE_CURRENT_USER } from '../../actions/session_actions'
 
 const defaultState = {
   newChannel: false,
