@@ -59,6 +59,7 @@
 .channel-list-item-container {
   display: flex;
   align-items: center;
+  max-width: 90%;
 }
 
 .channel-list-item-icon {
@@ -109,4 +110,10 @@
 .delete-dm:hover {
   color: #fff;
   border: 1px solid #fff;
+}
+
+.channel-list-item-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
