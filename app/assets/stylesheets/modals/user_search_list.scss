@@ -1,17 +1,41 @@
 .dm-form-inputs {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
 }
 
 .user-search-container {
   padding-top: 35px;
+  height: 300px;
+  overflow-y: auto;
 
 }
 
-.user-search-list {
+// .user-search-list {
+  // display: flex;
+  // border: 1px solid black;
+  // width: 100%;
+  // flex-wrap: wrap;
+  // max-height: 100px;
+  // overflow-y: auto;
+// }
 
-}
+.selected-users-container {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  line-height: 2rem;
+  border: 1px solid #a0a0a2;
+  border-radius: 0.25rem;
+  min-height: 50px;
+  margin-right: 10px;
+  }
+
+  .selected-users-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+  }
 
 .user-list-item {
   border-top: 1px solid #e8e8e8;
@@ -29,9 +53,6 @@
   border-radius: 6px;
 }
 
-.selected-users-list {
-  display: flex;
-}
 
 .selected-user-list-item {
   display: flex;
@@ -43,15 +64,18 @@
   border-radius: .2rem;
   font-weight: 700;
   font-size: 15px;
-  padding-right: 24px;
+  padding: 5px;
   cursor: pointer;
   flex: none;
   margin: 5px;
-  width: 50px;
 }
 
 .selected-username {
   font-family: sans-serif;
   font-weight: bold;
   color: #fff;
+}
+
+.user-remove {
+  padding-left: 5px;
 }

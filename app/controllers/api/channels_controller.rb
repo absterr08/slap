@@ -40,6 +40,15 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def destroy
+    @channel = Channel.find(params[:id])
+    if @channel.destroy
+      render :show
+    else
+      render json: "channel does not exist!"
+    end
+  end
+
   def channel_params
     params.require(:channel).permit(:name, :description, :is_dm, :users)
   end

@@ -58,4 +58,10 @@ class User < ApplicationRecord
     self.session_token ||= User.generate_session_token
   end
 
+  def set_img_url
+    lastId = User.last ? User.last.id : 0
+    self.img_url ||= ((lastId % 16) + 1).to_s
+    self.save!
+  end
+
 end

@@ -40,8 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchUser = userActions.fetchUser;
   window.fetchChannels = channelActions.fetchChannels;
   window.fetchChannel = channelActions.fetchChannel;
-  window.fetchChannelByName = ChannelApiUtil.fetchChannelByName;
-  window.getChannelByName = ChannelApiUtil.getChannelByName;
+  window.deleteChannel = channelActions.deleteChannel;
   window.receieveNewDMModal = modalActions.receieveNewDMModal;
   window.receieveNewChannelModal = modalActions.receieveNewChannelModal;
 

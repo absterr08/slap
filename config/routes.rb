@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :show, :index]
     resource :session, only: [:create, :destroy, :show]
     resources :messages, only: [:create, :edit, :show, :index]
-    resources :channels, only: [:create, :show, :index]
+    resources :channels, only: [:create, :show, :index, :destroy]
   end
 
   post 'api/create_guest_user', to: 'api/users#create_guest_user'

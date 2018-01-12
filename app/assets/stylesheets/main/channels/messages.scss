@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.message-container:first-child {
+  padding-top: 30px;
+}
+
 .message-container:hover {
   background-color: #f9f9f9;
 }

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { formatDateTime } from '../../util/message_api_util';
 
 
-const Message = ({ message }) => {
+const Message = ({ message, currentUser }) => {
   return (
     <li className="message-container">
-      <div className="user-img"></div>
+      <div className={`user-img-${message.author.img_url}`}></div>
       <div className="message-content">
         <div className="message-header">
           <div className="username">{message.author.username}</div>
@@ -21,7 +21,7 @@ const Message = ({ message }) => {
 const mapStateToProps = (state, ownProps) => {
   // debugger
   return {
-
+    currentUser: state.session.currentUser.user
   }
 }
 
