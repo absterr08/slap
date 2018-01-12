@@ -6,7 +6,7 @@ import { formatDateTime } from '../../util/message_api_util';
 const Message = ({ message, currentUser }) => {
   return (
     <li className="message-container">
-      <div className={`user-img-${currentUser.imgUrl}`}></div>
+      <div className={`user-img-${message.author.img_url}`}></div>
       <div className="message-content">
         <div className="message-header">
           <div className="username">{message.author.username}</div>

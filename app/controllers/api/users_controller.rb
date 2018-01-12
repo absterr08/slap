@@ -4,6 +4,7 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
     @user.channels = Channel.where(is_dm: false)
     if @user.save
+      @user.set_img_url
       login(@user)
       render :show
     else
@@ -13,10 +14,12 @@ class Api::UsersController < ApplicationController
 
   def create_guest_user
     @user = User.create_guest
+    @user.set_img_url
     @user.channels = Channel.where(is_dm: false)
     login(@user)
     render :show
   end
+
 
   def index
     @users = User.all
