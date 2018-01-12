@@ -41,7 +41,7 @@ class Splash extends React.Component {
         <div className="splash-image"/>
         <div className="main-info">
           <h1>Productivity starts here</h1>
-          <p className="slap-description">Whip your team into shape with Slap! A messaging app for teams that
+          <p className="slap-description">Whip your team into shape with Slap! A handy messaging app for teams that
             need a litle extra push in the right direction.</p>
           {errors}
           <div className="signup-container">
