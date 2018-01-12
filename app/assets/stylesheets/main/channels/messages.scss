@@ -74,6 +74,8 @@
   margin-left: 5px;
   font-family: sans-serif;
   font-weight: lighter;
+  max-width: 1000px;
+  overflow-wrap: break-word;
 }
 
 .message-form {
@@ -89,6 +91,5 @@
   font-family: 'Lato', sans-serif;
   margin: 5px;
   font-size: 1.0rem;
-  width: 95%;
-  min-width: 500px;
+  width: 96%;
 }

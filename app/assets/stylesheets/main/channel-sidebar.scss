@@ -23,6 +23,20 @@
   margin-bottom: 25px;
 }
 
+.sidebar-username-container {
+  display: flex;
+  align-items: center;
+}
+.sidebar-header-green-dot{
+  background: image-url('green-dot.png');
+  height: 10px;
+  width: 10px;
+  background-size: 9px;
+  background-repeat: no-repeat;
+  padding-left: 2px;
+  align-items: center;
+}
+
 .channel-list {
   display: flex;
   flex-direction: column;
@@ -59,6 +73,7 @@
 .channel-list-item-container {
   display: flex;
   align-items: center;
+  max-width: 90%;
 }
 
 .channel-list-item-icon {
@@ -68,6 +83,16 @@
   background-size: 20px 20px;
   background-repeat: no-repeat;
   padding-left: 5px;
+  align-items: center;
+}
+
+.dm-list-item-icon {
+  background: image-url('green-dot.png');
+  height: 10px;
+  width: 10px;
+  background-size: 9px;
+  background-repeat: no-repeat;
+  padding-left: 10px;
   align-items: center;
 }
 
@@ -109,4 +134,10 @@
 .delete-dm:hover {
   color: #fff;
   border: 1px solid #fff;
+}
+
+.channel-list-item-name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
