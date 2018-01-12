@@ -96,6 +96,9 @@ class DMForm extends React.Component {
   }
 
   render() {
+    // <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
+    // <div className="dm-form-inputs">
+    // </div>
       return (
         <div className="new-channel-container">
           <div className="toggle-close-container" onClick={this.closeModal}>
@@ -103,23 +106,24 @@ class DMForm extends React.Component {
           </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Direct messages</h1>
-            <div className="dm-form-inputs">
-              <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
-              <input className="channel-form-submit active" id="channel-submit" type="submit" value="Go"></input>
-            </div>
   {  //        <p>Send invites to:</p>
       //        <input className="channel-form-input"></input
     }
-            <ul className="selected-users-list">
-              { values(this.state.users).map((user) => {
-                return <SelectedUserIndexItem
-                  key={user.id}
-                  user={user}
-                  removeUser={this.removeUser(user, this.toggleActive)}
-                  toggleActive={this.toggleActive}/>;
-                })
-              }
-            </ul>
+            <div className= "dm-form-inputs">
+              <div className="selected-users-container">
+                <ul className="selected-users-list">
+                  { values(this.state.users).map((user) => {
+                    return <SelectedUserIndexItem
+                      key={user.id}
+                      user={user}
+                      removeUser={this.removeUser(user, this.toggleActive)}
+                      toggleActive={this.toggleActive}/>;
+                  })
+                }
+              </ul>
+            </div>
+              <input className="channel-form-submit active" id="channel-submit" type="submit" value="Go"></input>
+            </div>
             <div className="user-search-container">
               <ul className="user-search-list">
                 { this.props.users.map((user) => {
