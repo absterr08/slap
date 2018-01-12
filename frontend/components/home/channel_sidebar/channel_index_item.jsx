@@ -14,9 +14,8 @@ class ChannelIndexItem extends React.Component {
 
 
   deleteChannel() {
-    debugger
-    this.props.history.push(`/messages/${this.props.defaultChannel}`)
-    this.props.deleteChannel(this.props.channel.channel.id)
+    this.props.deleteChannel(this.props.channel.channel.id).then( () =>
+    this.props.history.push(`/messages/${this.props.defaultChannel}`))
   }
 
   render() {

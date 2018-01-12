@@ -28,6 +28,7 @@ class Channel extends React.Component {
   componentWillReceiveProps(nextProps) {
     console.log('compWIllReceieve');
     if (!nextProps.match.params.channelId) {
+      console.log('??????')
       const channelId = parseInt(localStorage.getItem("currentChannel"));
       this.props.history.push(`/messages/${channelId}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
@@ -56,8 +57,6 @@ class Channel extends React.Component {
 
   render() {
     console.log('rendering channel')
-    // debugger
-
     let title, iconType;
     if (this.props.isDm) {
       title = selectDmNames(this.props.channel, this.props.user.username).join(', ')
