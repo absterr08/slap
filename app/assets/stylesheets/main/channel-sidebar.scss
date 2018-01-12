@@ -72,6 +72,16 @@
   align-items: center;
 }
 
+.dm-list-item-icon {
+  background: image-url('green-dot.png');
+  height: 10px;
+  width: 10px;
+  background-size: 9px;
+  background-repeat: no-repeat;
+  padding-left: 10px;
+  align-items: center;
+}
+
 .sidebar-label {
   display: flex;
   justify-content: space-between;
