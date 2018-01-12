@@ -6,11 +6,18 @@
 
 .user-search-container {
   padding-top: 35px;
+  height: 300px;
+  overflow-y: auto;
 
 }
 
 .user-search-list {
-
+  // display: flex;
+  // /* border: 1px solid black; */
+  // // width: 100%;
+  // flex-wrap: wrap;
+  // max-height: 100px;
+  // overflow-y: auto;
 }
 
 .user-list-item {
@@ -43,15 +50,18 @@
   border-radius: .2rem;
   font-weight: 700;
   font-size: 15px;
-  padding-right: 24px;
+  padding: 5px;
   cursor: pointer;
   flex: none;
   margin: 5px;
-  width: 50px;
 }
 
 .selected-username {
   font-family: sans-serif;
   font-weight: bold;
   color: #fff;
+}
+
+.user-remove {
+  padding-left: 5px;
 }
