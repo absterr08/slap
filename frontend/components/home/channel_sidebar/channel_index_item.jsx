@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { selectDmNames } from '../../../util/channel_api_util';
 
 
@@ -11,28 +11,29 @@ class ChannelIndexItem extends React.Component {
     $(e.currentTarget).addClass('selected-li');
   }
 
-  toggleDeleteButton(e) {
-    
-  }
+
 
   deleteChannel() {
-
+    debugger
+    this.props.history.push(`/messages/${this.props.defaultChannel}`)
+    this.props.deleteChannel(this.props.channel.channel.id)
   }
 
   render() {
     const channelInfo = this.props.channel.channel;
+    // debugger
     let title, iconType;
     let deleteButton = <div></div>;
-    if (this.props.currentUsername) {
-      title = selectDmNames(this.props.channel, this.props.currentUsername).join(', ')
+    if (this.props.currentUser) {
+      title = selectDmNames(this.props.channel, this.props.currentUser.username).join(', ')
       iconType = "dm-list-item-icon"
-      deleteButton = <div className="delete-dm" onClick={this.deleteChannel}>x</div>
+      deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>
     } else {
       title = channelInfo.name;
       iconType = "channel-list-item-icon"
     }
     return (
-        <Link to={ `/messages/${channelInfo.id}` } onMouseOver={this.toggleDeleteButton}>
+        <Link to={ `/messages/${channelInfo.id}` } >
           <li className="channel-list-item" onClick={this.toggleActive}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
@@ -45,4 +46,4 @@ class ChannelIndexItem extends React.Component {
   }
 }
 
-export default ChannelIndexItem;
+export default withRouter(ChannelIndexItem);

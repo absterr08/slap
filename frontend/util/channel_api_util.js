@@ -18,6 +18,13 @@ export const createChannel = (channel) => (
   })
 );
 
+export const deleteChannel = (channelId) => (
+  $.ajax({
+    method:"DELETE",
+    url:`api/channels/${channelId}`
+  })
+)
+
 // probably bad practice to put this here since addMessage is dispatching stuff?
 export const createChannelSubscriptions = (channels, addMessage) => {
   // debugger
