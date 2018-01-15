@@ -1,9 +1,5 @@
 class Api::ChannelsController < ApplicationController
   def index
-    # @channels = Channel.where(is_dm: false)
-    # # maybe add a private_channel column?
-    # @privateChannels = current_user.channels
-    # @dms = current_user.channels.where(is_dm: true)
     @channels = current_user.channels
   end
 

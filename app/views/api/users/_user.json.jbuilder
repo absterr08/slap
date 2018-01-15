@@ -3,5 +3,7 @@ json.user do
 end
 
 json.channels do
-  json.array! user.channels, :id
+  json.array! user.channels.map { |channel| channel.id }
 end
+
+json.default_channel Channel.first

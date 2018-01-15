@@ -29,7 +29,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
             channel={ dm }
             deleteChannel={ deleteChannel }
             currentUser={ currentUser.user }
-            defaultChannel={ currentUser.channels[0].id} />
+            defaultChannel={ currentUser.default_channel.id} />
           })
         }
       </ul>

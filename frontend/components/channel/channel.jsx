@@ -16,24 +16,18 @@ class Channel extends React.Component {
 
   componentDidMount() {
     this.props.fetchChannel(this.props.match.params.channelId)
-    // debugger
     const messagesDiv = document.querySelector('.messages-list-container');
-    // console.log(messagesDiv)
-    // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
-    // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
-    // console.log(messagesDiv.scrollTop);
-
   }
 
   componentWillReceiveProps(nextProps) {
     console.log('compWIllReceieve');
-    if (!nextProps.match.params.channelId) {
-      console.log('??????')
-      const channelId = parseInt(localStorage.getItem("currentChannel"));
-      this.props.history.push(`/messages/${channelId}`);
-    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      // debugger
-      console.log('case: next channel is different; fetching channel');
+    // if (!nextProps.match.params.channelId) {
+    //   console.log('??????')
+    //   const channelId = parseInt(localStorage.getItem("currentChannel"));
+    //   this.props.history.push(`/messages/${channelId}`);
+    // } else
+    if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+    //   console.log('case: next channel is different; fetching channel');
       this.props.fetchChannel(nextProps.match.params.channelId);
     }
   }
