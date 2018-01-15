@@ -1,14 +1,8 @@
-json.channel do
-  json.extract! channel, :id, :name, :description, :is_dm
-end
 
+json.extract! channel, :id, :name, :description, :is_dm
 
 json.users do
   json.array! channel.users.map {|user| user.id}
-end
-
-json.usernames do
-  json.array! channel.users.map {|user| user.username}
 end
 
 json.messages do

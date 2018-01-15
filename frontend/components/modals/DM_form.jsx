@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
 import merge from 'lodash/merge';
 
-import { selectOtherUsers } from '../../selectors/selectors';
+import { selectOtherUsers } from '../../selectors/user_selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 import { fetchUsers } from '../../actions/user_actions';

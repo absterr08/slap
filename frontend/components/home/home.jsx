@@ -15,7 +15,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchMessages();
+    this.props.fetchMessages().then(() => this.props.fetchUsers());
   }
 
   render() {

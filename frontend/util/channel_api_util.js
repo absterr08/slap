@@ -30,7 +30,7 @@ export const createChannelSubscriptions = (channels, addMessage) => {
   // debugger
   if (typeof App !== 'undefined'){
     channels.forEach(channel => {
-        App[`room${channel.channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.channel.id}, {
+        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
           connected: function() {},
           disconnected: function() {},
           received: function(data) {
@@ -50,6 +50,7 @@ export const createChannelSubscriptions = (channels, addMessage) => {
     );
   }
 };
+
 export const createChannelSubscription = (channelId, addMessage)  => {
   if (typeof App !== 'undefined'){
       App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
@@ -66,13 +67,13 @@ export const createChannelSubscription = (channelId, addMessage)  => {
       });
     }
 };
-
-export const selectDmNames = (dm, username)=> {
-  const selectedNames = []
-  dm.usernames.map(name => {
-    if (name != username) {
-      selectedNames.push(name)
-    }
-  })
-  return selectedNames;
-}
+//
+// export const selectDmNames = (dm, username) => {
+//   const selectedNames = []
+//   dm.usernames.map(name => {
+//     if (name != username) {
+//       selectedNames.push(name)
+//     }
+//   })
+//   return selectedNames;
+// }
