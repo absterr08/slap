@@ -66,8 +66,8 @@ class Channel extends React.Component {
             {description}
           </div>
         </div>
-        <div id="???" className="messages-container">
-          <div id="!!!" className="messages-list-container">
+        <div className="messages-container">
+          <div className="messages-list-container">
             <ul className="messages-list">
               {messages}
             </ul>

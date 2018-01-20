@@ -8,6 +8,7 @@ import Channel from './channel';
 
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     const channel = selectCurrentChannel(state);
     const user = state.session.currentUser.user;
     const users = channel.is_dm ? null : selectChannelUsernames(state)

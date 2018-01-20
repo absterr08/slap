@@ -27,6 +27,5 @@ export const selectDmUsernames = (state)  => {
   const names = usernames.forEach(name => {
     if (name != state.session.currentUser.user.username) selectedNames.push(name)
   })
-  // debugger
   return selectedNames.join(", ")
 }

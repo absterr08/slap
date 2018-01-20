@@ -56,8 +56,8 @@ const mapStateToProps = state => {
   return {
     channels: selectPublicChannels(state),
     dms: selectDms(state),
-    // otherUsers: selectDmUsernames(state),
-    otherUsers: 'hey',
+    otherUsers: selectDmUsernames(state),
+    // otherUsers: 'hey',
     currentUser,
     usernames
   }

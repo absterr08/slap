@@ -19,8 +19,6 @@ class ChannelIndexItem extends React.Component {
   }
 
   render() {
-    // const channelInfo = this.props.channel.channel;
-    // debugger
     const deleteButton = this.props.channel.is_dm
       ? <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>
       : <div></div>
