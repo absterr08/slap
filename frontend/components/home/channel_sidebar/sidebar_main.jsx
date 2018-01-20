@@ -1,35 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { values } from 'lodash';
 import { fetchChannels, deleteChannel } from '../../../actions/channel_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
-import { selectDms, selectPublicChannels } from '../../../selectors/selectors';
+import { selectDms, selectPublicChannels } from '../../../selectors/channel_selectors';
+import { selectChannelUsernames, selectDmUsernames } from '../../../selectors/user_selectors';
 
-const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel }) => {
+const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) => {
+
   return (
+
     <ul className="channel-list">
       <ul className="sidebar-label" onClick={toggleModal("channel")}>
         <li>Channels</li>
         <li><div className="add-button">+</div></li>
       </ul>
+
       <ul className="channel-sublist">
         { channels.map((channel, idx) => {
-          return <ChannelIndexItem key={ idx } channel={ channel } />
+          return <ChannelIndexItem
+            key={ idx }
+            channel={ channel }
+            iconType={ "channel-list-item-icon" }
+            title={ channel.name }
+            />
           })
         }
       </ul>
+
       <ul className="sidebar-label" onClick={toggleModal("DM")}>
         <li>Direct Messages</li>
         <li><div className="add-button">+</div></li>
       </ul>
+
       <ul className="channel-sublist">
         { dms.map((dm, idx) => {
-          return <ChannelIndexItem key={ dm.channel.id }
+          return <ChannelIndexItem key={ dm.id }
             channel={ dm }
+            iconType={ "dm-list-item-icon" }
             deleteChannel={ deleteChannel }
             currentUser={ currentUser.user }
-            defaultChannel={ currentUser.channels[0].id} />
+            defaultChannel={ currentUser.defaultChannel.id} />
           })
         }
       </ul>
@@ -39,10 +50,11 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
 
 
 const mapStateToProps = state => {
+  const currentUser = state.session.currentUser;
   return {
-    channels: values(selectPublicChannels(state)),
-    dms: values(selectDms(state)),
-    currentUser: state.session.currentUser
+    channels: selectPublicChannels(state),
+    dms: selectDms(state),
+    currentUser
   }
 }
 

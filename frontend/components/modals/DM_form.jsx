@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
 import merge from 'lodash/merge';
 
-import { selectOtherUsers } from '../../selectors/selectors';
+import { selectOtherUsers } from '../../selectors/user_selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 import { fetchUsers } from '../../actions/user_actions';
@@ -88,8 +88,8 @@ class DMForm extends React.Component {
       e.preventDefault();
       const addMessage = this.props.addMessage.bind(this);
       this.props.createChannel(dm).then( (dm) => {
-        createChannelSubscription(dm.payload.channel.id, addMessage);
-        this.props.history.push(`/messages/${dm.payload.channel.id}`);
+        createChannelSubscription(dm.channel.id, addMessage);
+        this.props.history.push(`/messages/${dm.channel.id}`);
       });
       this.closeModal();
     }

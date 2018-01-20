@@ -1,9 +1,6 @@
 import React from 'react';
 import Message from './message'
 
-import { getChannelByName } from '../../util/channel_api_util';
-import { selectDmNames } from '../../util/channel_api_util';
-
 class Channel extends React.Component {
 
     constructor(props) {
@@ -11,30 +8,21 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentWillMount() {
-    }
-
   componentDidMount() {
-    this.props.fetchChannel(this.props.match.params.channelId)
-    // debugger
+    console.log('channelDidMount')
+    this.props.changeChannel(this.props.match.params.channelId)
     const messagesDiv = document.querySelector('.messages-list-container');
-    // console.log(messagesDiv)
-    // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
-    // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
-    // console.log(messagesDiv.scrollTop);
-
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('compWIllReceieve');
-    if (!nextProps.match.params.channelId) {
-      console.log('??????')
-      const channelId = parseInt(localStorage.getItem("currentChannel"));
-      this.props.history.push(`/messages/${channelId}`);
-    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      // debugger
-      console.log('case: next channel is different; fetching channel');
-      this.props.fetchChannel(nextProps.match.params.channelId);
+    console.log('channelWIllReceieve');
+    // if (!nextProps.match.params.channelId) {
+    //   console.log('??????')
+    //   const channelId = parseInt(localStorage.getItem("currentChannel"));
+    //   this.props.history.push(`/messages/${channelId}`);
+    // } else
+    if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      this.props.changeChannel(nextProps.match.params.channelId);
     }
   }
 
@@ -45,8 +33,8 @@ class Channel extends React.Component {
     handleKeyUp(e) {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
-          const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.stateChannelId };
-          App[`room${this.props.channelId}`].speak(message);
+          const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.channel.id };
+          App[`room${this.props.channel.id}`].speak(message);
           } //else{
         //   debugger
         //   this.props.addMessage({id: createdMessage.id, body: e.target.value});
@@ -57,18 +45,13 @@ class Channel extends React.Component {
 
   render() {
     console.log('rendering channel')
-    let title, iconType, description;
-    if (this.props.isDm) {
-      title = selectDmNames(this.props.channel, this.props.user.username).join(', ')
-      iconType = "dm-header-icon"
-
+    let icon, description;
+    if (this.props.channel.is_dm) {
+      icon = <div></div>
     } else {
-      title = `${this.props.channelName}`;
-      iconType = "channel-header-icon";
-      description = this.props.channelDescription;
-      // debugger
+      icon = <div className="channel-header-icon"></div>
+      description = this.props.channel.description;
     }
-
     const messages = this.props.messages.map((message) => {
       return <Message key={message.id} message={message}/>;
     });
@@ -76,21 +59,21 @@ class Channel extends React.Component {
       <div className="channel-container">
         <div className="channel-header">
           <div className="channel-header-content">
-            <div className={iconType}></div>
-            <div>{title}</div>
+            {icon}
+            <div>{this.props.title}</div>
           </div>
           <div className="channel-header-description">
             {description}
           </div>
         </div>
-        <div id="???" className="messages-container">
-          <div id="!!!" className="messages-list-container">
+        <div className="messages-container">
+          <div className="messages-list-container">
             <ul className="messages-list">
               {messages}
             </ul>
           </div>
           <form className="message-form" onSubmit={this.handleSubmit}>
-            <input placeholder={`message ${title}`} className="message-form-input" type="text"
+            <input placeholder={`message ${this.props.title}`} className="message-form-input" type="text"
               onKeyUp={this.handleKeyUp}/>
           </form>
       </div>

@@ -3,6 +3,7 @@ import * as ChannelApiUtil from '../util/channel_api_util';
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
+export const CHANGE_CHANNEL = "CHANGE_CHANNEL";
 
 const receiveChannels = channels => {
   // debugger
@@ -12,18 +13,25 @@ const receiveChannels = channels => {
   };
 };
 
-const receiveChannel = payload => {
+const receiveChannel = channel => {
   // debugger
   return {
     type: RECEIVE_CHANNEL,
-    payload
+    channel
   }
 ;}
 
-const removeChannel = payload => {
+export const changeChannel = channelId => {
+  return {
+    type: CHANGE_CHANNEL,
+    channelId
+  }
+}
+
+const removeChannel = channel => {
   return {
     type: REMOVE_CHANNEL,
-    payload
+    channel
   }
 }
 
