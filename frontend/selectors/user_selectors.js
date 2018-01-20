@@ -16,12 +16,10 @@ export const selectOtherUsers = state => {
 };
 
 export const selectChannelUsernames = state => {
-  // debugger
   const selectedNames = []
   return values(selectedNames);
 }
 
 export const selectDmUsernames = (state)  => {
-  // debugger
   return selectOtherUsers(state).map( user => user.username).join(", ")
 }

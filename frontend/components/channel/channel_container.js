@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
     const channel = selectCurrentChannel(state);
     const user = state.session.currentUser.user;
     const users = channel.is_dm ? null : selectChannelUsernames(state)
-    // debugger
     const title = channel.is_dm ? selectDmUsernames(state) : channel.name;
   return {
     channel,

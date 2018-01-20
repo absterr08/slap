@@ -8,9 +8,6 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentWillMount() {
-    }
-
   componentDidMount() {
     console.log('channelDidMount')
     this.props.changeChannel(this.props.match.params.channelId)
@@ -48,16 +45,13 @@ class Channel extends React.Component {
 
   render() {
     console.log('rendering channel')
-    let iconType, description;
-    if (this.props.isDm) {
-      iconType = "dm-header-icon"
-
+    let icon, description;
+    if (this.props.channel.is_dm) {
+      icon = <div></div>
     } else {
-      iconType = "channel-header-icon";
+      icon = <div className="channel-header-icon"></div>
       description = this.props.channel.description;
-      // debugger
     }
-
     const messages = this.props.messages.map((message) => {
       return <Message key={message.id} message={message}/>;
     });
@@ -65,7 +59,7 @@ class Channel extends React.Component {
       <div className="channel-container">
         <div className="channel-header">
           <div className="channel-header-content">
-            <div className={iconType}></div>
+            {icon}
             <div>{this.props.title}</div>
           </div>
           <div className="channel-header-description">
