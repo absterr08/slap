@@ -1,17 +1,18 @@
 import { values } from 'lodash'
 
 export const selectOtherUsers = state => {
-  if (state.session.currentUser) {
+  let otherUsers;
+  if (state.session && state.session.currentUser) {
     const allUsers = state.entities.users;
     const currUserId = state.session.currentUser.user.id;
-    const otherUsers = values(allUsers).reduce( (acc, user) => {
+    otherUsers = values(allUsers).reduce( (acc, user) => {
       if (user.user.id != currUserId) {
         acc[user.user.id] = user.user;
       }
       return acc;
     }, {});
-    return values(otherUsers);
   }
+  return values(otherUsers);
 };
 
 export const selectChannelUsernames = state => {
@@ -20,12 +21,7 @@ export const selectChannelUsernames = state => {
   return values(selectedNames);
 }
 
-export const selectDmUsernames = (usernames, currentUsername)  => {
-  const selectedNames = []
-  usernames.map(name => {
-    if (name != currentUsername) {
-      selectedNames.push(name)
-    }
-  })
-  return selectedNames;
+export const selectDmUsernames = (state)  => {
+  // debugger
+  return selectOtherUsers(state).map( user => user.username).join(", ")
 }
