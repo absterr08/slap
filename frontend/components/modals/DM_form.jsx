@@ -88,8 +88,8 @@ class DMForm extends React.Component {
       e.preventDefault();
       const addMessage = this.props.addMessage.bind(this);
       this.props.createChannel(dm).then( (dm) => {
-        createChannelSubscription(dm.payload.channel.id, addMessage);
-        this.props.history.push(`/messages/${dm.payload.channel.id}`);
+        createChannelSubscription(dm.channel.id, addMessage);
+        this.props.history.push(`/messages/${dm.channel.id}`);
       });
       this.closeModal();
     }

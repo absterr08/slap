@@ -21,5 +21,12 @@ export const selectChannelUsernames = state => {
 }
 
 export const selectDmUsernames = (state)  => {
-  return selectOtherUsers(state).map( user => user.username).join(", ")
+  const currentChannel = state.entities.channels[state.ui.currentChannel];
+  const usernames = values(currentChannel.users).map( userId => state.entities.users[userId].user.username);
+  const selectedNames = []
+  const names = usernames.forEach(name => {
+    if (name != state.session.currentUser.user.username) selectedNames.push(name)
+  })
+  // debugger
+  return selectedNames.join(", ")
 }

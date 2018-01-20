@@ -13,11 +13,11 @@ const receiveChannels = channels => {
   };
 };
 
-const receiveChannel = id => {
+const receiveChannel = channel => {
   // debugger
   return {
     type: RECEIVE_CHANNEL,
-    payload
+    channel
   }
 ;}
 
