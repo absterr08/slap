@@ -20,8 +20,9 @@ export const selectChannelUsernames = state => {
   return values(selectedNames);
 }
 
-export const selectDmUsernames = (state)  => {
-  const currentChannel = state.entities.channels[state.ui.currentChannel];
+export const selectDmUsernames = (state, currentChannel)  => {
+  if (!values(state.entities.users)[0]) return [];
+  currentChannel = currentChannel || state.entities.channels[state.ui.currentChannel];
   const usernames = values(currentChannel.users).map( userId => state.entities.users[userId].user.username);
   const selectedNames = []
   const names = usernames.forEach(name => {

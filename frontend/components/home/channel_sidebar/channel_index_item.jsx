@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom';
-
+import { selectDmUsernames } from '../../../selectors/user_selectors';
 
 
 class ChannelIndexItem extends React.Component {
@@ -24,7 +25,7 @@ class ChannelIndexItem extends React.Component {
       : <div></div>
     return (
         <Link to={ `/messages/${this.props.channel.id}` } >
-          <li className="channel-list-item" onClick={this.toggleActive}>
+          <li className="channel-list-item" onClick={ this.toggleActive }>
             <div className="channel-list-item-container">
               <div className={this.props.iconType}></div>
               <div className="channel-list-item-name">{this.props.title}</div>
@@ -36,4 +37,14 @@ class ChannelIndexItem extends React.Component {
   }
 }
 
-export default withRouter(ChannelIndexItem);
+const mapStateToProps = (state, ownProps) => {
+  // debugger
+  const title = ownProps.title
+  ? ownProps.title
+  : selectDmUsernames(state, ownProps.channel)
+  return {
+    title
+  }
+}
+
+export default withRouter(connect(mapStateToProps, null)(ChannelIndexItem));

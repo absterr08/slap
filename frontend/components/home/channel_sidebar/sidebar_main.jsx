@@ -6,7 +6,7 @@ import ChannelIndexItem from './channel_index_item';
 import { selectDms, selectPublicChannels } from '../../../selectors/channel_selectors';
 import { selectChannelUsernames, selectDmUsernames } from '../../../selectors/user_selectors';
 
-const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, otherUsers }) => {
+const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) => {
 
   return (
 
@@ -37,7 +37,6 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, o
         { dms.map((dm, idx) => {
           return <ChannelIndexItem key={ dm.id }
             channel={ dm }
-            title={ otherUsers }
             iconType={ "dm-list-item-icon" }
             deleteChannel={ deleteChannel }
             currentUser={ currentUser.user }
@@ -51,15 +50,11 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, o
 
 
 const mapStateToProps = state => {
-  const usernames = selectChannelUsernames(state);
   const currentUser = state.session.currentUser;
   return {
     channels: selectPublicChannels(state),
     dms: selectDms(state),
-    otherUsers: selectDmUsernames(state),
-    // otherUsers: 'hey',
-    currentUser,
-    usernames
+    currentUser
   }
 }
 
