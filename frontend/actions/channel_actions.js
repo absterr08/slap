@@ -28,10 +28,10 @@ export const changeChannel = channelId => {
   }
 }
 
-const removeChannel = payload => {
+const removeChannel = channel => {
   return {
     type: REMOVE_CHANNEL,
-    payload
+    channel
   }
 }
 
