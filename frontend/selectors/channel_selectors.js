@@ -1,9 +1,9 @@
 import { values } from 'lodash';
 
 export const selectCurrentChannel = state => {
-  // debugger
+  // //debugger
   return state.entities.channels[state.ui.currentChannel] ||
-  state.session.currentUser.defaultChannel
+  state.session.currentUser.defaultChannel || 199
 }
 
 export const selectDms = state => {

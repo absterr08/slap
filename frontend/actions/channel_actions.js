@@ -6,7 +6,7 @@ export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const CHANGE_CHANNEL = "CHANGE_CHANNEL";
 
 const receiveChannels = channels => {
-  // debugger
+  // //debugger
   return {
     type: RECEIVE_CHANNELS,
     channels
@@ -14,7 +14,7 @@ const receiveChannels = channels => {
 };
 
 const receiveChannel = channel => {
-  // debugger
+  // //debugger
   return {
     type: RECEIVE_CHANNEL,
     channel

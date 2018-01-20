@@ -28,7 +28,7 @@ const ChannelSubscriptions = ({ channels, addMessage, addChannel, currentUser })
     //
     // App.channels = App.cable.subscriptions.create({channel: "RoomChannel", room: "channels"}, {
     //   received: function(data) {
-    //     debugger
+    //     //debugger
     //     const channelId = JSON.parse(data).id;
     //     if (currentUser.channels.includes(channelId)) {
     //       addChannel(JSON.parse(data['channel']));

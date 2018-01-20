@@ -15,7 +15,7 @@ class ChannelIndexItem extends React.Component {
 
 
   deleteChannel() {
-    // debugger
+    // //debugger
     this.props.deleteChannel(this.props.channel.id).then( () =>
     this.props.history.push(`/messages/${this.props.defaultChannel}`))
   }
@@ -39,7 +39,7 @@ class ChannelIndexItem extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
+  // //debugger
   const title = ownProps.title
   ? ownProps.title
   : selectDmUsernames(state, ownProps.channel)

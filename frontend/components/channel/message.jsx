@@ -19,7 +19,7 @@ const Message = ({ message, currentUser }) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
+  // //debugger
   return {
     currentUser: state.session.currentUser.user
   }
