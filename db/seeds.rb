@@ -35,7 +35,7 @@ Channel.all.each do |channel|
 end
 
 #channel 1 messages (nyc)
-Message.create!(author_id: u1.id, channel_id: c1.id, body: "the best //debugger is a good night's sleep.")
+Message.create!(author_id: u1.id, channel_id: c1.id, body: "the best  is a good night's sleep.")
 Message.create!(author_id: u2.id, channel_id: c1.id, body: "lol never heard of it")
 Message.create!(author_id: u3.id, channel_id: c1.id, body: "ya what package is that?")
 Message.create!(author_id: u9.id, channel_id: c1.id, body: "everybody check in!!??")

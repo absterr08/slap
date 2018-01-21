@@ -24,10 +24,9 @@ const Protected = ({ component: Component, path, loggedIn }) => (
 
 const mapStateToProps = ({session: {currentUser}}) => {
   // make sure currentUser exists before checking for its channels
-  //debugger
   return {
     loggedIn: Boolean(currentUser),
-    defaultChannel: currentUser && 199 //currentUser.defaultChannel.id
+    defaultChannel: currentUser && currentUser.defaultChannel.id
   }
 }
 ;

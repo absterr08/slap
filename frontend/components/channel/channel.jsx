@@ -36,7 +36,7 @@ class Channel extends React.Component {
           const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.channel.id };
           App[`room${this.props.channel.id}`].speak(message);
           } //else{
-        //   //debugger
+        //
         //   this.props.addMessage({id: createdMessage.id, body: e.target.value});
         // }
         e.target.value = "";
@@ -44,6 +44,7 @@ class Channel extends React.Component {
     }
 
   render() {
+    
     console.log('rendering channel')
     let icon, description;
     if (this.props.channel.is_dm) {

@@ -2,6 +2,7 @@ import { values } from 'lodash';
 
 export const selectCurrentChannelMessages = state => {
   const allMessages = state.entities.messages;
+  
   const currentChannelId = state.ui.currentChannel;
   const channelMessages = {};
   Object.keys(allMessages).map( id =>  {

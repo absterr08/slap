@@ -9,7 +9,7 @@ import Channel from './channel';
 
 const mapStateToProps = (state, ownProps) => {
     const channel = selectCurrentChannel(state);
-    const user = state.session.currentUser.user;
+    const user = state.session.currentUser;
     const users = channel.is_dm ? null : selectChannelUsernames(state)
     const title = channel.is_dm ? selectDmUsernames(state) : channel.name;
   return {

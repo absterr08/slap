@@ -53,7 +53,7 @@ class ChannelForm extends React.Component {
       e.preventDefault();
       this.props.createChannel(this.state).then(
         (channelAction) => {
-          this.props.history.push(`/messages/${channelAction.payload.channel.id}`)}).then(
+          this.props.history.push(`/messages/${channelAction.channel.id}`)}).then(
         () => this.createChannelSubscription() );
       this.closeModal();
     }
@@ -61,6 +61,7 @@ class ChannelForm extends React.Component {
 
 
   createChannelSubscription() {
+    debugger
     const addMessage = this.props.addMessage.bind(this);
     if (typeof App !== 'undefined'){
         App[`room${this.props.channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: this.props.channelId}, {
@@ -96,7 +97,7 @@ class ChannelForm extends React.Component {
           <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
 
           <p className="channel-form-label">Purpose</p>
-          <input className="channel-form-input"></input>
+          <input className="channel-form-input" onChange={this.handleInput("description")}></input>
 
 {  //        <p>Send invites to:</p>
     //        <input className="channel-form-input"></input
@@ -115,7 +116,7 @@ class ChannelForm extends React.Component {
 const mapStateToProps = (state) => (
   {
     render: state.ui.modals.newChannel,
-    channelId: state.ui.currentChannel.id
+    channelId: state.ui.currentChannel
   }
 );
 
