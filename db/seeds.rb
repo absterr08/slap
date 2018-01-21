@@ -13,7 +13,6 @@ Channel.delete_all
 u1 = User.create!(username: "absterr08", email: "absterr08", password: "starwars", img_url: "6")
 u2 = User.create!(username: "jRudell22", email: "b", password: "starwars", img_url: "7")
 u3 = User.create!(username: "d_Og55", email: "c", password: "starwars", img_url: "4")
-u4 = User.create!(username: "leslieKnope", email: "d", password: "starwars", img_url: "5")
 u5 = User.create!(username: "bman86", email: "e", password: "starwars", img_url: "3")
 u6 = User.create!(username: "sunnyBunny", email: "f", password: "starwars", img_url: "8")
 u7 = User.create!(username: "mauricio12", email: "g", password: "starwars", img_url: "9")
@@ -42,10 +41,6 @@ Message.create!(author_id: u9.id, channel_id: c1.id, body: "everybody check in!!
 
 #channel2 messages (general)
 Message.create!(author_id: u5.id, channel_id: c3.id, body: "what is the sound of one hand clapping")
-
-#channel 3 messages (random)
-Message.create!(author_id: u2.id, channel_id: c3.id, body: "party at my place tonight y'all")
-Message.create!(author_id: u6.id, channel_id: c3.id, body: "ayyyyy i'll be there!")
 
 #channel 4 messages (slap talk)
 Message.create!(author_id: u5.id, channel_id: c4.id, body: "what did the hand say to the face? SLAP!")
