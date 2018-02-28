@@ -23,7 +23,7 @@ export const deleteChannel = (channelId) => (
     method:"DELETE",
     url:`api/channels/${channelId}`
   })
-)
+);
 
 // probably bad practice to put this here since addMessage is dispatching stuff?
 export const createChannelSubscriptions = (channels, addMessage) => {
@@ -31,13 +31,11 @@ export const createChannelSubscriptions = (channels, addMessage) => {
   if (typeof App !== 'undefined'){
     channels.forEach(channel => {
         App[`room${channel.channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.channel.id}, {
-          connected: function() {},
-          disconnected: function() {},
           received: function(data) {
             const messageChannelId = JSON.parse(data.message).channel_id;
             const channelId = JSON.parse(this.identifier).room;
             if (messageChannelId === channelId) {
-              addMessage(JSON.parse(data['message']));
+              addMessage(JSON.parse(data.message));
             }
           },
           speak: function(message) {
@@ -50,13 +48,12 @@ export const createChannelSubscriptions = (channels, addMessage) => {
     );
   }
 };
+
 export const createChannelSubscription = (channelId, addMessage)  => {
   if (typeof App !== 'undefined'){
       App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
-        connected: function() {},
-        disconnected: function() {},
         received: function(data) {
-          addMessage(JSON.parse(data['message']));
+          addMessage(JSON.parse(data.message));
         },
         speak: function(message) {
           return this.perform('speak', {
@@ -68,11 +65,11 @@ export const createChannelSubscription = (channelId, addMessage)  => {
 };
 
 export const selectDmNames = (dm, username)=> {
-  const selectedNames = []
+  const selectedNames = [];
   dm.usernames.map(name => {
     if (name != username) {
-      selectedNames.push(name)
+      selectedNames.push(name);
     }
-  })
+  });
   return selectedNames;
-}
+};

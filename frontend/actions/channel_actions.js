@@ -17,15 +17,15 @@ const receiveChannel = payload => {
   return {
     type: RECEIVE_CHANNEL,
     payload
-  }
-;}
+  };
+};
 
 const removeChannel = payload => {
   return {
     type: REMOVE_CHANNEL,
     payload
-  }
-}
+  };
+};
 
 export const fetchChannels = () => dispatch => (
   ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))

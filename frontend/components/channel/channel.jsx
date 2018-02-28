@@ -11,9 +11,6 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-    componentWillMount() {
-    }
-
   componentDidMount() {
     this.props.fetchChannel(this.props.match.params.channelId)
     // debugger
@@ -28,7 +25,7 @@ class Channel extends React.Component {
   componentWillReceiveProps(nextProps) {
     console.log('compWIllReceieve');
     if (!nextProps.match.params.channelId) {
-      console.log('??????')
+      console.log('??????');
       const channelId = parseInt(localStorage.getItem("currentChannel"));
       this.props.history.push(`/messages/${channelId}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
@@ -45,7 +42,11 @@ class Channel extends React.Component {
     handleKeyUp(e) {
       if(e.keyCode == 13){
         if (typeof App !== 'undefined'){
-          const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.stateChannelId };
+          const message = {
+            body: e.target.value,
+            author_id: this.props.user.id,
+            channel_id: this.props.stateChannelId
+          };
           App[`room${this.props.channelId}`].speak(message);
           } //else{
         //   debugger
