@@ -12,6 +12,7 @@ class Channel extends React.Component {
     }
 
   componentDidMount() {
+    console.log('channel compDidMount');
     this.props.fetchChannel(this.props.match.params.channelId)
     // debugger
     const messagesDiv = document.querySelector('.messages-list-container');
@@ -23,7 +24,7 @@ class Channel extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('compWIllReceieve');
+    console.log('channel compWIllReceieveProps');
     if (!nextProps.match.params.channelId) {
       console.log('??????');
       const channelId = parseInt(localStorage.getItem("currentChannel"));
@@ -57,7 +58,7 @@ class Channel extends React.Component {
     }
 
   render() {
-    console.log('rendering channel')
+    console.log('channel render')
     let title, iconType, description;
     if (this.props.isDm) {
       title = selectDmNames(this.props.channel, this.props.user.username).join(', ')

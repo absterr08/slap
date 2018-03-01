@@ -10,11 +10,13 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 export default class Home extends React.Component {
 
   componentWillMount() {
+    console.log('home compWillMount');
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
   }
 
   componentDidMount() {
+    console.log('home compDidMount');
     this.props.fetchMessages();
     // handle messed up frontend route
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
@@ -24,7 +26,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    console.log('rendering home');
+    console.log('home render');
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>
     const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>
 
