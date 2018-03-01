@@ -9,6 +9,8 @@ class Api::ChannelsController < ApplicationController
 
   def show
     @channel = Channel.find(params[:id])
+    # @channel = Channel.find(params[:id]).inlcudes(:users, :messages)
+    debugger
   end
 
   def create

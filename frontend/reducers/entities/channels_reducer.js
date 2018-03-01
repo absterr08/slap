@@ -14,14 +14,14 @@ export default (state = {}, action) => {
     case REMOVE_CHANNEL:
       channel = action.payload.channel;
       const newChannels = merge({}, state);
-      delete newChannels[channel.id]
-      return newChannels
+      delete newChannels[channel.id];
+      return newChannels;
     case RECEIVE_CURRENT_USER:
       return {};
     default:
       return state;
   }
-}
+};
 
 //access local storage in UI slice
 //localStorage.setItem("currentChannel", )

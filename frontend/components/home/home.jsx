@@ -17,7 +17,7 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     console.log('home compDidMount');
-    this.props.fetchMessages();
+    this.props.fetchUsers().then( () => this.props.fetchMessages());
     // handle messed up frontend route
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
       this.props.history.push(`/messages/${this.props.currentUser.channels[0].id}`);
