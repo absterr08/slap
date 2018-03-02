@@ -68,7 +68,6 @@ class Channel extends React.Component {
       title = `${this.props.channelName}`;
       iconType = "channel-header-icon";
       description = this.props.channelDescription;
-      // debugger
     }
 
     const messages = this.props.messages.map((message) => {

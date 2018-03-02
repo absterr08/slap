@@ -1,9 +1,10 @@
 class Api::MessagesController < ApplicationController
   def index
+    @messages = Message.all.includes(:user)
   end
 
   def show
-    @message = Message.find(params[:id])
+    @message = Message.find(params[:id]).includes(:user)
   end
 
   def create

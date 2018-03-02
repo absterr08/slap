@@ -8,9 +8,11 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.find(params[:id])
-    # @channel = Channel.find(params[:id]).inlcudes(:users, :messages)
-    debugger
+    # @channel = Channel.find(params[:id])
+    # whats the difference??? which is better??
+    @channel = Channel.where(id: params[:id]).includes(:users, :messages)
+    @channel = @channel[0]
+    # debugger
   end
 
   def create
