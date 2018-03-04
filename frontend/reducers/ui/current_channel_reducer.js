@@ -26,6 +26,7 @@ export default (state = {}, action) => {
       return state;
     case REMOVE_CHANNEL:
     case RECEIVE_CURRENT_USER:
+      localStorage.removeItem("currentChannel")
       return {};
     default:
       return state;
