@@ -8,7 +8,6 @@ import Channel from './channel';
 
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   return {
     channelName: state.ui.currentChannel.name,
     channelId: ownProps.match.params.channelId,

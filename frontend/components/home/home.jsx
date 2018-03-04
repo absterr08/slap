@@ -22,7 +22,6 @@ export default class Home extends React.Component {
     if (!this.props.match.params.channelId || this.props.match.params.channelId === "undefined") {
       this.props.history.push(`/messages/${this.props.currentUser.channels[0].id}`);
     }
-    // debugger
   }
 
   render() {
