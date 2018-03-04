@@ -16,10 +16,14 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     console.log('home DidMount');
-    this.props.fetchUsers().then( () => this.props.fetchMessages());
+    this.props.fetchUsers().then( () => this.props.fetchMessages()).then( () => this.props.fetchChannel(this.props.channelId));
   }
 
+
+  // should i put this in channel instead?
+  // also, how to not have everything re-render every time
   componentWillReceiveProps(nextProps) {
     console.log('home WillReceieveProps');
     // handle messed up url

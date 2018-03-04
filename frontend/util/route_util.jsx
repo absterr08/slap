@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
-// only render the component if not logged in (ie signup form, splash page, navbar)
 const Auth = ({ component: Component, path, loggedIn, channelId }) => {
   console.log(`auth route rendering: ${path}`);
   return (
@@ -15,7 +14,6 @@ const Auth = ({ component: Component, path, loggedIn, channelId }) => {
   )} />
 );}
 
-// only render the component if logged in
 const Protected = ({ component: Component, path, loggedIn }) => (
   <Route path={path} render={(props) => (
      loggedIn ? (

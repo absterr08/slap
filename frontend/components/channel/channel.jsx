@@ -13,7 +13,7 @@ class Channel extends React.Component {
 
   componentDidMount() {
     console.log('channel DidMount');
-    this.props.fetchChannel(this.props.match.params.channelId)
+    // this.props.fetchChannel(this.props.match.params.channelId)
     // debugger
     const messagesDiv = document.querySelector('.messages-list-container');
     // console.log(messagesDiv)
@@ -33,7 +33,7 @@ class Channel extends React.Component {
       const message = {
         body: e.target.value,
         author_id: this.props.user.id,
-        channel_id: this.props.stateChannelId
+        channel_id: this.props.channelId
       };
       App[`room${this.props.channelId}`].speak(message);
       e.target.value = "";
@@ -41,6 +41,7 @@ class Channel extends React.Component {
   }
 
   render() {
+    // debugger
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
