@@ -20,11 +20,5 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    // fetchChannel: id => dispatch(fetchChannel(id))
-  }
-);
 
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Channel));
+export default withRouter(connect(mapStateToProps, null)(Channel));

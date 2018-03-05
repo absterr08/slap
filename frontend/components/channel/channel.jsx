@@ -11,16 +11,16 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-  componentDidMount() {
-    console.log('channel DidMount');
-    // this.props.fetchChannel(this.props.match.params.channelId)
-    // debugger
-    const messagesDiv = document.querySelector('.messages-list-container');
-    // console.log(messagesDiv)
-    // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
-    // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
-    // console.log(messagesDiv.scrollTop);
-  }
+  // componentDidMount() {
+  //   console.log('channel DidMount');
+  //   // this.props.fetchChannel(this.props.match.params.channelId)
+  //   // debugger
+  //   const messagesDiv = document.querySelector('.messages-list-container');
+  //   // console.log(messagesDiv)
+  //   // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
+  //   // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
+  //   // console.log(messagesDiv.scrollTop);
+  // }
 
 
 
