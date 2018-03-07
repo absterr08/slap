@@ -5,3 +5,5 @@ end
 json.defaultChannel do
   json.array! user.channels, :id
 end
+
+json.default_channel Channel.first.id

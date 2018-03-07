@@ -4,19 +4,18 @@ import { fetchUsers} from '../../actions/user_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Home from './home';
-const mapStateToProps = (state) => (
+
+const mapStateToProps = (state, ownProps) => (
   {
+    channelId: ownProps.match.params.channelId,
     channels: values(state.entities.channels),
-    defaultChannel: Object.keys(state.entities.channels)[0],
-    getChannel: id => state.entities.channels.id,
-    messages: values(state.entities.messages),
-    currentUser: state.session.currentUser,
     renderChannelForm: state.ui.modals.newChannel,
     renderDMForm: state.ui.modals.newDM
   }
 );
 const mapDispatchToProps = (dispatch) => (
   {
+    fetchChannel: id => dispatch(fetchChannel(id)),
     fetchChannels: () => dispatch(fetchChannels()),
     fetchMessages: () => dispatch(fetchMessages()),
     fetchUsers: () => dispatch(fetchUsers()),
