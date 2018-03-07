@@ -26,7 +26,7 @@ const mapStateToProps = ({session: {currentUser}}) => {
   // make sure currentUser exists before checking for its channels
   return {
     loggedIn: Boolean(currentUser),
-    defaultChannel: currentUser && currentUser.channels[0].id
+    defaultChannel: currentUser && currentUser.defaultChannel
   }
 }
 ;
