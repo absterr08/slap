@@ -28,8 +28,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
           return <ChannelIndexItem key={ dm.channel.id }
             channel={ dm }
             deleteChannel={ deleteChannel }
-            currentUser={ currentUser.user }
-            defaultChannel={ currentUser.channels[0].id} />
+            currentUser={ currentUser.user } />
           })
         }
       </ul>
