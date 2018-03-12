@@ -29,6 +29,17 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def update
+    @user = User.find(params[:id])
+    render(json: ["prohibited"], status: 401) unless @user == current_user
+    @user.avatar = params[:user][:avatar]
+    if @user.save
+      render(json: ["nice"])
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end

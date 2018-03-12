@@ -9,3 +9,14 @@ export const fetchUser = userId => (
     url: `api/users/${userId}`
   })
 );
+
+export const updateAvatar = (userId, formData) => (
+  $.ajax({
+    url: `api/users/${userId}`,
+    method: 'PATCH',
+    contentType: false,
+    processData: false,
+    data: formData,
+    success: () => console.log("nice")
+  })
+)
