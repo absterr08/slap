@@ -28,12 +28,8 @@ npm-debug.log
 # Ignore test files
 test/*
 
-<<<<<<< HEAD
 * Dont post credentials!
 credentials.csv
 
 # Ignore application configuration
 /config/application.yml
-=======
-credentials.csv
->>>>>>> refactor-actioncable

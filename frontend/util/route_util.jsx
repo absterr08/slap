@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 const Auth = ({ component: Component, path, loggedIn, channelId }) => {
-  console.log(`auth route rendering: ${path}`);
   return (
   <Route path={path} render={(props) => (
     !loggedIn ? (
@@ -25,7 +24,6 @@ const Protected = ({ component: Component, path, loggedIn }) => (
 );
 
 const mapStateToProps = ({ session: { currentUser }}) => {
-  console.log('route_util mapping state')
   const defaultChannel = currentUser && currentUser.default_channel
   // make sure currentUser exists before checking for its channels
   debugger
