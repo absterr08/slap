@@ -1,5 +1,5 @@
 import React from 'react';
-import Message from './message'
+import Message from './message';
 
 import { getChannelByName } from '../../util/channel_api_util';
 import { selectDmNames } from '../../util/channel_api_util';
@@ -9,20 +9,8 @@ class Channel extends React.Component {
     constructor(props) {
       super(props);
       this.handleKeyUp = this.handleKeyUp.bind(this);
+      this.room = App[`room${this.props.channelId}`];
     }
-
-  // componentDidMount() {
-  //   console.log('channel DidMount');
-  //   // this.props.fetchChannel(this.props.match.params.channelId)
-  //   // debugger
-  //   const messagesDiv = document.querySelector('.messages-list-container');
-  //   // console.log(messagesDiv)
-  //   // console.log(`${messagesDiv.scrollHeight}!!!!!!`)
-  //   // $(messagesDiv).scrollTop = messagesDiv.scrollHeight;
-  //   // console.log(messagesDiv.scrollTop);
-  // }
-
-
 
   handleSubmit(e) {
     e.preventDefault();
@@ -35,13 +23,12 @@ class Channel extends React.Component {
         author_id: this.props.user.id,
         channel_id: this.props.channelId
       };
-      App[`room${this.props.channelId}`].speak(message);
+      this.room.speak(message);
       e.target.value = "";
     }
   }
 
   render() {
-    // debugger
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
