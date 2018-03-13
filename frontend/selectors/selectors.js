@@ -29,19 +29,23 @@ export const selectOtherUsers = state => {
 
 export const selectDms = state => {
   return values(state.entities.channels).reduce((acc, channel) => {
-    // debugger
-    if (channel.channel.is_dm) {
-      acc[channel.channel.id] = channel;
+    if (channel.is_dm) {
+      acc[channel.id] = channel;
     }
     return acc;
   }, {});
 };
 
+export const checkIfDm = state => {
+  const channel = state.entities.channels[state.ui.currentChannel];
+  return channel && channel.is_dm;
+};
+
 export const selectPublicChannels = state => {
   return values(state.entities.channels).reduce((acc, channel) => {
-    if (!channel.channel.is_dm) {
+    if (!channel.is_dm) {
       // debugger
-      acc[channel.channel.id] = channel;
+      acc[channel.id] = channel;
     }
     return acc;
   }, {});

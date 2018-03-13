@@ -16,7 +16,7 @@ export default class Home extends React.Component {
   }
 
   componentDidMount() {
-    debugger
+    // debugger
     console.log('home DidMount');
     this.props.fetchUsers().then( () => this.props.fetchMessages()).then( () => this.props.fetchChannel(this.props.channelId));
   }
@@ -38,8 +38,8 @@ export default class Home extends React.Component {
 
   render() {
     console.log('home render');
-    const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>
-    const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>
+    const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
+    const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>;
 
     return (
       <div className="main-container">

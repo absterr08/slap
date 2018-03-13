@@ -18,12 +18,12 @@ const App = () => (
       <ProtectedRoute exact path="/messages" component={ HomeContainer } />
       <ProtectedRoute path="/messages/:channelId" component={ HomeContainer } />
       <Switch>
-        <AuthRoute path="/" component={ NavBar }/>
         <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/signup/:email" component={ SessionFormContainer } />
         <AuthRoute exact path="/" component={ Splash } />
       </Switch>
     </Switch>
+    <AuthRoute path="/" component={ NavBar }/>
   </div>
 );
 

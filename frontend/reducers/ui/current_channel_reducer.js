@@ -10,13 +10,13 @@ export default (state = {}, action) => {
   let currentChannel = {};
   switch (action.type) {
     case RECEIVE_CHANNEL:
-      currentChannel.id = action.payload.channel.id;
-      currentChannel.isDm = action.payload.channel.is_dm;
-      currentChannel.name = action.payload.channel.name;
-      currentChannel.messages = action.payload.messages;
-      currentChannel.description = action.payload.channel.description;
+      // currentChannel.id = action.payload.channel.id;
+      // currentChannel.isDm = action.payload.channel.is_dm;
+      // currentChannel.name = action.payload.channel.name;
+      // currentChannel.messages = action.payload.messages;
+      // currentChannel.description = action.payload.channel.description;
       localStorage.setItem("currentChannel", `${currentChannel.id}`);
-      return currentChannel;
+      return action.payload.channel.id;
     case RECEIVE_MESSAGE:
       if (state.id === action.message.channel_id) {
         currentChannel = merge({}, state);

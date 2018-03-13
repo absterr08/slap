@@ -25,7 +25,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
       </ul>
       <ul className="channel-sublist">
         { dms.map((dm, idx) => {
-          return <ChannelIndexItem key={ dm.channel.id }
+          return <ChannelIndexItem key={ dm.id }
             channel={ dm }
             deleteChannel={ deleteChannel }
             currentUser={ currentUser.user } />

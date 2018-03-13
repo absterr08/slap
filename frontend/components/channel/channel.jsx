@@ -1,34 +1,20 @@
 import React from 'react';
-import Message from './message';
+import MessageForm from './message_form';
+
 
 import { getChannelByName } from '../../util/channel_api_util';
 import { selectDmNames } from '../../util/channel_api_util';
 
 class Channel extends React.Component {
 
-    constructor(props) {
-      super(props);
-      this.handleKeyUp = this.handleKeyUp.bind(this);
-      this.room = App[`room${this.props.channelId}`];
-    }
-
-  handleSubmit(e) {
-    e.preventDefault();
-  }
-
-  handleKeyUp(e) {
-    if(e.keyCode == 13){
-      const message = {
-        body: e.target.value,
-        author_id: this.props.user.id,
-        channel_id: this.props.channelId
-      };
-      this.room.speak(message);
-      e.target.value = "";
-    }
+  constructor(props) {
+    super(props);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   render() {
+    if (this.props.loading) return <h1>Loading...</h1>;
+    debugger
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
@@ -36,14 +22,11 @@ class Channel extends React.Component {
       iconType = "dm-header-icon";
 
     } else {
-      title = `${this.props.channelName}`;
+      title = `${this.props.channel.name}`;
       iconType = "channel-header-icon";
-      description = this.props.channelDescription;
+      description = this.props.channel.description;
     }
 
-    const messages = this.props.messages.map((message) => {
-      return <Message key={message.id} message={message}/>;
-    });
     return (
       <div className="channel-container">
         <div className="channel-header">
@@ -56,16 +39,7 @@ class Channel extends React.Component {
           </div>
         </div>
         <div id="???" className="messages-container">
-          <div id="!!!" className="messages-list-container">
-            <ul className="messages-list">
-              {messages}
-            </ul>
-          </div>
-          <form className="message-form" onSubmit={this.handleSubmit}>
-            <input placeholder={`message ${title}`} className="message-form-input" type="text"
-              onKeyUp={this.handleKeyUp}/>
-          </form>
-      </div>
+          <MessageIndex messages={ this.props.messages }/>
       </div>
     );
   }

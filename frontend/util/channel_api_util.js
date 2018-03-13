@@ -65,8 +65,11 @@ export const createChannelSubscription = (channelId, addMessage)  => {
 };
 
 export const selectDmNames = (dm, username)=> {
+  debugger
   const selectedNames = [];
-  dm.usernames.map(name => {
+   if (!dm) return selectedNames;
+   console.log(dm)
+   dm.usernames.map(name => {
     if (name != username) {
       selectedNames.push(name);
     }

@@ -1,1 +1,3 @@
-json.partial! 'channel', channel: @channel
+json.channel do
+   json.partial! 'channel', channel: @channel
+ end
