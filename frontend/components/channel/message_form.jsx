@@ -7,9 +7,9 @@ export default class MessageForm extends React.Component {
       const message = {
         body: e.target.value,
         author_id: this.props.user.id,
-        channel_id: this.props.channel.id
+        channel_id: this.props.channelId
       };
-      const room = App[`room${this.props.channel.id}`];
+      const room = App[`room${this.props.channelId}`];
       room.speak(message);
       e.target.value = "";
     }
