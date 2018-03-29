@@ -2,7 +2,6 @@ import React from 'react';
 import MessageForm from './message_form';
 import MessageIndex from './message_index';
 
-
 import { getChannelByName } from '../../util/channel_api_util';
 import { selectDmNames } from '../../util/channel_api_util';
 
@@ -39,8 +38,8 @@ class Channel extends React.Component {
           </div>
         </div>
         <div id="???" className="messages-container">
-          <MessageIndex messages={ this.props.messages }/>
-          <MessageForm channelId={ this.props.channel.id } />
+          <MessageIndex messages={ this.props.messages } />
+          <MessageForm channelId={ this.props.channel.id } placeHolder={ `message ${title}` } />
         </div>
       </div>
     );

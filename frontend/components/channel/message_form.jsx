@@ -18,7 +18,7 @@ export default class MessageForm extends React.Component {
   render() {
     return (
       <form className="message-form" onSubmit={this.handleSubmit}>
-        <input placeholder={`message ${title}`} className="message-form-input" type="text"
+        <input placeholder={ this.props.placeHolder } className="message-form-input" type="text"
           onKeyUp={this.handleKeyUp}/>
       </form>
     );
