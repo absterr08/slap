@@ -16,7 +16,7 @@ export const selectCurrentChannelMessages = state => {
 export const selectOtherUsers = state => {
   const allUsersCopy = merge({}, state.entities.users);
   const currUserId = state.session.currentUser.id;
-  delete allUsersCopy.currUserId;
+  delete allUsersCopy[currUserId];
   return values(allUsersCopy);
 };
 

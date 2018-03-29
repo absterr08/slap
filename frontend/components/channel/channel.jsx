@@ -13,7 +13,7 @@ class Channel extends React.Component {
 
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
-    debugger
+    // debugger
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
