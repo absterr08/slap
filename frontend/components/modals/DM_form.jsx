@@ -84,7 +84,7 @@ class DMForm extends React.Component {
         users: Object.keys(this.state.users),
         current_user: this.props.currentUser
       };
-      dm.users.push(this.props.currentUser.user.id)
+      dm.users.push(this.props.currentUser.id)
       e.preventDefault();
       const addMessage = this.props.addMessage.bind(this);
       this.props.createChannel(dm).then( (dm) => {

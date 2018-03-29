@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     loading,
     channel,
-    messages: values(selectCurrentChannelMessages(state)),
+    messages: selectCurrentChannelMessages(state),
     user: state.session.currentUser.user,
     isDm: checkIfDm(state),
     otherUsernames: ''

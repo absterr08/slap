@@ -10,12 +10,12 @@ export const selectCurrentChannelMessages = state => {
       delete filteredMessages[intId];
     }
   });
-  return filteredMessages;
+  return values(filteredMessages);
 };
 
 export const selectOtherUsers = state => {
   const allUsersCopy = merge({}, state.entities.users);
-  const currUserId = state.session.currentUser.user.id;
+  const currUserId = state.session.currentUser.id;
   delete allUsersCopy.currUserId;
   return values(allUsersCopy);
 };

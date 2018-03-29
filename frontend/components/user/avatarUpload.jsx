@@ -48,7 +48,7 @@ class avatarUpload extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUserId: state.session.currentUser.user.id
+    currentUserId: state.session.currentUser.id
   }
 };
 
