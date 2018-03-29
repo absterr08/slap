@@ -1,11 +1,11 @@
-import { values } from 'lodash';
+import { values, merge } from 'lodash';
 
 export const selectCurrentChannelMessages = state => {
   const allMessages = state.entities.messages;
   let channelMessageIds = values(state.ui.currentChannel.messages);
   const filteredMessages = Object.assign({}, allMessages);
   Object.keys(filteredMessages).map( id =>  {
-    let intId = parseInt(id)
+    let intId = parseInt(id);
     if (!channelMessageIds.includes(intId)) {
       delete filteredMessages[intId];
     }
@@ -14,17 +14,15 @@ export const selectCurrentChannelMessages = state => {
 };
 
 export const selectOtherUsers = state => {
-  if (state.session.currentUser) {
-    const allUsers = state.entities.users;
-    const currUserId = state.session.currentUser.user.id;
-    const otherUsers = values(allUsers).reduce( (acc, user) => {
-      if (user.user.id != currUserId) {
-        acc[user.user.id] = user.user;
-      }
-      return acc;
-    }, {});
-    return values(otherUsers);
-  }
+  const allUsersCopy = merge({}, state.entities.users);
+  const currUserId = state.session.currentUser.user.id;
+  delete allUsersCopy.currUserId;
+  return values(allUsersCopy);
+};
+
+export const selectOtherUserNames = state => {
+  const otherUsers = selectOtherUsers(state);
+  return otherUsers.map(user => user.username);
 };
 
 export const selectDms = state => {

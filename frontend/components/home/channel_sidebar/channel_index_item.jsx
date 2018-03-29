@@ -26,7 +26,8 @@ class ChannelIndexItem extends React.Component {
     let title, iconType;
     let deleteButton = <div></div>;
     if (this.props.currentUser) {
-      title = selectDmNames(this.props.channel, this.props.currentUser.username).join(', ')
+      title = ''
+      // title = selectDmNames(this.props.channel, this.props.currentUser.username).join(', ')
       iconType = "dm-list-item-icon"
       deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>
     } else {

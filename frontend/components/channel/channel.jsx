@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageForm from './message_form';
+import MessageIndex from './message_index';
 
 
 import { getChannelByName } from '../../util/channel_api_util';
@@ -9,7 +10,6 @@ class Channel extends React.Component {
 
   constructor(props) {
     super(props);
-    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
 
   render() {
@@ -18,7 +18,7 @@ class Channel extends React.Component {
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
-      title = selectDmNames(this.props.channel, this.props.user.username).join(', ');
+      // title = selectDmNames(this.props.channel, this.props.user.username).join(', ');
       iconType = "dm-header-icon";
 
     } else {
