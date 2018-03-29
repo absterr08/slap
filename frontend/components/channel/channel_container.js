@@ -12,17 +12,13 @@ import Channel from './channel';
 const mapStateToProps = (state, ownProps) => {
   const channel = state.entities.channels[state.ui.currentChannel];
   const loading = !Boolean(channel) || !Boolean(values(state.entities)[0]);
-  if (!loading) {
-    const otherUserNames = selectOtherUserNames(state);
-    debugger
-  }
   return {
     loading,
     channel,
     messages: selectCurrentChannelMessages(state),
     user: state.session.currentUser.user,
     isDm: checkIfDm(state),
-    otherUsernames: ''
+    otherUsernames: selectOtherUserNames(state)
   };
 };
 

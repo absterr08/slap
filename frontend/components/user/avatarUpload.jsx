@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 class avatarUpload extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       imgFile: '',
       imgUrl: ''
-    }
+    };
     this.updateFile = this.updateFile.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,8 +21,8 @@ class avatarUpload extends React.Component {
       this.setState({
         imgFile: file,
         imgUrl: fileReader.result
-      })
-    }
+      });
+    };
     if (file) {
       fileReader.readAsDataURL(file);
     }
@@ -42,14 +42,14 @@ class avatarUpload extends React.Component {
         <img src={this.state.imgUrl}/>
         <button onClick={this.handleSubmit}>Set As Profile Image</button>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
     currentUserId: state.session.currentUser.id
-  }
+  };
 };
 
 export default connect(mapStateToProps, null)(avatarUpload);

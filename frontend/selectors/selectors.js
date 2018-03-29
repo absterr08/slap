@@ -2,15 +2,15 @@ import { values, merge } from 'lodash';
 
 export const selectCurrentChannelMessages = state => {
   const allMessages = state.entities.messages;
-  let channelMessageIds = values(state.ui.currentChannel.messages);
-  const filteredMessages = Object.assign({}, allMessages);
-  Object.keys(filteredMessages).map( id =>  {
-    let intId = parseInt(id);
-    if (!channelMessageIds.includes(intId)) {
-      delete filteredMessages[intId];
+  const currentChannelId = state.ui.currentChannel;
+  const filteredMessages = [];
+  values(allMessages).forEach(message => {
+      if (message.channel_id === currentChannelId) {
+        filteredMessages.push(message);
+      }
     }
-  });
-  return values(filteredMessages);
+  );
+  return filteredMessages;
 };
 
 export const selectOtherUsers = state => {
