@@ -39,7 +39,7 @@ class DmIndexItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    otherUsernames: selectOtherUsernames(state, ownProps.dm.id).join(', ')
+    otherUsernames: selectOtherUsernames(state, ownProps.dm).join(', ')
   };
 };
 

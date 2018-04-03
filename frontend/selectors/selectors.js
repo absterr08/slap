@@ -36,6 +36,7 @@ export const selectOtherUsers = (state, channelId) => {
   let otherUsers;
   if (channelId) {
     otherUsers = selectChannelUsers(state, channelId);
+    debugger
   } else {
     otherUsers = merge({}, state.entities.users);
   }
@@ -44,9 +45,9 @@ export const selectOtherUsers = (state, channelId) => {
   return values(otherUsers);
 };
 
-export const selectOtherUsernames = (state, channelId) => {
-  if (!channelId) return [];
-  const otherUsers = selectOtherUsers(state, channelId);
+export const selectOtherUsernames = (state, channel) => {
+  if (!channel) return [];
+  const otherUsers = selectOtherUsers(state, channel.id);
   return otherUsers.map(user => user.username);
 };
 
