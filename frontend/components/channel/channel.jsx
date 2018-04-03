@@ -17,7 +17,7 @@ class Channel extends React.Component {
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
-      // title = selectDmNames(this.props.channel, this.props.user.username).join(', ');
+      title = this.props.otherUsernames.join(', ');
       iconType = "dm-header-icon";
 
     } else {

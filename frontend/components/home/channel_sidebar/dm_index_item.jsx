@@ -1,32 +1,30 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { selectDmNames } from '../../../util/channel_api_util';
+import { selectOtherUsernames} from '../../../selectors/selectors';
 
-
-
-class ChannelIndexItem extends React.Component {
+class DmIndexItem extends React.Component {
 
   toggleActive(e) {
     $('.selected-li').removeClass('selected-li');
     $(e.currentTarget).addClass('selected-li');
   }
 
-
-
   deleteChannel() {
     // TODO: redirect to default after delete
-    this.props.deleteChannel(this.props.channel.id);
+    this.props.deleteChannel(this.props.dm.id);
     // .then( () =>
     // this.props.history.push(`/messages/${this.props.defaultChannel}`))
   }
 
   render() {
-    const channelInfo = this.props.channel;
-    let deleteButton = <div></div>;
-    const title = channelInfo.name;
-    const iconType = "channel-list-item-icon";
+    const dmInfo = this.props.dm;
+      const title = this.props.otherUsernames;
+      const iconType = "dm-list-item-icon";
+      const deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>;
     return (
-        <Link to={ `/messages/${channelInfo.id}` } >
+        <Link to={ `/messages/${dmInfo.id}` } >
           <li className="channel-list-item" onClick={this.toggleActive}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
@@ -39,4 +37,10 @@ class ChannelIndexItem extends React.Component {
   }
 }
 
-export default withRouter(ChannelIndexItem);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    otherUsernames: selectOtherUsernames(state, ownProps.dm.id).join(', ')
+  };
+};
+
+export default withRouter(connect(mapStateToProps, null)(DmIndexItem));

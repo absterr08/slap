@@ -3,7 +3,7 @@ import { fetchChannel} from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
-import { selectCurrentChannelMessages, selectOtherUserNames, checkIfDm } from '../../selectors/selectors';
+import { selectCurrentChannelMessages, selectOtherUsernames, checkIfDm } from '../../selectors/selectors';
 import { selectDmNames } from '../../util/channel_api_util';
 
 import Channel from './channel';
@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     messages: selectCurrentChannelMessages(state),
     user: state.session.currentUser.user,
     isDm: checkIfDm(state),
-    otherUsernames: selectOtherUserNames(state)
+    otherUsernames: selectOtherUsernames(state, channel)
   };
 };
 

@@ -4,6 +4,7 @@ import { values } from 'lodash';
 import { fetchChannels, deleteChannel } from '../../../actions/channel_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
+import DmIndexItem from './dm_index_item';
 import { selectDms, selectPublicChannels } from '../../../selectors/selectors';
 
 const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel }) => {
@@ -25,10 +26,9 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
       </ul>
       <ul className="channel-sublist">
         { dms.map((dm, idx) => {
-          return <ChannelIndexItem key={ dm.id }
-            channel={ dm }
-            deleteChannel={ deleteChannel }
-            currentUser={ currentUser.user } />
+          return <DmIndexItem key={ dm.id }
+            dm={ dm }
+            deleteChannel={ deleteChannel } />
           })
         }
       </ul>
