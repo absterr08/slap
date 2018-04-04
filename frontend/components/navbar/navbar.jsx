@@ -12,7 +12,7 @@ const NavBar = ({ guestSignup }) => {
         <Link to="/" className="slap-logo" />
         <p className="slap-text">slap</p>
       </div>
-      <button onClick={guestSignup} className="guest-btn">Guest Login</button>
+      <button onClick={ guestSignup } className="guest-btn">Guest Login</button>
     </div>
   );
 };
