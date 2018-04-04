@@ -1,8 +1,7 @@
 import merge from 'lodash/merge';
-import { RECEIVE_CHANNEL } from '../../actions/channel_actions';
+import { RECEIVE_CHANNEL, REMOVE_CHANNEL, SWITCH_CHANNEL } from '../../actions/channel_actions';
 import { RECEIVE_MESSAGE } from '../../actions/message_actions';
 import { RECEIVE_CURRENT_USER } from '../../actions/session_actions'
-import { REMOVE_CHANNEL } from '../../actions/channel_actions'
 
 
 export default (state = {}, action) => {
@@ -10,13 +9,9 @@ export default (state = {}, action) => {
   let currentChannel = {};
   switch (action.type) {
     case RECEIVE_CHANNEL:
-      // currentChannel.id = action.payload.channel.id;
-      // currentChannel.isDm = action.payload.channel.is_dm;
-      // currentChannel.name = action.payload.channel.name;
-      // currentChannel.messages = action.payload.messages;
-      // currentChannel.description = action.payload.channel.description;
-      localStorage.setItem("currentChannel", `${currentChannel.id}`);
-      return action.payload.channel.id;
+      return action.channel.id;
+    case SWITCH_CHANNEL:
+      return action.channelId;
     case RECEIVE_MESSAGE:
       if (state.id === action.message.channel_id) {
         currentChannel = merge({}, state);
@@ -26,7 +21,7 @@ export default (state = {}, action) => {
       return state;
     case REMOVE_CHANNEL:
     case RECEIVE_CURRENT_USER:
-      localStorage.removeItem("currentChannel")
+      // localStorage.removeItem("currentChannel")
       return {};
     default:
       return state;

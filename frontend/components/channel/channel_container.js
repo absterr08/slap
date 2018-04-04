@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
     loading,
     channel,
     messages: selectCurrentChannelMessages(state),
-    user: state.session.currentUser.user,
+    user: state.session.currentUser,
     isDm: checkIfDm(state),
     otherUsernames: selectOtherUsernames(state, channel)
   };

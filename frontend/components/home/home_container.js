@@ -1,5 +1,5 @@
 import { fetchMessages, receiveMessage } from '../../actions/message_actions';
-import { fetchChannels, fetchChannel } from '../../actions/channel_actions';
+import { fetchChannels, fetchChannel, switchChannel } from '../../actions/channel_actions';
 import { fetchUsers} from '../../actions/user_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
@@ -15,6 +15,7 @@ const mapStateToProps = (state, ownProps) => (
 );
 const mapDispatchToProps = (dispatch) => (
   {
+    switchChannel: id => dispatch(switchChannel(id)),
     fetchChannel: id => dispatch(fetchChannel(id)),
     fetchChannels: () => dispatch(fetchChannels()),
     fetchMessages: () => dispatch(fetchMessages()),

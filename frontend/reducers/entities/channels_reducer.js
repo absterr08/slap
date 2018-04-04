@@ -7,10 +7,10 @@ export default (state = {}, action) => {
   let channel;
   switch (action.type) {
     case RECEIVE_CHANNELS:
-      return merge({}, state, action.channels.channels);
+      return merge({}, state, action.channels);
     case RECEIVE_CHANNEL:
-      channel = action.payload.channel;
-      return merge({}, state, { [channel.id]: action.payload});
+      channel = action.channel;
+      return merge({}, state, { [channel.id]: channel });
     case REMOVE_CHANNEL:
       channel = action.payload.channel;
       const newChannels = merge({}, state);

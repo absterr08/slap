@@ -11,8 +11,6 @@ class ChannelIndexItem extends React.Component {
     $(e.currentTarget).addClass('selected-li');
   }
 
-
-
   deleteChannel() {
     // TODO: redirect to default after delete
     this.props.deleteChannel(this.props.channel.id);

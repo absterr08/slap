@@ -30,7 +30,7 @@ export const createChannelSubscriptions = (channels, addMessage) => {
   // debugger
   if (typeof App !== 'undefined'){
     channels.forEach(channel => {
-        App[`room${channel.channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.channel.id}, {
+        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
           received: function(data) {
             const messageChannelId = JSON.parse(data.message).channel_id;
             const channelId = JSON.parse(this.identifier).room;

@@ -36,7 +36,6 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
   )
 }
 
-
 const mapStateToProps = state => {
   return {
     channels: values(selectPublicChannels(state)),
@@ -52,6 +51,5 @@ const mapDispatchToProps = dispatch => {
     deleteChannel: id => dispatch(deleteChannel(id))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarMain);

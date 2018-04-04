@@ -13,13 +13,11 @@ class Channel extends React.Component {
 
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
-    // debugger
     console.log('channel render');
     let title, iconType, description;
     if (this.props.isDm) {
       title = this.props.otherUsernames.join(', ');
       iconType = "dm-header-icon";
-
     } else {
       title = `${this.props.channel.name}`;
       iconType = "channel-header-icon";
@@ -39,7 +37,7 @@ class Channel extends React.Component {
         </div>
         <div id="???" className="messages-container">
           <MessageIndex messages={ this.props.messages } />
-          <MessageForm channelId={ this.props.channel.id } placeHolder={ `message ${title}` } />
+          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } />
         </div>
       </div>
     );

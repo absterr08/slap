@@ -10,15 +10,12 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 export default class Home extends React.Component {
 
   componentWillMount() {
-    console.log('home WillMount');
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
   }
 
   componentDidMount() {
-    // debugger
-    console.log('home DidMount');
-    this.props.fetchUsers().then( () => this.props.fetchMessages()).then( () => this.props.fetchChannel(this.props.channelId));
+    this.props.fetchUsers().then( () => this.props.fetchMessages());
   }
 
 
@@ -28,11 +25,11 @@ export default class Home extends React.Component {
     console.log('home WillReceieveProps');
     // handle messed up url
     if (!nextProps.match.params.channelId) {
-      const channelId = parseInt(localStorage.getItem("currentChannel"));
-      this.props.history.push(`/messages/${channelId}`);
+      // const channelId = parseInt(localStorage.getItem("currentChannel"));
+      // this.props.history.push(`/messages/${channelId}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      console.log(`case: next channel is different; prev: ${this.props.match.params.channelId}, next: ${nextProps.match.params.channelId} `);
-      this.props.fetchChannel(nextProps.match.params.channelId);
+      const nextChannel = parseInt(nextProps.match.params.channelId);
+      this.props.switchChannel(nextChannel);
     }
   }
 

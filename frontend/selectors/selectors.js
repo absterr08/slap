@@ -16,7 +16,7 @@ export const selectCurrentChannelMessages = state => {
 const selectChannelUsers = (state, channelId) => {
   const allUsers = state.entities.users;
   const channel = state.entities.channels[channelId];
-  if  (!channel)  return {};
+  if  (!channel || Object.keys(allUsers).length === 0)  return {};
   const channelUsers = {};
   channel.users.forEach(userId => {
       channelUsers[userId] = allUsers[userId];
@@ -25,21 +25,17 @@ const selectChannelUsers = (state, channelId) => {
   return channelUsers;
 };
 
-// export const selectOtherUsers = (state) => {
-//   const allUsersCopy = merge({}, state.entities.users);
-//   const currUserId = state.session.currentUser.id;
-//   delete allUsersCopy[currUserId];
-//   return values(allUsersCopy);
-// };
+export const selectOtherUsers = (state) => {
+  const otherUsers = merge({}, state.entities.users);
+  return filterCurrentUser(state, otherUsers);
+};
 
-export const selectOtherUsers = (state, channelId) => {
-  let otherUsers;
-  if (channelId) {
-    otherUsers = selectChannelUsers(state, channelId);
-    debugger
-  } else {
-    otherUsers = merge({}, state.entities.users);
-  }
+const selectOtherChannelUsers = (state, channelId) => {
+  const otherUsers = selectChannelUsers(state, channelId);
+  return filterCurrentUser(state, otherUsers);
+};
+
+const filterCurrentUser = (state, otherUsers) => {
   const currUserId = state.session.currentUser.id;
   delete otherUsers[currUserId];
   return values(otherUsers);
@@ -47,7 +43,7 @@ export const selectOtherUsers = (state, channelId) => {
 
 export const selectOtherUsernames = (state, channel) => {
   if (!channel) return [];
-  const otherUsers = selectOtherUsers(state, channel.id);
+  const otherUsers = selectOtherChannelUsers(state, channel.id);
   return otherUsers.map(user => user.username);
 };
 
