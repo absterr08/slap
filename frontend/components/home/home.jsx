@@ -9,20 +9,14 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 
 export default class Home extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
-  }
-
-  componentDidMount() {
     this.props.fetchUsers().then( () => this.props.fetchMessages());
   }
 
-
   // should i put this in channel instead?
-  // also, how to not have everything re-render every time
   componentWillReceiveProps(nextProps) {
-    console.log('home WillReceieveProps');
     // handle messed up url
     if (!nextProps.match.params.channelId) {
       // const channelId = parseInt(localStorage.getItem("currentChannel"));
@@ -34,7 +28,6 @@ export default class Home extends React.Component {
   }
 
   render() {
-    console.log('home render');
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
     const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>;
 
