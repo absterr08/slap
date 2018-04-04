@@ -1,8 +1,5 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { selectDmNames } from '../../../util/channel_api_util';
-
-
 
 class ChannelIndexItem extends React.Component {
 

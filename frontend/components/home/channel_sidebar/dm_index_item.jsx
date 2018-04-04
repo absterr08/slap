@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { selectDmNames } from '../../../util/channel_api_util';
 import { selectOtherUsernames} from '../../../selectors/selectors';
 
 class DmIndexItem extends React.Component {

@@ -2,14 +2,7 @@ import React from 'react';
 import MessageForm from './message_form';
 import MessageIndex from './message_index';
 
-import { getChannelByName } from '../../util/channel_api_util';
-import { selectDmNames } from '../../util/channel_api_util';
-
 class Channel extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
-import { fetchChannels, deleteChannel } from '../../../actions/channel_actions';
+import { deleteChannel } from '../../../actions/channel_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 import DmIndexItem from './dm_index_item';
@@ -46,7 +46,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchChannels: () => dispatch(fetchChannels()),
     toggleModal: modalType => () => dispatch(receiveNewChannelModal(modalType)),
     deleteChannel: id => dispatch(deleteChannel(id))
   }

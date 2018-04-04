@@ -14,7 +14,6 @@ export default class MessageForm extends React.Component {
 
   handleKeyUp(e) {
     if (e.keyCode == 13){
-      // debugger
       const message = {
         body: this.state.body,
         author_id: this.props.user.id,
