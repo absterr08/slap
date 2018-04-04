@@ -7,6 +7,11 @@
 
 
 #TODOs
+  * automatically create subscription when creating a new channel/DM
+  * channel info
+  * browse channels
+
+
 #TASKS
   * move Message.create from #speak to messages#create
   * fix refreshing from leaving current channel and going to default
