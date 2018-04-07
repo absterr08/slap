@@ -1,5 +1,6 @@
 import React from 'react';
-import Message from './message'
+import Message from './message';
+import ChannelHeader from './channel_header/channel_header';
 
 class Channel extends React.Component {
 
@@ -57,15 +58,7 @@ class Channel extends React.Component {
     });
     return (
       <div className="channel-container">
-        <div className="channel-header">
-          <div className="channel-header-content">
-            {icon}
-            <div>{this.props.title}</div>
-          </div>
-          <div className="channel-header-description">
-            {description}
-          </div>
-        </div>
+        <ChannelHeader icon={ icon } description={ description } title={ this.props.title } />
         <div className="messages-container">
           <div className="messages-list-container">
             <ul className="messages-list">
