@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from './message';
-import ChannelHeader from './channel_header/channel_header';
+import ChannelHeader from './channel_details/channel_header';
+import ChannelDetail from './channel_details/channel_detail';
 
 class Channel extends React.Component {
 
@@ -56,6 +57,7 @@ class Channel extends React.Component {
     const messages = this.props.messages.map((message) => {
       return <Message key={message.id} message={message}/>;
     });
+    const channelDetail = <ChannelDetail channelName={ `#${this.props.title}` } />
     return (
       <div className="channel-container">
         <ChannelHeader icon={ icon } description={ description } title={ this.props.title } />
@@ -69,7 +71,8 @@ class Channel extends React.Component {
             <input placeholder={`message ${this.props.title}`} className="message-form-input" type="text"
               onKeyUp={this.handleKeyUp}/>
           </form>
-      </div>
+        </div>
+        { channelDetail }
       </div>
     );
   }
