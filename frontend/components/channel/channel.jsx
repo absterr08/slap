@@ -59,20 +59,22 @@ class Channel extends React.Component {
     });
     const channelDetail = <ChannelDetail channelName={ `#${this.props.title}` } />
     return (
-      <div className="channel-container">
+      <div className="main-channel-container">
         <ChannelHeader icon={ icon } description={ description } title={ this.props.title } />
-        <div className="messages-container">
-          <div className="messages-list-container">
-            <ul className="messages-list">
-              {messages}
-            </ul>
+        <div className="channel-container">
+          <div className="messages-container">
+            <div className="messages-list-container">
+              <ul className="messages-list">
+                {messages}
+              </ul>
+            </div>
+            <form className="message-form" onSubmit={this.handleSubmit}>
+              <input placeholder={`message ${this.props.title}`} className="message-form-input" type="text"
+                onKeyUp={this.handleKeyUp}/>
+            </form>
           </div>
-          <form className="message-form" onSubmit={this.handleSubmit}>
-            <input placeholder={`message ${this.props.title}`} className="message-form-input" type="text"
-              onKeyUp={this.handleKeyUp}/>
-          </form>
+          { channelDetail }
         </div>
-        { channelDetail }
       </div>
     );
   }

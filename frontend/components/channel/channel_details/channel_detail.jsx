@@ -6,7 +6,7 @@ class ChannelDetail extends React.Component {
     return(
       <div className="channel-detail-container">
         <div className="channel-detail-header">
-          About this.props.channelName
+          About { this.props.channelName }
         </div>
       </div>
     )
