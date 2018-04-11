@@ -7,7 +7,6 @@
 
 
 #TODOs
-  * automatically create subscription when creating a new channel/DM
   * channel info
   * browse channels
 

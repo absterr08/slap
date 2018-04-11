@@ -25,35 +25,15 @@ export const deleteChannel = (channelId) => (
   })
 );
 
-// probably bad practice to put this here since addMessage is dispatching stuff?
 export const createChannelSubscriptions = (channels, addMessage) => {
-  // debugger
-  if (typeof App !== 'undefined'){
-    channels.forEach(channel => {
-        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
-          received: function(data) {
-            const messageChannelId = JSON.parse(data.message).channel_id;
-            const channelId = JSON.parse(this.identifier).room;
-            if (messageChannelId === channelId) {
-              addMessage(JSON.parse(data.message));
-            }
-          },
-          speak: function(message) {
-            return this.perform('speak', {
-              message: message
-            });
-          }
-        });
-      }
-    );
-  }
-};
-
-export const createChannelSubscription = (channelId, addMessage)  => {
-  if (typeof App !== 'undefined'){
-      App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
+  channels.forEach(channel => {
+      App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
         received: function(data) {
-          addMessage(JSON.parse(data.message));
+          const messageChannelId = JSON.parse(data.message).channel_id;
+          const channelId = JSON.parse(this.identifier).room;
+          if (messageChannelId === channelId) {
+            addMessage(JSON.parse(data.message));
+          }
         },
         speak: function(message) {
           return this.perform('speak', {
@@ -62,17 +42,18 @@ export const createChannelSubscription = (channelId, addMessage)  => {
         }
       });
     }
+  );
 };
 
-export const selectDmNames = (dm, username)=> {
-  debugger
-  const selectedNames = [];
-   if (!dm) return selectedNames;
-   console.log(dm)
-   dm.usernames.map(name => {
-    if (name != username) {
-      selectedNames.push(name);
+export const createChannelSubscription = (channelId, addMessage)  => {
+  App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
+    received: function(data) {
+      addMessage(JSON.parse(data.message));
+    },
+    speak: function(message) {
+      return this.perform('speak', {
+        message: message
+      });
     }
   });
-  return selectedNames;
 };
