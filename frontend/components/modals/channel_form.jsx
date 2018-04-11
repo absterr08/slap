@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
-
+import { createChannelSubscription } from '../../util/channel_api_util';
 class ChannelForm extends React.Component {
 
   constructor(props) {
@@ -48,40 +48,20 @@ class ChannelForm extends React.Component {
     }
 
   handleSubmit(e) {
+    e.preventDefault();
     if (this.state.name!== "") {
-      let nextId;
-      e.preventDefault();
+      let channelId;
       this.props.createChannel(this.state).then(
         (channelAction) => {
-          this.props.history.push(`/messages/${channelAction.payload.channel.id}`)}).then(
-        () => this.createChannelSubscription() );
+          channelId = channelAction.channel.id;
+          this.props.history.push(`/messages/${ channelId }`);
+        }
+      ).then(() => {
+        createChannelSubscription(channelId, this.props.addMessage.bind(this));
+      });
       this.closeModal();
     }
   }
-
-
-  createChannelSubscription() {
-    const addMessage = this.props.addMessage.bind(this);
-    if (typeof App !== 'undefined'){
-        App[`room${this.props.channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: this.props.channelId}, {
-          connected: function() {},
-          disconnected: function() {},
-          received: function(data) {
-            const messageChannelId = JSON.parse(data.message).channel_id;
-            const channelId = JSON.parse(this.identifier).room;
-            if (messageChannelId === channelId) {
-              addMessage(JSON.parse(data['message']));
-            }
-          },
-          speak: function(message) {
-            return this.perform('speak', {
-              message: message
-            });
-          }
-        });
-      }
-  }
-
 
   render() {
     return (

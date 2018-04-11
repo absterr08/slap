@@ -78,18 +78,18 @@ class DMForm extends React.Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     if (values(this.state.users)[0]) {
 
       const dm = {is_dm: true,
         users: Object.keys(this.state.users),
         current_user: this.props.currentUser
       };
-      dm.users.push(this.props.currentUser.id)
-      e.preventDefault();
+      dm.users.push(this.props.currentUser.id);
       const addMessage = this.props.addMessage.bind(this);
       this.props.createChannel(dm).then( (dm) => {
-        createChannelSubscription(dm.payload.channel.id, addMessage);
-        this.props.history.push(`/messages/${dm.payload.channel.id}`);
+        createChannelSubscription(dm.channel.id, addMessage);
+        this.props.history.push(`/messages/${dm.channel.id}`);
       });
       this.closeModal();
     }
@@ -150,7 +150,7 @@ const mapStateToProps = (state) => {
     channelId: state.ui.currentChannel.id,
     users: selectOtherUsers(state),
     currentUser: state.session.currentUser
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => (
