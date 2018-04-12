@@ -6,7 +6,6 @@ class ChannelSubscriptionsController < ApplicationController
   end
 
   def create
-    channel = Channel.find(params[:channel_id])
     ChannelSubscription.create(user_id: current_user.id, channel_id: channel.id)
   end
 

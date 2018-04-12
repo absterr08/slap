@@ -8,11 +8,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    # @channel = Channel.find(params[:id])
-    # whats the difference??? which is better??
-    @channel = Channel.where(id: params[:id]).includes(:users, :messages)
-    @channel = @channel[0]
-    # debugger
+    @channel = Channel.find(params[:id]).includes(:users, :messages)
   end
 
   def create
@@ -30,14 +26,12 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
-    userIds = params[:channel][:users].map {|id| id.to_i}
+    user_ids = params[:channel][:users].map {|id| id.to_i}
     @channel = Channel.new
     @channel.is_dm = true
     @channel.name = "room#{Channel.last.id + 1}"
     if @channel.save
-      userIds.each do |id|
-        ChannelSubscription.create(user_id: id, channel_id: @channel.id)
-      end
+      @channel.user_ids = user_ids
       render :show
     else
       render json: @channel.errors.full_messages.join(', ')
