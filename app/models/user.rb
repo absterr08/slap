@@ -67,4 +67,17 @@ class User < ApplicationRecord
     self.save!
   end
 
+  def is_admin?
+    # self.is_admin
+    true #lol
+  end
+
+  def dms
+    self.channels.where(is_dm: true)
+  end
+
+  def inactive_dms
+    self.dms.where(active: false)
+  end
+
 end

@@ -26,7 +26,7 @@ class Api::ChannelsController < ApplicationController
   end
 
   def create_dm
-    user_ids = params[:channel][:users].map {|id| id.to_i}
+    user_ids = params[:channel][:users].map(&:to_i)
     @channel = Channel.new
     @channel.is_dm = true
     @channel.name = "room#{Channel.last.id + 1}"
@@ -38,10 +38,29 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
+  def create_dm
+    user_ids = params[:channel][:users].map(&:to_i)
+    @channel = Channel.group_chat_exists?(user_ids)
+    if @channel
+      ChannelSubscription.create(user_id: current_user.id, channel_id: @channel.id)
+    else
+      @channel = Channel.new(is_dm: true, name: "room#{Channel.last.id + 1}")
+      unless @channel.save
+        render json: @channel.errors.full_messages.join(', ')
+        return
+      end
+      @channel.user_ids = user_ids
+    end
+    render :show
+  end
+
   def destroy
     @channel = Channel.find(params[:id])
-    if @channel.destroy
-      render :show
+    if @channel.is_dm?
+      ChannelSubscription.find_by(user_id: current_user.id, channel_id: params[:id]).destroy
+    elsif current_user.is_admin?
+       @channel.destroy
+    render :show
     else
       render json: "channel does not exist!"
     end
