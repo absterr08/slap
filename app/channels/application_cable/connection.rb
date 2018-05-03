@@ -1,19 +1,19 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
-    # identified_by :current_user
-    #
-    # def connect
-    #   self.current_user = find_verified_user
-    # end
-    #
-    # private
-    #   def find_verified_user
-    #     # access application_controller methods in here?
-    #     if current_user = User.find_by(id: cookies.signed[:user_id])
-    #       current_user
-    #     else
-    #       reject_unauthorized_connection
-    #     end
-    #   end
+    identified_by :current_user
+
+    def connect
+      self.current_user = find_verified_user
+    end
+
+    private
+      def find_verified_user
+        # best way to access cookies?
+        if current_user = User.find_by(session_token: cookies.encrypted["_slap_session"]["session_token"])
+          current_user
+        else
+          reject_unauthorized_connection
+        end
+      end
   end
 end

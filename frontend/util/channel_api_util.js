@@ -25,12 +25,21 @@ export const deleteChannel = (channelId) => (
   })
 );
 
+// dilemma: have one subscription for all channels? or one subscription per channel?
+// one per channel annoying because every message broadcasts to every instance of room_channel
+
 export const createChannelSubscriptions = (channels, addMessage) => {
-  channels.forEach(channel => {
-      App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
+  channels.forEach( channel => {
+      createChannelSubscription(channel.id, addMessage);
+    }
+  );
+};
+
+export const createChannelSubscription = (channelId, addMessage) => {
+  App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         received: function(data) {
           const messageChannelId = JSON.parse(data.message).channel_id;
-          const channelId = JSON.parse(this.identifier).room;
+          const channelId = JSON.parse(this.identifier).room; //necessary???
           if (messageChannelId === channelId) {
             addMessage(JSON.parse(data.message));
           }
@@ -41,19 +50,4 @@ export const createChannelSubscriptions = (channels, addMessage) => {
           });
         }
       });
-    }
-  );
-};
-
-export const createChannelSubscription = (channelId, addMessage)  => {
-  App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
-    received: function(data) {
-      addMessage(JSON.parse(data.message));
-    },
-    speak: function(message) {
-      return this.perform('speak', {
-        message: message
-      });
-    }
-  });
-};
+    };

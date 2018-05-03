@@ -11,8 +11,4 @@ class RoomChannel < ApplicationCable::Channel
   def speak(data)
     Message.create body: data['message']['body'], author_id: data['message']['author_id'], channel_id: data['message']['channel_id']
   end
-
-  def test(testy)
-    debugger
-  end
 end
