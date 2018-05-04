@@ -12,6 +12,7 @@ class DmIndexItem extends React.Component {
 
   deleteChannel() {
     // TODO: redirect to default after delete
+    debugger
     this.props.deleteChannel(this.props.dm.id);
     // .then( () =>
     // this.props.history.push(`/messages/${this.props.defaultChannel}`))

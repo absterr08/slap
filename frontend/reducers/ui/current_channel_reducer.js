@@ -20,6 +20,7 @@ export default (state = {}, action) => {
       }
       return state;
     case REMOVE_CHANNEL:
+      return action.channel.defaultChannel; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
     case RECEIVE_CURRENT_USER:
       // localStorage.removeItem("currentChannel")
       return action.user.default_channel;

@@ -60,10 +60,11 @@ class Api::ChannelsController < ApplicationController
       ChannelSubscription.find_by(user_id: current_user.id, channel_id: params[:id]).destroy
     elsif current_user.is_admin?
        @channel.destroy
-    render :show
     else
       render json: "channel does not exist!"
+      return
     end
+    render :show
   end
 
   def channel_params

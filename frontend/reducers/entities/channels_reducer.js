@@ -12,9 +12,8 @@ export default (state = {}, action) => {
       channel = action.channel;
       return merge({}, state, { [channel.id]: channel });
     case REMOVE_CHANNEL:
-      channel = action.payload.channel;
       const newChannels = merge({}, state);
-      delete newChannels[channel.id];
+      delete newChannels[action.channel.id];
       return newChannels;
     case RECEIVE_CURRENT_USER:
       return {};

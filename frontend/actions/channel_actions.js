@@ -19,10 +19,10 @@ const receiveChannel = channel => {
   };
 };
 
-const removeChannel = payload => {
+const removeChannel = channel => {
   return {
     type: REMOVE_CHANNEL,
-    payload
+    channel
   };
 };
 
