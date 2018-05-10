@@ -1,7 +1,6 @@
 import React from 'react';
 import ChannelContainer from '../channel/channel_container';
-import ChannelSidebarHeader from './channel_sidebar/sidebar_header';
-import ChannelSidebarMain from './channel_sidebar/sidebar_main';
+import Sidebar from './channel_sidebar/sidebar';
 import DMForm from '../modals/DM_form';
 import ChannelForm from '../modals/channel_form';
 
@@ -27,10 +26,7 @@ export default class Home extends React.Component {
       <div className="main-container">
         {channelForm}
         {dmForm}
-        <div className="channel-sidebar">
-          <ChannelSidebarHeader />
-          <ChannelSidebarMain />
-        </div>
+        <Sidebar />
         <ChannelContainer />
       </div>
     )
