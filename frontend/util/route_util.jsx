@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter, Link } from 'react-router-dom';
+
+import { receiveNewChannelModal } from '../actions/modal_actions';
 
 const Auth = ({ component: Component, path, loggedIn, channelId }) => {
   return (
@@ -23,6 +25,14 @@ const Protected = ({ component: Component, path, loggedIn }) => (
   )} />
 );
 
+const protectedLink = ({ path, children, loggedIn, openSession }) => (
+  loggedIn ? (
+    <Link to={path}>{children}</Link>
+  ) : (
+    <button onClick={openSessionModal}>{children}</button>
+  )
+)
+
 const mapStateToProps = ({ session: { currentUser }}) => {
   const defaultChannel = currentUser && currentUser.default_channel
   // make sure currentUser exists before checking for its channels
@@ -32,8 +42,13 @@ const mapStateToProps = ({ session: { currentUser }}) => {
     loggedIn: Boolean(currentUser),
     channelId
   }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openDmModal: () => dispatch(receiveNewChannelModal("dm"))
+  }
 }
-;
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth));
 export const ProtectedRoute = withRouter(connect(mapStateToProps, null)(Protected));
