@@ -5,12 +5,13 @@ import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 import { selectDms, selectPublicChannels } from '../../../selectors/channel_selectors';
 import { selectChannelUsernames, selectDmUsernames } from '../../../selectors/user_selectors';
+import ChannelSearch from './channel_search';
 
 const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) => {
 
   return (
-
     <ul className="channel-list">
+      <ChannelSearch />
       <ul className="sidebar-label" onClick={toggleModal("channel")}>
         <li>Channels</li>
         <li><div className="add-button">+</div></li>

@@ -1,14 +1,10 @@
 import React from 'react';
 
 
-export default class ChannelSearch extends React.component {
-  constructor(props) {
-    super(props);
-  }
-
-  rener() {
+export default class ChannelSearch extends React.Component {
+  render() {
     return(
-      <input className="channel-search"></input>
+      <input className="channel-search" placeholder="Jump to..."></input>
     )
   }
 }
