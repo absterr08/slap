@@ -1,4 +1,4 @@
-import { changeChannel } from '../../actions/channel_actions';
+import { changeChannel, fetchChannel } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectCurrentChannelMessages } from '../../selectors/message_selectors';
@@ -22,7 +22,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    changeChannel: id => dispatch(changeChannel(id))
+    changeChannel: id => dispatch(changeChannel(id)),
+    fetchChannel: id => dispatch(fetchChannel(id))
   }
 );
 

@@ -9,16 +9,26 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 export default class Home extends React.Component {
 
   componentWillMount() {
-    const addMessage = this.props.addMessage.bind(this);
-    this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
+    // const addMessage = this.props.addMessage.bind(this);
+    // this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
   }
 
   componentDidMount() {
-    this.props.fetchMessages().then(() => this.props.fetchUsers());
+    // this.props.fetchMessages().then(() => this.props.fetchUsers());
+    const addMessage = this.props.addMessage.bind(this);
+    this.props.fetchUsers().then(
+      () => this.props.fetchMessages().then(
+        () => this.props.fetchChannels().then(
+          () => {
+            createChannelSubscriptions(this.props.channels, addMessage);
+            this.props.changeChannel(this.props.match.params.channelId);
+          }
+        )
+      )
+    );
   }
 
   render() {
-    console.log('rendering home');
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>
     const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>
 

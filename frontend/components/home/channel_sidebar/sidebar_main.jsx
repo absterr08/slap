@@ -41,7 +41,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) 
             iconType={ "dm-list-item-icon" }
             deleteChannel={ deleteChannel }
             currentUser={ currentUser.user }
-            defaultChannel={ currentUser.defaultChannel.id} />
+            defaultChannel={ currentUser.defaultChannel} />
           })
         }
       </ul>

@@ -15,7 +15,7 @@ class ChannelIndexItem extends React.Component {
 
 
   deleteChannel() {
-    // debugger
+    // TODO: only redirect if actually on the dm that ur deleting
     this.props.deleteChannel(this.props.channel.id).then( () =>
     this.props.history.push(`/messages/${this.props.defaultChannel}`))
   }

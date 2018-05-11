@@ -6,4 +6,4 @@ json.channels do
   json.array! user.channels.map { |channel| channel.id }
 end
 
-json.defaultChannel Channel.first
+json.defaultChannel Channel.first.id
