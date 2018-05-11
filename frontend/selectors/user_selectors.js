@@ -6,8 +6,8 @@ export const selectOtherUsers = state => {
     const allUsers = state.entities.users;
     const currUserId = state.session.currentUser.user.id;
     otherUsers = values(allUsers).reduce( (acc, user) => {
-      if (user.user.id != currUserId) {
-        acc[user.user.id] = user.user;
+      if (user.id != currUserId) {
+        acc[user.id] = user;
       }
       return acc;
     }, {});
@@ -23,7 +23,7 @@ export const selectChannelUsernames = state => {
 export const selectDmUsernames = (state, currentChannel)  => {
   if (!values(state.entities.users)[0]) return [];
   currentChannel = currentChannel || state.entities.channels[state.ui.currentChannel];
-  const usernames = values(currentChannel.users).map( userId => state.entities.users[userId].user.username);
+  const usernames = values(currentChannel.users).map( userId => state.entities.users[userId].username);
   const selectedNames = []
   const names = usernames.forEach(name => {
     if (name != state.session.currentUser.user.username) selectedNames.push(name)

@@ -7,7 +7,7 @@ import merge from 'lodash/merge';
 import { selectOtherUsers } from '../../selectors/user_selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
-import { fetchUsers } from '../../actions/user_actions';
+import { fetchUsers, searchUsers } from '../../actions/user_actions';
 import { receiveMessage } from '../../actions/message_actions';
 import { createChannelSubscription } from '../../util/channel_api_util';
 import UserIndexItem from './user_index_item';
@@ -143,12 +143,13 @@ class DMForm extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  // debugger
   const selector = selectOtherUsers;
+  const users = selectOtherUsers(state)
+  debugger
   return {
     render: state.ui.modals.newDM,
     channelId: state.ui.currentChannel.id,
-    users: selectOtherUsers(state),
+    users,
     currentUser: state.session.currentUser
   }
 };
@@ -158,7 +159,8 @@ const mapDispatchToProps = (dispatch) => (
     toggleModal: () => dispatch(receiveNewChannelModal("dm")),
     createChannel: channel => dispatch(createChannel(channel)),
     fetchUsers: () => dispatch(fetchUsers()),
-    addMessage: message => dispatch(receiveMessage(message))
+    addMessage: message => dispatch(receiveMessage(message)),
+    searchUsers: query => dispatch(searchUsers(query))
   }
 );
 
