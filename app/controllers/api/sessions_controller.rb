@@ -5,7 +5,7 @@ class Api::SessionsController < ApplicationController
       params[:user][:password])
     if @user
       login(@user)
-      render :show
+      render partial: 'api/users/current_user', locals: { user: @user }
     else
       render json: 'Incorrect username or password', status: 401
     end
