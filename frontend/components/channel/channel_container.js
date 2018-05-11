@@ -23,7 +23,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => (
   {
     changeChannel: id => dispatch(changeChannel(id)),
-    fetchChannel: id => dispatch(fetchChannel(id))
   }
 );
 

@@ -8,16 +8,7 @@ class Channel extends React.Component {
       this.handleKeyUp = this.handleKeyUp.bind(this);
     }
 
-  componentDidMount() {
-    // this.props.changeChannel(this.props.match.params.channelId)
-  }
-
   componentWillReceiveProps(nextProps) {
-    // if (!nextProps.match.params.channelId) {
-    //   console.log('??????')
-    //   const channelId = parseInt(localStorage.getItem("currentChannel"));
-    //   this.props.history.push(`/messages/${channelId}`);
-    // } else
     if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       this.props.changeChannel(nextProps.match.params.channelId);
     }
@@ -32,10 +23,7 @@ class Channel extends React.Component {
         if (typeof App !== 'undefined'){
           const message = { body: e.target.value, author_id: this.props.user.id, channel_id: this.props.channel.id };
           App[`room${this.props.channel.id}`].speak(message);
-          } //else{
-        //   debugger
-        //   this.props.addMessage({id: createdMessage.id, body: e.target.value});
-        // }
+          }
         e.target.value = "";
       }
     }

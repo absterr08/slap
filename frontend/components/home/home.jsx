@@ -8,13 +8,7 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 
 export default class Home extends React.Component {
 
-  componentWillMount() {
-    // const addMessage = this.props.addMessage.bind(this);
-    // this.props.fetchChannels().then(() => createChannelSubscriptions(this.props.channels, addMessage));
-  }
-
   componentDidMount() {
-    // this.props.fetchMessages().then(() => this.props.fetchUsers());
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchUsers().then(
       () => this.props.fetchMessages().then(
