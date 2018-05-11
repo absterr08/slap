@@ -29,6 +29,14 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def search
+    query = params[:query]
+    @users = User.search(query)
+    render :index
+  end
+
+  private
+
   def user_params
     params.require(:user).permit(:username, :email, :password)
   end

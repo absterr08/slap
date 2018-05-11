@@ -35,6 +35,11 @@ class User < ApplicationRecord
     return user if user && user.is_password?(password)
   end
 
+  def self.search(query_string)
+    generalized_string = "#{query_string}%"
+    User.where("username like ?", generalized_string)
+  end
+
   def password=(password)
     @password = password;
     self.password_digest = BCrypt::Password.create(password);
