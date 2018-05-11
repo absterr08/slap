@@ -40,6 +40,10 @@ class User < ApplicationRecord
     User.where("username like ?", generalized_string)
   end
 
+  def self.search_excluding_id(query_string, id)
+    self.search(query_string).where.not(id: id)
+  end
+
   def password=(password)
     @password = password;
     self.password_digest = BCrypt::Password.create(password);

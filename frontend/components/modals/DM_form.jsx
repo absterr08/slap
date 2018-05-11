@@ -1,24 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import { values } from 'lodash';
-import merge from 'lodash/merge';
+import { values, merge } from 'lodash';
 
-import { selectOtherUsers } from '../../selectors/user_selectors';
-import { receiveNewChannelModal } from '../../actions/modal_actions';
-import { createChannel } from '../../actions/channel_actions';
-import { fetchUsers, searchUsers } from '../../actions/user_actions';
-import { receiveMessage } from '../../actions/message_actions';
-import { createChannelSubscription } from '../../util/channel_api_util';
 import UserIndexItem from './user_index_item';
 import SelectedUserIndexItem from './selected_user_index_item';
 
-class DMForm extends React.Component {
+export default class DMForm extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      users: {},
+      searchedUsers: this.props.allOtherUsers,
+      selectedUsers: {},
       search: ""
     };
     this.handleInput = this.handleInput.bind(this);
@@ -30,29 +22,29 @@ class DMForm extends React.Component {
     this.removeUser = this.removeUser.bind(this);
   }
 
-  componentDidMount () {
-    this.props.fetchUsers();
-  }
+  // componentDidMount () {
+  //   this.props.fetchUsers().then( users => this.setState({ searchedUsers: users }));
+  // }
 
   addUser(user) {
     return () => {
-      const newState = merge({}, this.state.users);
+      const newState = merge({}, this.state.selectedUsers);
       newState[user.id] = user;
-      this.setState({ users: newState });
+      this.setState({ selectedUsers: newState });
     };
   }
 
   removeUser(user) {
     return () => {
-      const newState = merge({}, this.state.users);
+      const newState = merge({}, this.state.selectedUsers);
       delete newState[user.id];
-      this.setState({ users: newState });
+      this.setState({ selectedUsers: newState });
     };
   }
 
   closeModal() {
     this.setState({name: "", description: ""});
-    this.setState({users: {}, search: ""});
+    this.setState({selectedUsers: {}, search: ""});
     this.props.toggleModal();
   }
 
@@ -61,7 +53,10 @@ class DMForm extends React.Component {
       clearTimeout(this.timeout);
     }
     this.setState({search: e.target.value},
-      () => this.timeout = setTimeout(() => console.log(this.state.search), 500)
+      () => this.timeout = setTimeout(() => {
+        this.props.searchUsers(this.state.search).then(
+        () => this.setState({searchedUsers: this.props.searchedUsers}))
+      }, 500)
     );
   }
 
@@ -73,20 +68,20 @@ class DMForm extends React.Component {
   }
 
   toggleActive() {
-    if (values(this.state.users)[0]) {
+    if (values(this.state.selectedUsers)[0]) {
       //dont use dom manip in react. instead, dynamically set class in render
       $(document.getElementById("channel-submit")).addClass("active");
     }
-    if (!values(this.state.users)[0]) {
+    if (!values(this.state.selectedUsers)[0]) {
       $(document.getElementById("channel-submit")).removeClass("active");
     }
   }
 
   handleSubmit(e) {
-    if (values(this.state.users)[0]) {
+    if (values(this.state.selectedUsers)[0]) {
 
       const dm = {is_dm: true,
-        users: Object.keys(this.state.users),
+        users: Object.keys(this.state.selectedUsers),
         current_user: this.props.currentUser
       };
       dm.users.push(this.props.currentUser.user.id)
@@ -112,7 +107,7 @@ class DMForm extends React.Component {
             <div className= "dm-form-inputs">
               <div className="selected-users-container">
                 <ul className="selected-users-list">
-                  { values(this.state.users).map((user) => {
+                  { values(this.state.selectedUsers).map((user) => {
                     return <SelectedUserIndexItem
                       key={user.id}
                       user={user}
@@ -126,7 +121,7 @@ class DMForm extends React.Component {
             </div>
             <div className="user-search-container">
               <ul className="user-search-list">
-                { this.props.users.map((user) => {
+                { this.state.searchedUsers.map((user) => {
                   return <UserIndexItem
                     key={user.id}
                     user={user}
@@ -140,28 +135,3 @@ class DMForm extends React.Component {
       );
     }
   }
-
-
-const mapStateToProps = (state) => {
-  const selector = selectOtherUsers;
-  const users = selectOtherUsers(state)
-  debugger
-  return {
-    render: state.ui.modals.newDM,
-    channelId: state.ui.currentChannel.id,
-    users,
-    currentUser: state.session.currentUser
-  }
-};
-
-const mapDispatchToProps = (dispatch) => (
-  {
-    toggleModal: () => dispatch(receiveNewChannelModal("dm")),
-    createChannel: channel => dispatch(createChannel(channel)),
-    fetchUsers: () => dispatch(fetchUsers()),
-    addMessage: message => dispatch(receiveMessage(message)),
-    searchUsers: query => dispatch(searchUsers(query))
-  }
-);
-
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DMForm));

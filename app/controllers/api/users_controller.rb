@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
 
   def search
     query = params[:query]
-    @users = User.search(query)
+    @users = User.search_excluding_id(query, current_user.id)
     render json: @users.map(&:id)
   end
 

@@ -15,6 +15,10 @@ export const selectOtherUsers = state => {
   return values(otherUsers);
 };
 
+export const selectSearchedUsers = state => {
+  return state.ui.searchedUsers.map(id => state.entities.users[id])
+}
+
 export const selectChannelUsernames = state => {
   const selectedNames = []
   return values(selectedNames);

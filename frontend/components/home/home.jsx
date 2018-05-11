@@ -1,7 +1,7 @@
 import React from 'react';
 import ChannelContainer from '../channel/channel_container';
 import Sidebar from './channel_sidebar/sidebar';
-import DMForm from '../modals/DM_form';
+import DMForm from '../modals/DM_form_container';
 import ChannelForm from '../modals/channel_form';
 
 import { createChannelSubscriptions } from '../../util/channel_api_util';

@@ -1,4 +1,4 @@
-import { changeChannel, fetchChannel } from '../../actions/channel_actions';
+import { changeChannel } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectCurrentChannelMessages } from '../../selectors/message_selectors';
