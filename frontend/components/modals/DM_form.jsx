@@ -57,7 +57,12 @@ class DMForm extends React.Component {
   }
 
   handleInput(e) {
-    this.setState({search: e.target.value});
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+    this.setState({search: e.target.value},
+      () => this.timeout = setTimeout(() => console.log(this.state.search), 500)
+    );
   }
 
   handleKeyPress(e) {
@@ -96,9 +101,6 @@ class DMForm extends React.Component {
   }
 
   render() {
-    // <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
-    // <div className="dm-form-inputs">
-    // </div>
       return (
         <div className="new-channel-container">
           <div className="toggle-close-container" onClick={this.closeModal}>
@@ -106,9 +108,7 @@ class DMForm extends React.Component {
           </div>
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Direct messages</h1>
-  {  //        <p>Send invites to:</p>
-      //        <input className="channel-form-input"></input
-    }
+            <input className="channel-form-input" onChange={this.handleInput} onKeyDown={this.handleKeyPress}></input>
             <div className= "dm-form-inputs">
               <div className="selected-users-container">
                 <ul className="selected-users-list">
