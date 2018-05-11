@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={store}/>, root);
 
   //testing
-  window.searchUsers = UserApiUtil.searchUsers;
+  window.searchUsers = userActions.searchUsers
 
 
   window.getState = store.getState;

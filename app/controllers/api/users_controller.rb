@@ -32,7 +32,7 @@ class Api::UsersController < ApplicationController
   def search
     query = params[:query]
     @users = User.search(query)
-    render :index
+    render json: @users.map(&:id)
   end
 
   private
