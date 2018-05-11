@@ -26,23 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(<Root store={store}/>, root);
 
   //testing
-  window.signup = sessionActions.signup;
-  window.logout = sessionActions.logout;
-  window.login = sessionActions.login;
-  window.fetchMessages = messageActions.fetchMessages;
-  window.fetchMessage = messageActions.fetchMessage;
-  window.createMessage = MessageApiUtil.createMessage;
-  window.updateMessage = messageActions.updateMessage;
-  window.addLastMessage = messageActions.addLastMessage;
-  window.formatDateTime = MessageApiUtil.formatDateTime;
-  window.fetchUsers = userActions.fetchUsers;
-  window.fetchUsersThenMessages = userActions.fetchUsersThenMessages;
-  window.fetchUser = userActions.fetchUser;
-  window.fetchChannels = channelActions.fetchChannels;
-  window.fetchChannel = channelActions.fetchChannel;
-  window.deleteChannel = channelActions.deleteChannel;
-  window.receieveNewDMModal = modalActions.receieveNewDMModal;
-  window.receieveNewChannelModal = modalActions.receieveNewChannelModal;
+  window.searchUsers = UserApiUtil.searchUsers;
 
 
   window.getState = store.getState;
