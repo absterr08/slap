@@ -7,7 +7,6 @@ import { receiveNewChannelModal } from '../../actions/modal_actions';
 import { createChannel } from '../../actions/channel_actions';
 import { fetchUsers, searchUsers } from '../../actions/user_actions';
 import { receiveMessage } from '../../actions/message_actions';
-import { createChannelSubscription } from '../../util/channel_api_util';
 import UserIndexItem from './user_index_item';
 import SelectedUserIndexItem from './selected_user_index_item';
 

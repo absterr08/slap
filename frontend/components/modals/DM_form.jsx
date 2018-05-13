@@ -3,6 +3,7 @@ import { values, merge } from 'lodash';
 
 import UserIndexItem from './user_index_item';
 import SelectedUserIndexItem from './selected_user_index_item';
+import { createChannelSubscription } from '../../util/channel_api_util';
 
 export default class DMForm extends React.Component {
 
@@ -22,9 +23,9 @@ export default class DMForm extends React.Component {
     this.removeUser = this.removeUser.bind(this);
   }
 
-  // componentDidMount () {
-  //   this.props.fetchUsers().then( users => this.setState({ searchedUsers: users }));
-  // }
+  componentDidMount () {
+    this.props.fetchUsers().then( users => this.setState({ searchedUsers: this.props.allOtherUsers, }));
+  }
 
   addUser(user) {
     return () => {
