@@ -21,18 +21,10 @@ u8 = User.create!(username: "monmon", email: "h", password: "starwars", img_url:
 u9 = User.create!(username: "daedae", email: "i", password: "starwars", img_url: "11")
 u10 = User.create!(username: "luke-in-good", email: "j", password: "starwars", img_url: "12")
 
-c1 = Channel.create!(name: '11-06-2017-nyc', description: 'Welcome to Slap Academy!')
-c2 = Channel.create!(name: 'general', description: 'This channel is for team-wide communication and announcements.')
-c3 = Channel.create!(name: 'random', description: 'A place for non-work-related slap chats.')
-c4 = Channel.create!(name: 'slap-talk', description: 'Hand in your best slap-related puns' )
-# c5 = Channel.create!(name: '', description: )
-# c6 = Channel.create!(name:, description: )
-
-Channel.all.each do |channel|
-  User.all.each do |user|
-    ChannelSubscription.create!(user_id: user.id, channel_id: channel.id)
-  end
-end
+c1 = Channel.create!(name: '11-06-2017-nyc', description: 'Welcome to Slap Academy!', user_ids: User.ids)
+c2 = Channel.create!(name: 'general', description: 'This channel is for team-wide communication and announcements.', user_ids: User.ids)
+c3 = Channel.create!(name: 'random', description: 'A place for non-work-related slap chats.', user_ids: User.ids)
+c4 = Channel.create!(name: 'slap-talk', description: 'Hand in your best slap-related puns', user_ids: User.ids)
 
 #channel 1 messages (nyc)
 Message.create!(author_id: u1.id, channel_id: c1.id, body: "the best debugger is a good night's sleep.")
@@ -53,14 +45,14 @@ Message.create!(author_id: u7.id, channel_id: c4.id, body: "lol good one, high f
 Message.create!(author_id: u1.id, channel_id: c4.id, body: "Redux was really difficult to grasp at first, but i think we all have a great handle on it now!")
 
 
-dm3 = Channel.new(name:"dm3", is_dm: true)
-dm3.users = [u1, u10]
-dm3.save!
-
-dm1 = Channel.new(name:"dm1", is_dm: true)
-dm1.users = [u1, u6, u7]
-dm1.save!
+# dm3 = Channel.new(name:"dm3", is_dm: true)
+# dm3.users = [u1, u10]
+# dm3.save!
 #
-dm2 = Channel.new(name:"dm2", is_dm: true)
-dm2.users = [u1, u8, u9]
-dm2.save!
+# dm1 = Channel.new(name:"dm1", is_dm: true)
+# dm1.users = [u1, u6, u7]
+# dm1.save!
+# #
+# dm2 = Channel.new(name:"dm2", is_dm: true)
+# dm2.users = [u1, u8, u9]
+# dm2.save!

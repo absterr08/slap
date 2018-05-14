@@ -12,9 +12,13 @@ class User < ApplicationRecord
   has_many :channel_subscriptions
   has_many :channels,
     through: :channel_subscriptions
+  has_many :dm_subscriptions
+  has_many :dms,
+    through: :dm_subscriptions
+  # has_and_belongs_to_many :channels
 
-  has_attached_file :avatar, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  # has_attached_file :avatar, default_url: "/images/:style/missing.png"
+  # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password
 
