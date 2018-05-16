@@ -10,16 +10,74 @@ User.delete_all
 Message.delete_all
 Channel.delete_all
 
-u1 = User.create!(username: "absterr08", email: "absterr08", password: "starwars", img_url: "6")
-u2 = User.create!(username: "jRudell22", email: "b", password: "starwars", img_url: "7")
-u3 = User.create!(username: "d_Og55", email: "c", password: "starwars", img_url: "4")
-u4 = User.create!(username: "leslieKnope", email: "d", password: "starwars", img_url: "5")
-u5 = User.create!(username: "bman86", email: "e", password: "starwars", img_url: "3")
-u6 = User.create!(username: "sunnyBunny", email: "f", password: "starwars", img_url: "8")
-u7 = User.create!(username: "mauricio12", email: "g", password: "starwars", img_url: "9")
-u8 = User.create!(username: "monmon", email: "h", password: "starwars", img_url: "10")
-u9 = User.create!(username: "daedae", email: "i", password: "starwars", img_url: "11")
-u10 = User.create!(username: "luke-in-good", email: "j", password: "starwars", img_url: "12")
+
+
+u1 = User.create!({
+  username: "absterr08",
+  email: "absterr08",
+  password: "starwars", img_url: "6",
+  avatar: open("https://s3.amazonaws.com/slap-seed/7.png")
+  })
+u2 = User.create!({
+  username: "jRudell22",
+  email: "b",
+  password: "starwars",
+  img_url: "7",
+  avatar: open("https://s3.amazonaws.com/slap-seed/7.png")
+  })
+u3 = User.create!({
+  username: "d_Og55", email: "c",
+  password: "starwars",
+  img_url: "4",
+  avatar: open("https://s3.amazonaws.com/slap-seed/4.png")
+  })
+u4 = User.create!({username: "leslieKnope",
+  email: "d",
+  password: "starwars",
+  img_url: "5",
+  avatar: open("https://s3.amazonaws.com/slap-seed/5.png")
+  })
+u5 = User.create!({
+  username: "bman86",
+  email: "e",
+  password: "starwars",
+  img_url: "3",
+  avatar: open("https://s3.amazonaws.com/slap-seed/3.png")
+  })
+u6 = User.create!({
+  username: "sunnyBunny",
+  email: "f",
+  password: "starwars",
+  img_url: "8",
+  avatar: open("https://s3.amazonaws.com/slap-seed/8.png")
+  })
+u7 = User.create!({
+  username: "mauricio12",
+  email: "g",
+  password: "starwars",
+  img_url: "9",
+  avatar: open("https://s3.amazonaws.com/slap-seed/9.png")
+  })
+u8 = User.create!({
+  username: "monmon",
+  email: "h", password: "starwars",
+  img_url: "10",
+  avatar: open("https://s3.amazonaws.com/slap-seed/10.png")
+  })
+u9 = User.create!({
+  username: "daedae",
+  email: "i",
+  password: "starwars",
+  img_url: "11",
+  avatar: open("https://s3.amazonaws.com/slap-seed/11.png")
+  })
+u10 = User.create!({
+  username: "luke-in-good",
+  email: "j",
+  password: "starwars",
+  img_url: "12",
+  avatar: open("https://s3.amazonaws.com/slap-seed/12.png")
+  })
 
 c1 = Channel.create!(name: '11-06-2017-nyc', description: 'Welcome to Slap Academy!')
 c2 = Channel.create!(name: 'general', description: 'This channel is for team-wide communication and announcements.')

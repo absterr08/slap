@@ -34,7 +34,7 @@ class Api::UsersController < ApplicationController
     render(json: ["prohibited"], status: 401) unless @user == current_user
     @user.avatar = params[:user][:avatar]
     if @user.save
-      render(json: ["nice"])
+      render :show
     else
       render json: @user.errors.full_messages, status: 422
     end

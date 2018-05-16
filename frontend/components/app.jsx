@@ -5,7 +5,7 @@ import SessionFormContainer from './session_form/session_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import HomeContainer from './home/home_container';
 import ChannelContainer from './channel/channel_container';
-import avatarUpload from './user/avatarUpload';
+import AvatarUpload from './user/avatar_upload';
 import Splash from './splash/splash';
 import NavBar from './navbar/navbar';
 
@@ -14,7 +14,7 @@ import NavBar from './navbar/navbar';
 const App = () => (
   <div className="app">
     <Switch>
-      <ProtectedRoute path="/upload" component={avatarUpload} />
+      <ProtectedRoute path="/upload" component={AvatarUpload} />
       <ProtectedRoute exact path="/messages" component={ HomeContainer } />
       <ProtectedRoute path="/messages/:channelId" component={ HomeContainer } />
       <Switch>
