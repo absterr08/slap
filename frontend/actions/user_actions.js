@@ -21,9 +21,13 @@ const receiveUser = (user) => {
 export const fetchUsers = () => dispatch => (
   UserApiUtil.fetchUsers().then(users => dispatch(receiveUsers(users)))
 );
-export const fetchUser = userId => dispatch => {
-  return UserApiUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)))
-};
+export const fetchUser = userId => dispatch => (
+  UserApiUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)))
+);
+
+export const updateAvatar = (userId, formData) => dispatch => (
+  UserApitUtil.updateAvatar(userId, formData).then()
+);
 
 export const fetchUsersThenMessages = () => dispatch => {
   return UserApiUtil.fetchUsers().then( users => {

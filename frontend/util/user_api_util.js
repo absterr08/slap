@@ -16,7 +16,6 @@ export const updateAvatar = (userId, formData) => (
     method: 'PATCH',
     contentType: false,
     processData: false,
-    data: formData,
-    success: () => console.log("nice")
+    data: formData
   })
-)
+);

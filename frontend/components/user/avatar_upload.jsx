@@ -30,8 +30,8 @@ class avatarUpload extends React.Component {
 
   handleSubmit(e) {
     var formData = new FormData();
-    formData.append("user[image]", this.state.imgFile);
-    updateAvatar(this.props.currentUserId, formData);
+    formData.append("user[avatar]", this.state.imgFile);
+    this.props.updateAvatar(this.props.currentUserId, formData);
   }
 
 
