@@ -5,5 +5,5 @@ json.users do
 end
 
 json.messages do
-  json.array! dm.messges.ids
+  json.array! dm.messages.ids
 end

@@ -8,6 +8,9 @@ class Dm < ApplicationRecord
   has_many :users,
     through: :dm_subscriptions
 
+  has_many :messages, as: :messageable
+
+
   # before_save :set_identifier
   after_initialize :set_identifier
 
