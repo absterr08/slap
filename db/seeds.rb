@@ -9,6 +9,7 @@
 User.delete_all
 Message.delete_all
 Channel.delete_all
+Dm.delete_all
 
 u1 = User.create!(username: "absterr08", email: "absterr08", password: "starwars", img_url: "6")
 u2 = User.create!(username: "jRudell22", email: "b", password: "starwars", img_url: "7")
@@ -45,7 +46,9 @@ Message.create!(author_id: u7.id, channel_id: c4.id, body: "lol good one, high f
 Message.create!(author_id: u1.id, channel_id: c4.id, body: "Redux was really difficult to grasp at first, but i think we all have a great handle on it now!")
 
 
-# dm3 = Channel.new(name:"dm3", is_dm: true)
+dm1 = Dm.create!(name:"dm1", user_ids: [u1.id, u6.id, u7.id])
+dm2 = Dm.create!(name:"dm2", user_ids: [u1.id, u10.id])
+dm3 = Dm.create!(name:"dm3", user_ids: [u1.id, u8.id, u9.id])
 # dm3.users = [u1, u10]
 # dm3.save!
 #

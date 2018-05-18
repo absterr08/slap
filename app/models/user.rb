@@ -76,10 +76,6 @@ class User < ApplicationRecord
     true #lol
   end
 
-  def dms
-    self.channels.where(is_dm: true)
-  end
-
   def inactive_dms
     self.dms.where(active: false)
   end

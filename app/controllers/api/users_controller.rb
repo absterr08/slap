@@ -15,14 +15,19 @@ class Api::UsersController < ApplicationController
   def create_guest_user
     @user = User.create_guest
     @user.set_img_url
-    @user.channels = Channel.where(is_dm: false)
+    @user.channels = Channel.all
     login(@user)
     render :show
   end
 
-
   def index
     @users = User.all
+  end
+
+  def channels_and_dms
+    user = User.find(params[:id])
+    @channels = user.channels
+    @dms = user.dms
   end
 
   def show
