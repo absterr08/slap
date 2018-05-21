@@ -14,10 +14,12 @@ export default class MessageForm extends React.Component {
 
   handleKeyUp(e) {
     if (e.keyCode == 13){
+      const messageable_type = this.props.isDm ? "Dm" : "Channel";
       const message = {
         body: this.state.body,
         author_id: this.props.user.id,
-        channel_id: this.props.channelId
+        messageable_id: this.props.channelId,
+        messageable_type
       };
       const room = App[`room${this.props.channelId}`];
       room.speak(message);
@@ -31,7 +33,6 @@ export default class MessageForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted??");
   }
 
   render() {

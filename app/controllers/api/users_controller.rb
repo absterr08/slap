@@ -24,10 +24,9 @@ class Api::UsersController < ApplicationController
     @users = User.all
   end
 
-  def channels_and_dms
-    user = User.find(params[:id])
-    @channels = user.channels
-    @dms = user.dms
+  def current_user_channels_and_dms
+    @channels = current_user.channels
+    @dms = current_user.dms
   end
 
   def show

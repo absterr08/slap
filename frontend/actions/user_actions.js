@@ -4,6 +4,7 @@ import { fetchMessages, receiveMessages } from './message_actions';
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_USER = "RECEIVE_USER";
+export const RECEIVE_CHANNELS_AND_DMS = "RECEIVE_CHANNELS_AND_DMS";
 
 const receiveUsers = (users) => {
   return {
@@ -18,11 +19,19 @@ const receiveUser = (user) => {
   };
 };
 
+const receiveChannelsAndDms = ({ channels, dms }) => (
+  {
+    type: RECEIVE_CHANNELS_AND_DMS,
+    channels,
+    dms
+  }
+);
+
 export const fetchUsers = () => dispatch => (
   UserApiUtil.fetchUsers().then(users => dispatch(receiveUsers(users)))
 );
 export const fetchUser = userId => dispatch => {
-  return UserApiUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)))
+  return UserApiUtil.fetchUser(userId).then(user => dispatch(receiveUser(user)));
 };
 
 export const fetchUsersThenMessages = () => dispatch => {
@@ -33,3 +42,7 @@ export const fetchUsersThenMessages = () => dispatch => {
     });
   });
 };
+
+export const fetchChannelsAndDms = () => dispatch => (
+  UserApiUtil.fetchChannelsAndDms().then(payload => dispatch(receiveChannelsAndDms(payload)))
+);

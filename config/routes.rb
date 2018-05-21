@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:create, :show, :index, :update] do
-      member do
-        get :channels_and_dms
+      collection do
+        get :current_user_channels_and_dms
       end
     end
     resource :session, only: [:create, :destroy, :show]

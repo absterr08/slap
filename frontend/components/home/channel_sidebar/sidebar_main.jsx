@@ -38,8 +38,8 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
 
 const mapStateToProps = state => {
   return {
-    channels: values(selectPublicChannels(state)),
-    dms: values(selectDms(state)),
+    channels: Object.values(state.entities.channels),
+    dms: Object.values(state.entities.dms),
     currentUser: state.session.currentUser
   }
 }

@@ -38,7 +38,7 @@ export const createChannelSubscriptions = (channels, addMessage) => {
 export const createChannelSubscription = (channelId, addMessage) => {
   App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         received: function(data) {
-          const messageChannelId = JSON.parse(data.message).channel_id;
+          const messageChannelId = JSON.parse(data.message).messageable_id;
           const channelId = JSON.parse(this.identifier).room; //necessary???
           if (messageChannelId === channelId) {
             addMessage(JSON.parse(data.message));

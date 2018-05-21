@@ -30,7 +30,7 @@ class Channel extends React.Component {
         </div>
         <div id="???" className="messages-container">
           <MessageIndex messages={ this.props.messages } />
-          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } />
+          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } isDm={this.props.isDm} />
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { RECEIVE_CHANNELS, RECEIVE_CHANNEL, REMOVE_CHANNEL } from '../../actions/channel_actions';
+import { RECEIVE_DMS, RECEIVE_DM, REMOVE_DM } from '../../actions/dm_actions';
 import { RECEIVE_CHANNELS_AND_DMS } from '../../actions/user_actions';
 import { RECEIVE_CURRENT_USER } from '../../actions/session_actions';
 import { RECEIVE_MESSAGE } from '../../actions/message_actions';
@@ -7,26 +7,23 @@ import { RECEIVE_MESSAGE } from '../../actions/message_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
-  let channel;
+  let dm;
   switch (action.type) {
     case RECEIVE_CHANNELS_AND_DMS:
-    case RECEIVE_CHANNELS:
+    case RECEIVE_DMS:
       // return merge({}, state, action.channels);
-      return action.channels;
-    case RECEIVE_CHANNEL:
-      channel = action.channel;
-      return merge({}, state, { [channel.id]: channel });
-    case REMOVE_CHANNEL:
-      const newChannels = merge({}, state);
-      delete newChannels[action.channel.id];
-      return newChannels;
+      return action.dms;
+    case RECEIVE_DM:
+      dm = action.dm;
+      return merge({}, state, { [dm.id]: dm });
     case RECEIVE_MESSAGE:
-      if (action.message.messageable_type === "Channel") {
-        channel = state[action.message.messageable_id];
-        channel.messages.push(action.message.id);
+      if (action.message.messageable_type === "Dm") {
+        dm = state[action.message.messageable_id];
+        dm.messages.push(action.message.id);
         return merge({}, state);
       }
       return state;
+    // case REMOVE_DM:
     case RECEIVE_CURRENT_USER:
       return {};
     default:

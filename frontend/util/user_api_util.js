@@ -10,6 +10,12 @@ export const fetchUser = userId => (
   })
 );
 
+export const fetchChannelsAndDms = () => (
+  $.ajax({
+    url: `/api/users/current_user_channels_and_dms`
+  })
+);
+
 export const updateAvatar = (userId, formData) => (
   $.ajax({
     url: `api/users/${userId}`,
@@ -19,4 +25,4 @@ export const updateAvatar = (userId, formData) => (
     data: formData,
     success: () => console.log("nice")
   })
-)
+);

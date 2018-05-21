@@ -28,22 +28,22 @@ c3 = Channel.create!(name: 'random', description: 'A place for non-work-related 
 c4 = Channel.create!(name: 'slap-talk', description: 'Hand in your best slap-related puns', user_ids: User.ids)
 
 #channel 1 messages (nyc)
-Message.create!(author_id: u1.id, messageable_id: c1.id, messageable_type: "Channel"  body: "the best debugger is a good night's sleep.")
-Message.create!(author_id: u2.id, messageable_id: c1.id, messageable_type: "Channel"  body: "lol never heard of it")
-Message.create!(author_id: u3.id, messageable_id: c1.id, messageable_type: "Channel"  body: "ya what package is that?")
-Message.create!(author_id: u9.id, messageable_id: c1.id, messageable_type: "Channel"  body: "everybody check in!!??")
+Message.create!(author_id: u1.id, messageable_id: c1.id, messageable_type: "Channel",  body: "the best debugger is a good night's sleep.")
+Message.create!(author_id: u2.id, messageable_id: c1.id, messageable_type: "Channel",  body: "lol never heard of it")
+Message.create!(author_id: u3.id, messageable_id: c1.id, messageable_type: "Channel",  body: "ya what package is that?")
+Message.create!(author_id: u9.id, messageable_id: c1.id, messageable_type: "Channel",  body: "everybody check in!!??")
 
 #channel2 messages (general)
-Message.create!(author_id: u5.id, messageable_id: c3.id, messageable_type: "Channel"  body: "what is the sound of one hand clapping")
+Message.create!(author_id: u5.id, messageable_id: c3.id, messageable_type: "Channel",  body: "what is the sound of one hand clapping")
 
 #channel 3 messages (random)
-Message.create!(author_id: u2.id, messageable_id: c3.id, messageable_type: "Channel"  body: "party at my place tonight y'all")
-Message.create!(author_id: u6.id, messageable_id: c3.id, messageable_type: "Channel"  body: "ayyyyy i'll be there!")
+Message.create!(author_id: u2.id, messageable_id: c3.id, messageable_type: "Channel",  body: "party at my place tonight y'all")
+Message.create!(author_id: u6.id, messageable_id: c3.id, messageable_type: "Channel",  body: "ayyyyy i'll be there!")
 
 #channel 4 messages (slap talk)
-Message.create!(author_id: u5.id, messageable_id: c4.id, messageable_type: "Channel"  body: "what did the hand say to the face? SLAP!")
-Message.create!(author_id: u7.id, messageable_id: c4.id, messageable_type: "Channel"  body: "lol good one, high five!")
-Message.create!(author_id: u1.id, messageable_id: c4.id, messageable_type: "Channel"  body: "Redux was really difficult to grasp at first, but i think we all have a great handle on it now!")
+Message.create!(author_id: u5.id, messageable_id: c4.id, messageable_type: "Channel",  body: "what did the hand say to the face? SLAP!")
+Message.create!(author_id: u7.id, messageable_id: c4.id, messageable_type: "Channel",  body: "lol good one, high five!")
+Message.create!(author_id: u1.id, messageable_id: c4.id, messageable_type: "Channel",  body: "Redux was really difficult to grasp at first, but i think we all have a great handle on it now!")
 
 
 dm1 = Dm.create!(name:"dm1", user_ids: [u1.id, u6.id, u7.id])

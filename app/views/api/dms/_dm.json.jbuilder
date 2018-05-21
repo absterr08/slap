@@ -1,4 +1,5 @@
 json.id dm.id
+json.is_dm true
 
 json.users do
   json.array! dm.users.ids

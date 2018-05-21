@@ -1,18 +1,17 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
-import { selectCurrentChannelMessages, selectOtherUsernames, checkIfDm } from '../../selectors/selectors';
+import { selectCurrentChannelMessages, selectOtherUsernames } from '../../selectors/selectors';
 import Channel from './channel';
 
 const mapStateToProps = (state, ownProps) => {
-  const channel = state.entities.channels[state.ui.currentChannel];
-  const loading = !Boolean(channel) || !Boolean(values(state.entities)[0]);
+  const channel = state.entities.channels[state.ui.currentChannel] || state.entities.dms[state.ui.currentChannel];
+  if (!channel) return { loading: true };
   return {
-    loading,
     channel,
     messages: selectCurrentChannelMessages(state),
     user: state.session.currentUser,
-    isDm: checkIfDm(state),
+    isDm: channel.is_dm,
     otherUsernames: selectOtherUsernames(state, channel)
   };
 };
