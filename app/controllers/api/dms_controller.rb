@@ -9,9 +9,10 @@ class Api::DmsController < ApplicationController
   end
 
   def create
-    debugger
-    @dm = Dm.new
+    @dm = Dm.new(user_ids: params[:dm][:users].map(&:to_i))
     if @dm.save
+      render :show
+    elsif @dm = Dm.find_by(identifier: @dm.identifier)
       render :show
     else
       render json: @dm.errors.full_messages.join(', '), status: 422

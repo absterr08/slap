@@ -13,6 +13,7 @@ class Dm < ApplicationRecord
 
   # before_save :set_identifier
   after_initialize :set_identifier
+  after_initialize :set_name
 
   def self.deactivate!(dm_id, user_id)
     dm_subscription = find(dm_id).where(user_id: user_id)
@@ -24,5 +25,9 @@ class Dm < ApplicationRecord
     # it's unintuitive to have access to self.uesrs.ids after initialize
     ids = users.map(&:id).sort
     self.identifier = ids.map(&:to_s).join(", ")
+  end
+
+  def set_name
+    self.name ||= "dm#{Dm.count + 1}"
   end
 end

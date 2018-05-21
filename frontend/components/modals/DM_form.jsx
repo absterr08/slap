@@ -6,7 +6,7 @@ import merge from 'lodash/merge';
 
 import { selectOtherUsers } from '../../selectors/selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
-import { createChannel } from '../../actions/channel_actions';
+import { createDm } from '../../actions/dm_actions';
 import { fetchUsers } from '../../actions/user_actions';
 import { receiveMessage } from '../../actions/message_actions';
 import { createChannelSubscription } from '../../util/channel_api_util';
@@ -87,9 +87,9 @@ class DMForm extends React.Component {
       };
       dm.users.push(this.props.currentUser.id);
       const addMessage = this.props.addMessage.bind(this);
-      this.props.createChannel(dm).then( (dm) => {
-        createChannelSubscription(dm.channel.id, addMessage);
-        this.props.history.push(`/messages/${dm.channel.id}`);
+      this.props.createDm(dm).then( (action) => {
+        createChannelSubscription(action.dm.id, addMessage);
+        this.props.history.push(`/messages/${action.dm.id}`);
       });
       this.closeModal();
     }
@@ -156,7 +156,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
   {
     toggleModal: () => dispatch(receiveNewChannelModal("dm")),
-    createChannel: channel => dispatch(createChannel(channel)),
+    createDm: dm => dispatch(createDm(dm)),
     fetchUsers: () => dispatch(fetchUsers()),
     addMessage: message => dispatch(receiveMessage(message))
   }
