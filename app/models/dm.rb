@@ -16,8 +16,17 @@ class Dm < ApplicationRecord
   after_initialize :set_name
 
   def self.deactivate!(dm_id, user_id)
-    dm_subscription = find(dm_id).where(user_id: user_id)
-    dm_subscription.deactivate!
+    dm_subscription = DmSubscription.find_by(dm_id: dm_id, user_id: user_id)
+    dm_subscription && dm_subscription.deactivate!
+  end
+
+  def self.activate!(dm_id, user_id)
+    dm_subscription = DmSubscription.find_by(dm_id: dm_id, user_id: user_id)
+    dm_subscription && dm_subscription.activate!
+  end
+
+  def activate!(user_id)
+    Dm.activate!(id, user_id)
   end
 
   def set_identifier
@@ -29,5 +38,9 @@ class Dm < ApplicationRecord
 
   def set_name
     self.name ||= "dm#{Dm.count + 1}"
+  end
+
+  def self.active_user_dms(user_id)
+    DmSubscription.active_user_subscriptions(user_id).map(&:dm)
   end
 end

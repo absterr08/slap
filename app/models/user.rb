@@ -80,4 +80,8 @@ class User < ApplicationRecord
     self.dms.where(active: false)
   end
 
+  def active_dms
+    Dm.active_user_dms(id)
+  end
+
 end

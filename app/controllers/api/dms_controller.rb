@@ -13,6 +13,7 @@ class Api::DmsController < ApplicationController
     if @dm.save
       render :show
     elsif @dm = Dm.find_by(identifier: @dm.identifier)
+      @dm.activate!(current_user.id)
       render :show
     else
       render json: @dm.errors.full_messages.join(', '), status: 422
@@ -20,7 +21,8 @@ class Api::DmsController < ApplicationController
   end
 
   def destroy
-    DmSubscription.deactivate!(params[:id], current_user.id)
+    Dm.deactivate!(params[:id], current_user.id)
+    render json: "stop"
   end
 
   def dm_params

@@ -19,10 +19,10 @@ const receiveDm = dm => {
   };
 };
 
-const removeDm = dm => {
+const removeDm = dmId => {
   return {
     type: REMOVE_DM,
-    dm
+    dmId
   };
 };
 
@@ -46,5 +46,5 @@ export const createDm = dm => dispatch => (
 );
 
 export const deleteDm = dmId => dispatch => (
-  DmApiUtil.deleteDm(dmId).then( dm => dispatch(removeDm(dm)))
+  DmApiUtil.deleteDm(dmId).then( (stuff) => { console.log(stuff, "heyyyyyyy"); return dispatch(removeDm(dmId)); })
 );

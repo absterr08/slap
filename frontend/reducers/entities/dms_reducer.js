@@ -23,7 +23,10 @@ export default (state = {}, action) => {
         return merge({}, state);
       }
       return state;
-    // case REMOVE_DM:
+    case REMOVE_DM:
+      const newDms = merge({}, state);
+      delete newDms[action.dmId];
+      return newDms;
     case RECEIVE_CURRENT_USER:
       return {};
     default:

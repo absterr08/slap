@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import { deleteChannel } from '../../../actions/channel_actions';
+import { deleteDm } from '../../../actions/dm_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 import DmIndexItem from './dm_index_item';
 import { selectDms, selectPublicChannels } from '../../../selectors/selectors';
 
-const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel }) => {
+const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, deleteDm }) => {
   return (
     <ul className="channel-list">
       <ul className="sidebar-label" onClick={toggleModal("channel")}>
@@ -28,7 +29,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel })
         { dms.map((dm, idx) => {
           return <DmIndexItem key={ dm.id }
             dm={ dm }
-            deleteChannel={ deleteChannel } />
+            deleteDm={ deleteDm } />
           })
         }
       </ul>
@@ -47,7 +48,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleModal: modalType => () => dispatch(receiveNewChannelModal(modalType)),
-    deleteChannel: id => dispatch(deleteChannel(id))
+    deleteChannel: id => dispatch(deleteChannel(id)),
+    deleteDm: id => dispatch(deleteDm(id))
   }
 }
 

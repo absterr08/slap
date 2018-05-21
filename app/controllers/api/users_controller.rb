@@ -26,7 +26,7 @@ class Api::UsersController < ApplicationController
 
   def current_user_channels_and_dms
     @channels = current_user.channels
-    @dms = current_user.dms
+    @dms = current_user.active_dms
   end
 
   def show
