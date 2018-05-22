@@ -19,7 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.currentUser) {
     const preloadedState = {
       session: { currentUser: window.currentUser },
-      ui: { currentChannel: window.currentUser.default_channel }
+      ui: {
+        currentChannel: window.currentUser.default_channel,
+        defaultChannel: window.defaultChannel
+       }
     };
     store = configureStore(preloadedState);
     delete window.currentUser;

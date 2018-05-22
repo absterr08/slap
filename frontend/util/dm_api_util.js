@@ -24,3 +24,5 @@ export const deleteDm = (dmId) => (
     url:`api/dms/${dmId}`
   })
 );
+
+window.deleteDm = deleteDm;

@@ -4,5 +4,6 @@ import modals from './ui/modals_reducer';
 
 export default combineReducers({
   currentChannel,
+  defaultChannel: (state = null, action) => state,
   modals
 });

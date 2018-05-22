@@ -5,7 +5,7 @@ import { selectCurrentChannelMessages, selectOtherUsernames } from '../../select
 import Channel from './channel';
 
 const mapStateToProps = (state, ownProps) => {
-  const channel = state.entities.channels[state.ui.currentChannel] || state.entities.dms[state.ui.currentChannel];
+  const channel = state.entities.channels[state.ui.currentChannel] || state.entities.dms[state.ui.currentChannel] || state.entities.channels[state.ui.defaultChannel] || state.entities.dms[state.ui.defaultChannel];
   if (!channel) return { loading: true };
   return {
     channel,

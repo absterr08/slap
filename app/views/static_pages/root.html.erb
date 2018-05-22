@@ -1,12 +1,13 @@
 <link href="https://fonts.googleapis.com/css?family=Noticia+Text" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 <script type="text/javascript">
-	  <% if logged_in? %>
-		      window.currentUser = <%= render(
-		            "api/users/user.json.jbuilder",
-			          user: current_user
-    ).html_safe %>
- <% end %>
+  <% if logged_in? %>
+	      window.currentUser = <%= render(
+	            "api/users/user.json.jbuilder",
+		          user: current_user
+            ).html_safe %>
+        window.defaultChannel = <%= current_user.channels.first.id %>
+  <% end %>
 </script>
 
 <main id="root"></main>
