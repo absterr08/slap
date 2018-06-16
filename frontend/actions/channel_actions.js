@@ -4,6 +4,7 @@ export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
+export const SWITCH_DM = "SWITCH_DM";
 
 const receiveChannels = channels => {
   return {
@@ -26,9 +27,16 @@ const removeChannel = channel => {
   };
 };
 
-export const switchChannel = channelId => {
+export const switchChannel = (channelId) => {
   return {
     type: SWITCH_CHANNEL,
+    channelId
+  };
+};
+
+export const switchDm = (channelId) => {
+  return {
+    type: SWITCH_DM,
     channelId
   };
 };

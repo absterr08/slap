@@ -12,7 +12,8 @@ export default class Home extends React.Component {
   componentDidMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
-    this.props.fetchUsers().then( () => this.props.fetchMessages());
+    this.props.fetchUsers();
+    // .then( () => this.props.fetchMessages());
   }
 
   // should i put this in channel instead?
@@ -23,11 +24,18 @@ export default class Home extends React.Component {
       // this.props.history.push(`/messages/${channelId}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       const nextChannel = parseInt(nextProps.match.params.channelId);
-      this.props.switchChannel(nextChannel);
+      if (nextProps.match.path === "/channels/:channelId") {
+        this.props.switchChannel(nextChannel);
+      } else if (nextProps.match.path === "/dms/:channelId") {
+        this.props.switchDm(nextChannel);
+      }
     }
   }
 
   render() {
+    if (this.props.loading) {
+      return <div>Loading...</div>;
+    }
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
     const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>;
 

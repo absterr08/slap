@@ -143,7 +143,6 @@ class DMForm extends React.Component {
 
 
 const mapStateToProps = (state) => {
-  // debugger
   const selector = selectOtherUsers;
   return {
     render: state.ui.modals.newDM,

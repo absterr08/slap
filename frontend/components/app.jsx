@@ -16,7 +16,8 @@ const App = () => (
     <Switch>
       <ProtectedRoute path="/upload" component={avatarUpload} />
       <ProtectedRoute exact path="/messages" component={ HomeContainer } />
-      <ProtectedRoute path="/messages/:channelId" component={ HomeContainer } />
+      <ProtectedRoute path="/channels/:channelId" component={ HomeContainer } />
+      <ProtectedRoute path="/dms/:channelId" component={ HomeContainer } />
       <Switch>
         <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/signup/:email" component={ SessionFormContainer } />

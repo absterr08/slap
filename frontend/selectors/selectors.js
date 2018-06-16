@@ -2,18 +2,18 @@ import { values, merge } from 'lodash';
 
 
 // only works if channels and dms never overlap IDs, which is a bad dependency so def fix this
-export const selectCurrentChannelMessages = state => {
-  const allMessages = state.entities.messages;
-  const currentChannelId = state.ui.currentChannel;
-  const filteredMessages = [];
-  values(allMessages).forEach(message => {
-      if (message.messageable_id === currentChannelId) {
-        filteredMessages.push(message);
-      }
-    }
-  );
-  return filteredMessages;
-};
+// export const selectCurrentChannelMessages = state => {
+//   const allMessages = state.entities.messages;
+//   const currentChannelId = state.ui.currentChannel;
+//   const filteredMessages = [];
+//   values(allMessages).forEach(message => {
+//       if (message.messageable_id === currentChannelId) {
+//         filteredMessages.push(message);
+//       }
+//     }
+//   );
+//   return filteredMessages;
+// };
 
 export const selectOtherUsers = (state) => {
   const otherUsers = merge({}, state.entities.users);
@@ -59,4 +59,16 @@ export const selectPublicChannels = state => {
 
 export const selectPrivateChannels = state => {
 
+};
+
+export const selectCurrentChannel = state => {
+  const id = state.ui.currentChannel.id;
+  const type = state.ui.currentChannel.type;
+  if (type === "dm") {
+    return state.entities.dms[id];
+  } else if (type === "channel") {
+    return state.entities.channels[id];
+  } else {
+    return null;
+  }
 };

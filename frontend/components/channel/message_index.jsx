@@ -2,7 +2,7 @@ import React from 'react';
 import Message from './message';
 
 const MessageIndex = ({messages, channelTitle}) => {
-  const messageItems = messages.map((message) => {
+  const messageItems = Object.values(messages).map((message) => {
     return <Message key={ message.id } message={ message }/>;
   });
 

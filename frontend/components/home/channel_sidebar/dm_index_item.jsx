@@ -23,7 +23,7 @@ class DmIndexItem extends React.Component {
       const iconType = "dm-list-item-icon";
       const deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>;
     return (
-        <Link to={ `/messages/${dmInfo.id}` } >
+        <Link to={ `/dms/${dmInfo.id}` } >
           <li className="channel-list-item" onClick={this.toggleActive}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>

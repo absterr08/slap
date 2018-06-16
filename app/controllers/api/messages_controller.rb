@@ -1,6 +1,12 @@
 class Api::MessagesController < ApplicationController
   def index
-    @messages = Message.all.includes(:user)
+    if channel_id = params[:channel_id]
+      @messages = Channel.find(channel_id).messages.includes(:user)
+    elsif dm_id = params[:dm_id]
+      @messages = Dm.find(dm_id).messages.includes(:user)
+    else
+      @messages = Message.all.includes(:user)
+    end
   end
 
   def show

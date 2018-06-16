@@ -10,7 +10,7 @@ const Auth = ({ component: Component, path, loggedIn, channelId }) => {
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to={`/messages/${channelId}`} />
+      <Redirect to={`/channels/${channelId}`} />
     )
   )} />
 );}
@@ -36,7 +36,6 @@ const protectedLink = ({ path, children, loggedIn, openSession }) => (
 const mapStateToProps = ({ session: { currentUser }}) => {
   const defaultChannel = currentUser && currentUser.default_channel
   // make sure currentUser exists before checking for its channels
-  // debugger
   const channelId = parseInt(localStorage.getItem("currentChannel")) || defaultChannel
   return {
     loggedIn: Boolean(currentUser),

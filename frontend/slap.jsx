@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const preloadedState = {
       session: { currentUser: window.currentUser },
       ui: {
-        currentChannel: window.currentUser.default_channel,
+        currentChannel: {
+          type: 'channel',
+          id: window.currentUser.default_channel,
+        },
         defaultChannel: window.defaultChannel
        }
     };

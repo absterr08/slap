@@ -4,6 +4,31 @@ import MessageIndex from './message_index';
 
 class Channel extends React.Component {
 
+  componentDidMount() {
+    // debugger
+    const id = this.props.match.params.channelId;
+    if (this.props.isDm) {
+      this.props.fetchDmMessages(id);
+    } else {
+      this.props.fetchChannelMessages(id);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // handle messed up url
+    if (!nextProps.match.params.channelId) {
+      // const channelId = parseInt(localStorage.getItem("currentChannel"));
+      // this.props.history.push(`/messages/${channelId}`);
+    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
+      const nextChannel = parseInt(nextProps.match.params.channelId);
+      if (nextProps.match.path === "/channels/:channelId") {
+        this.props.fetchChannelMessages(nextChannel);
+      } else if (nextProps.match.path === "/dms/:channelId") {
+        this.props.fetchDmMessages(nextChannel);
+      }
+    }
+  }
+
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
     console.log('channel render');

@@ -4,6 +4,18 @@ export const fetchMessages = () => (
   })
 );
 
+export const fetchDmMessages = (id) => (
+  $.ajax({
+    url: `/api/dms/${id}/messages`
+  })
+);
+
+export const fetchChannelMessages = (id) => (
+  $.ajax({
+    url: `/api/channels/${id}/messages`
+  })
+);
+
 export const fetchMessage = (messageId) => {
   return $.ajax({
     url: `/api/messages/${messageId}`
@@ -15,8 +27,8 @@ export const createMessage = (message) => {
     method: 'POST',
     url: `/api/messages`,
     data: { message }
-  })
-}
+  });
+};
 
 export const updateMessage = message => (
   $.ajax({

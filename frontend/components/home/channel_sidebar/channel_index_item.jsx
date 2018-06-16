@@ -21,7 +21,7 @@ class ChannelIndexItem extends React.Component {
     const title = channelInfo.name;
     const iconType = "channel-list-item-icon";
     return (
-        <Link to={ `/messages/${channelInfo.id}` } >
+        <Link to={ `/channels/${channelInfo.id}` } >
           <li className="channel-list-item" onClick={this.toggleActive}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
