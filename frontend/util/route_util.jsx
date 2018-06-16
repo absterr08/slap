@@ -35,7 +35,6 @@ const protectedLink = ({ path, children, loggedIn, openSession }) => (
 
 const mapStateToProps = ({ session: { currentUser }}) => {
   const defaultChannel = currentUser && currentUser.default_channel
-  // make sure currentUser exists before checking for its channels
   const channelId = parseInt(localStorage.getItem("currentChannel")) || defaultChannel
   return {
     loggedIn: Boolean(currentUser),

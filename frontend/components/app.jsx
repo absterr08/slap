@@ -14,10 +14,9 @@ import NavBar from './navbar/navbar';
 const App = () => (
   <div className="app">
     <Switch>
-      <ProtectedRoute path="/upload" component={avatarUpload} />
-      <ProtectedRoute exact path="/messages" component={ HomeContainer } />
-      <ProtectedRoute path="/channels/:channelId" component={ HomeContainer } />
-      <ProtectedRoute path="/dms/:channelId" component={ HomeContainer } />
+      <ProtectedRoute exact path="/upload" component={avatarUpload} />
+      <ProtectedRoute exact path="/channels/:channelId" component={ HomeContainer } />
+      <ProtectedRoute exact path="/dms/:channelId" component={ HomeContainer } />
       <Switch>
         <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/signup/:email" component={ SessionFormContainer } />

@@ -4,26 +4,21 @@ import MessageIndex from './message_index';
 
 class Channel extends React.Component {
 
-  componentDidMount() {
-    const id = this.props.match.params.channelId;
-    if (this.props.isDm) {
-      this.props.fetchDmMessages(id);
-    } else {
-      this.props.fetchChannelMessages(id);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
     // handle messed up url
     if (!nextProps.match.params.channelId) {
       // const channelId = parseInt(localStorage.getItem("currentChannel"));
-      // this.props.history.push(`/messages/${channelId}`);
+      // this.props.history.push(`/channels/${defaultChannel}`);
     } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
       const nextChannel = parseInt(nextProps.match.params.channelId);
       if (nextProps.match.path === "/channels/:channelId") {
-        this.props.fetchChannelMessages(nextChannel);
+        this.props.fetchChannelMessages(nextChannel).then(() => {
+          this.props.switchChannel(nextChannel);
+        });
       } else if (nextProps.match.path === "/dms/:channelId") {
-        this.props.fetchDmMessages(nextChannel);
+        this.props.fetchDmMessages(nextChannel).then(() => {
+          this.props.switchDm(nextChannel);
+        });
       }
     }
   }
@@ -62,6 +57,3 @@ class Channel extends React.Component {
 }
 
 export default Channel;
-
-//document.getElementById().scrollTop = 100000
-// call on willReceieve & didUpdate

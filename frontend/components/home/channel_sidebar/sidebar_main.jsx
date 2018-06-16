@@ -6,7 +6,7 @@ import { deleteDm } from '../../../actions/dm_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 import DmIndexItem from './dm_index_item';
-import { selectDms, selectPublicChannels } from '../../../selectors/selectors';
+import { selectDms } from '../../../selectors/selectors';
 
 const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, deleteDm }) => {
   return (

@@ -10,25 +10,16 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 export default class Home extends React.Component {
 
   componentDidMount() {
+    debugger
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
-    this.props.fetchUsers();
+    this.props.fetchUsers().then( () => {
+      this.props.fetchChannelMessages(this.props.currentChannel);
+    });
   }
 
-  // should i put this in channel instead?
   componentWillReceiveProps(nextProps) {
-    // handle messed up url
-    if (!nextProps.match.params.channelId) {
-      // const channelId = parseInt(localStorage.getItem("currentChannel"));
-      // this.props.history.push(`/messages/${channelId}`);
-    } else if (this.props.match.params.channelId !== nextProps.match.params.channelId) {
-      const nextChannel = parseInt(nextProps.match.params.channelId);
-      if (nextProps.match.path === "/channels/:channelId") {
-        this.props.switchChannel(nextChannel);
-      } else if (nextProps.match.path === "/dms/:channelId") {
-        this.props.switchDm(nextChannel);
-      }
-    }
+    debugger
   }
 
   render() {

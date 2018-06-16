@@ -4,14 +4,11 @@ import { Link, withRouter } from 'react-router-dom';
 import { selectOtherUsernames} from '../../../selectors/selectors';
 
 class DmIndexItem extends React.Component {
-
   isCurrentChannel() {
     const { type, id } = this.props.currentChannel;
     if (type == "dm" && id == this.props.dm.id) return true;
     return false;
   }
-
-  // onclick push to history
 
   deleteChannel() {
     this.props.deleteDm(this.props.dm.id).then(() =>
