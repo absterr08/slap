@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 class ChannelIndexItem extends React.Component {
 
-  toggleActive(e) {
-    $('.selected-li').removeClass('selected-li');
-    $(e.currentTarget).addClass('selected-li');
+  isCurrentChannel() {
+    const { type, id } = this.props.currentChannel;
+    if (type == "channel" && id == this.props.channel.id) return true;
+    return false;
   }
 
   deleteChannel() {
@@ -20,9 +22,13 @@ class ChannelIndexItem extends React.Component {
     let deleteButton = <div></div>;
     const title = channelInfo.name;
     const iconType = "channel-list-item-icon";
+    let className = "channel-list-item";
+    if (this.isCurrentChannel()) {
+      className="channel-list-item selected-li";
+    }
     return (
         <Link to={ `/channels/${channelInfo.id}` } >
-          <li className="channel-list-item" onClick={this.toggleActive}>
+          <li className={className}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
               <div className="channel-list-item-name">{title}</div>
@@ -33,5 +39,10 @@ class ChannelIndexItem extends React.Component {
     );
   }
 }
-
-export default withRouter(ChannelIndexItem);
+const mapStateToProps = (state, ownProps) => {
+  return {
+    defaultChannel: state.ui.defaultChannel,
+    currentChannel: state.ui.currentChannel
+  };
+};
+export default withRouter(connect(mapStateToProps, null)(ChannelIndexItem));

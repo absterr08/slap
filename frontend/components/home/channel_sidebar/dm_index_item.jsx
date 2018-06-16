@@ -5,13 +5,15 @@ import { selectOtherUsernames} from '../../../selectors/selectors';
 
 class DmIndexItem extends React.Component {
 
-  toggleActive(e) {
-    $('.selected-li').removeClass('selected-li');
-    $(e.currentTarget).addClass('selected-li');
+  isCurrentChannel() {
+    const { type, id } = this.props.currentChannel;
+    if (type == "dm" && id == this.props.dm.id) return true;
+    return false;
   }
 
+  // onclick push to history
+
   deleteChannel() {
-    // TODO: redirect to default after delete
     this.props.deleteDm(this.props.dm.id).then(() =>
       this.props.history.push(`/channels/${this.props.defaultChannel}`
     ));
@@ -22,9 +24,13 @@ class DmIndexItem extends React.Component {
       const title = this.props.otherUsernames;
       const iconType = "dm-list-item-icon";
       const deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>;
+      let className = "channel-list-item";
+      if (this.isCurrentChannel()) {
+        className="channel-list-item selected-li";
+      }
     return (
         <Link to={ `/dms/${dmInfo.id}` } >
-          <li className="channel-list-item" onClick={this.toggleActive}>
+          <li className={className}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
               <div className="channel-list-item-name">{title}</div>
@@ -39,7 +45,8 @@ class DmIndexItem extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     otherUsernames: selectOtherUsernames(state, ownProps.dm).join(', '),
-    defaultChannel: state.ui.defaultChannel
+    defaultChannel: state.ui.defaultChannel,
+    currentChannel: state.ui.currentChannel
   };
 };
 
