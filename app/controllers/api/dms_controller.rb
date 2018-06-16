@@ -22,7 +22,7 @@ class Api::DmsController < ApplicationController
 
   def destroy
     Dm.deactivate!(params[:id], current_user.id)
-    render json: {'yes': 'yes'}, status: 200
+    render json: {defaultChannel: current_user.channels.first.id}, status: 200
   end
 
   def dm_params

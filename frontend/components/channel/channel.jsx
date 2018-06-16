@@ -5,7 +5,6 @@ import MessageIndex from './message_index';
 class Channel extends React.Component {
 
   componentDidMount() {
-    // debugger
     const id = this.props.match.params.channelId;
     if (this.props.isDm) {
       this.props.fetchDmMessages(id);

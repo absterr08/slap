@@ -4,6 +4,7 @@ export const RECEIVE_DMS = "RECEIVE_DMS";
 export const RECEIVE_DM = "RECEIVE_DM";
 export const REMOVE_DM = "REMOVE_DM";
 export const SWITCH_DM = "SWITCH_DM";
+const SWITCH_CHANNEL = "SWITCH_CHANNEL";
 
 const receiveDms = dms => {
   return {
@@ -46,5 +47,7 @@ export const createDm = dm => dispatch => (
 );
 
 export const deleteDm = dmId => dispatch => (
-  DmApiUtil.deleteDm(dmId).then( (stuff) => { console.log(stuff, "heyyyyyyy"); return dispatch(removeDm(dmId)); })
+  DmApiUtil.deleteDm(dmId).then( (defaultChannel) => {
+    dispatch(removeDm(dmId));
+  })
 );

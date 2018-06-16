@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
 import { RECEIVE_CHANNEL, REMOVE_CHANNEL, SWITCH_CHANNEL, SWITCH_DM } from '../../actions/channel_actions';
+import { RECEIVE_DM } from '../../actions/dm_actions';
 import { RECEIVE_CURRENT_USER, LOGOUT} from '../../actions/session_actions';
 
 
@@ -9,6 +10,8 @@ export default (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CHANNEL:
       return { type: 'channel', id: action.channel.id };
+    case RECEIVE_DM:
+      return { type: 'dm', id: action.dm.id };
     case SWITCH_CHANNEL:
       return { type: 'channel', id: action.channelId };
     case SWITCH_DM:

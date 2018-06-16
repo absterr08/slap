@@ -12,9 +12,9 @@ class DmIndexItem extends React.Component {
 
   deleteChannel() {
     // TODO: redirect to default after delete
-    this.props.deleteDm(this.props.dm.id);
-    // .then( () =>
-    // this.props.history.push(`/messages/${this.props.defaultChannel}`))
+    this.props.deleteDm(this.props.dm.id).then(() =>
+      this.props.history.push(`/channels/${this.props.defaultChannel}`
+    ));
   }
 
   render() {
@@ -38,7 +38,8 @@ class DmIndexItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    otherUsernames: selectOtherUsernames(state, ownProps.dm).join(', ')
+    otherUsernames: selectOtherUsernames(state, ownProps.dm).join(', '),
+    defaultChannel: state.ui.defaultChannel
   };
 };
 

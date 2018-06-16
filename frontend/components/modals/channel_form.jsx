@@ -54,7 +54,7 @@ class ChannelForm extends React.Component {
       this.props.createChannel(this.state).then(
         (channelAction) => {
           channelId = channelAction.channel.id;
-          this.props.history.push(`/messages/${ channelId }`);
+          this.props.history.push(`/channels/${ channelId }`);
         }
       ).then(() => {
         createChannelSubscription(channelId, this.props.addMessage.bind(this));
