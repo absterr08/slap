@@ -14,8 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     messages: state.entities.messages,
     user: state.session.currentUser,
     isDm: channel.is_dm,
-    otherUsernames: selectOtherUsernames(state, channel),
-    defaultChannel: state.ui.defaultChannel
+    otherUsernames: selectOtherUsernames(state, channel)
   };
 };
 

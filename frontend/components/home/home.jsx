@@ -10,16 +10,11 @@ import { createChannelSubscriptions } from '../../util/channel_api_util';
 export default class Home extends React.Component {
 
   componentDidMount() {
-    debugger
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
     this.props.fetchUsers().then( () => {
       this.props.fetchChannelMessages(this.props.currentChannel);
     });
-  }
-
-  componentWillReceiveProps(nextProps) {
-    debugger
   }
 
   render() {
