@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 import DMForm from './DM_form';
-import { selectOtherUsers, selectSearchedUsers } from '../../selectors/user_selectors';
+import { selectSearchedUsers } from '../../selectors/user_selectors';
+import { selectOtherUsers } from '../../selectors/selectors';
 import { receiveNewChannelModal } from '../../actions/modal_actions';
-import { createChannel } from '../../actions/channel_actions';
+import { createDm } from '../../actions/dm_actions';
 import { fetchUsers, searchUsers } from '../../actions/user_actions';
 import { receiveMessage } from '../../actions/message_actions';
 import UserIndexItem from './user_index_item';
@@ -26,7 +27,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => (
   {
     toggleModal: () => dispatch(receiveNewChannelModal("dm")),
-    createChannel: channel => dispatch(createChannel(channel)),
+    createDm: dm => dispatch(createDm(dm)),
     fetchUsers: () => dispatch(fetchUsers()),
     addMessage: message => dispatch(receiveMessage(message)),
     searchUsers: query => dispatch(searchUsers(query))

@@ -56,7 +56,7 @@ export default class DMForm extends React.Component {
     this.setState({search: e.target.value},
       () => this.timeout = setTimeout(() => {
         this.props.searchUsers(this.state.search).then(
-        () => this.setState({searchedUsers: this.props.searchedUsers}))
+        () => this.setState({searchedUsers: this.props.searchedUsers}));
       }, 500)
     );
   }
@@ -80,7 +80,7 @@ export default class DMForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (values(this.state.users)[0]) {
+    if (values(this.state.selectedUsers)[0]) {
 
       const dm = {is_dm: true,
         users: Object.keys(this.state.selectedUsers),

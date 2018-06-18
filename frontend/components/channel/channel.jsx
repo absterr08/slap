@@ -40,8 +40,8 @@ class Channel extends React.Component {
       <div className="channel-container">
         <div className="channel-header">
           <div className="channel-header-content">
-            {icon}
-            <div>{this.props.title}</div>
+            <div className={iconType}></div>
+            <div>{title}</div>
           </div>
           <div className="channel-header-description">
             {description}
