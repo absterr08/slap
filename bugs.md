@@ -6,6 +6,7 @@
 
 
 
+
 #TODOs
   * move Message.create from #speak to messages#create
   * fix refreshing from leaving current channel and going to default

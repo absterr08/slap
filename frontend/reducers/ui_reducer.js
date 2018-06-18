@@ -5,6 +5,7 @@ import searchedUsers from './ui/users_search_reducer';
 
 export default combineReducers({
   currentChannel,
-  modals,
-  searchedUsers
+  searchedUsers,
+  defaultChannel: (state = null, action) => state,
+  modals
 });

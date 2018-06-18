@@ -28,4 +28,8 @@ npm-debug.log
 # Ignore test files
 test/*
 
-config/application.yml
+* Dont post credentials!
+credentials.csv
+
+# Ignore application configuration
+/config/application.yml

@@ -15,14 +15,18 @@ class Api::UsersController < ApplicationController
   def create_guest_user
     @user = User.create_guest
     @user.set_img_url
-    @user.channels = Channel.where(is_dm: false)
+    @user.channels = Channel.all
     login(@user)
     render partial: 'api/users/current_user', locals: { user: @user }
   end
 
-
   def index
     @users = User.all
+  end
+
+  def current_user_channels_and_dms
+    @channels = current_user.channels
+    @dms = current_user.active_dms
   end
 
   def show
@@ -33,6 +37,17 @@ class Api::UsersController < ApplicationController
     query = params[:query]
     @users = User.search_excluding_id(query, current_user.id)
     render json: @users.map(&:id)
+  end
+
+  def update
+    @user = User.find(params[:id])
+    render(json: ["prohibited"], status: 401) unless @user == current_user
+    @user.avatar = params[:user][:avatar]
+    if @user.save
+      render(json: ["nice"])
+    else
+      render json: @user.errors.full_messages, status: 422
+    end
   end
 
   private

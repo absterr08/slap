@@ -3,10 +3,10 @@ import * as ChannelApiUtil from '../util/channel_api_util';
 export const RECEIVE_CHANNELS = "RECEIVE_CHANNELS";
 export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
-export const CHANGE_CHANNEL = "CHANGE_CHANNEL";
+export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
+export const SWITCH_DM = "SWITCH_DM";
 
 const receiveChannels = channels => {
-  // debugger
   return {
     type: RECEIVE_CHANNELS,
     channels
@@ -14,26 +14,32 @@ const receiveChannels = channels => {
 };
 
 const receiveChannel = channel => {
-  // debugger
   return {
     type: RECEIVE_CHANNEL,
     channel
-  }
-;}
-
-export const changeChannel = channelId => {
-  return {
-    type: CHANGE_CHANNEL,
-    channelId
-  }
-}
+  };
+};
 
 const removeChannel = channel => {
   return {
     type: REMOVE_CHANNEL,
     channel
-  }
-}
+  };
+};
+
+export const switchChannel = (channelId) => {
+  return {
+    type: SWITCH_CHANNEL,
+    channelId
+  };
+};
+
+export const switchDm = (channelId) => {
+  return {
+    type: SWITCH_DM,
+    channelId
+  };
+};
 
 export const fetchChannels = () => dispatch => (
   ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))

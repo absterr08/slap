@@ -12,6 +12,13 @@ class User < ApplicationRecord
   has_many :channel_subscriptions
   has_many :channels,
     through: :channel_subscriptions
+  has_many :dm_subscriptions
+  has_many :dms,
+    through: :dm_subscriptions
+  # has_and_belongs_to_many :channels
+
+  # has_attached_file :avatar, default_url: "/images/:style/missing.png"
+  # validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   attr_reader :password
 
@@ -71,6 +78,19 @@ class User < ApplicationRecord
     lastId = User.last ? User.last.id : 0
     self.img_url ||= ((lastId % 16) + 1).to_s
     self.save!
+  end
+
+  def is_admin?
+    # self.is_admin
+    true #lol
+  end
+
+  def inactive_dms
+    self.dms.where(active: false)
+  end
+
+  def active_dms
+    Dm.active_user_dms(id)
   end
 
 end

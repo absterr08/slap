@@ -14,14 +14,13 @@ const mapStateToProps = (state) => {
   const selector = selectOtherUsers;
   const allOtherUsers = selectOtherUsers(state);
   const searchedUsers = selectSearchedUsers(state);
-  debugger
   return {
     render: state.ui.modals.newDM,
     channelId: state.ui.currentChannel.id,
     allOtherUsers,
     searchedUsers,
     currentUser: state.session.currentUser
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => (

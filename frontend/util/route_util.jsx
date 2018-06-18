@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Route, Redirect, withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter, Link } from 'react-router-dom';
 
-const Auth = ({ component: Component, path, loggedIn, defaultChannel }) => (
+import { receiveNewChannelModal } from '../actions/modal_actions';
+
+const Auth = ({ component: Component, path, loggedIn, channelId }) => {
+  return (
   <Route path={path} render={(props) => (
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to={`/messages/${defaultChannel}`} />
+      <Redirect to={`/channels/${channelId}`} />
     )
   )} />
-);
+);}
 
 const Protected = ({ component: Component, path, loggedIn }) => (
   <Route path={path} render={(props) => (
@@ -22,15 +25,28 @@ const Protected = ({ component: Component, path, loggedIn }) => (
   )} />
 );
 
-const mapStateToProps = ({session: {currentUser}}) => {
-  // make sure currentUser exists before checking for its channels
+const protectedLink = ({ path, children, loggedIn, openSession }) => (
+  loggedIn ? (
+    <Link to={path}>{children}</Link>
+  ) : (
+    <button onClick={openSessionModal}>{children}</button>
+  )
+)
+
+const mapStateToProps = ({ session: { currentUser }}) => {
+  const defaultChannel = currentUser && currentUser.default_channel
+  const channelId = parseInt(localStorage.getItem("currentChannel")) || defaultChannel
   return {
     loggedIn: Boolean(currentUser),
-    defaultChannel: currentUser && currentUser.defaultChannel
+    channelId
   }
-}
-;
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openDmModal: () => dispatch(receiveNewChannelModal("dm"))
+  }
+};
 
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth));
-
 export const ProtectedRoute = withRouter(connect(mapStateToProps, null)(Protected));

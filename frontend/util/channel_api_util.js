@@ -23,41 +23,26 @@ export const deleteChannel = (channelId) => (
     method:"DELETE",
     url:`api/channels/${channelId}`
   })
-)
+);
 
-// probably bad practice to put this here since addMessage is dispatching stuff?
+// dilemma: have one subscription for all channels? or one subscription per channel?
+// one per channel annoying because every message broadcasts to every instance of room_channel
+
 export const createChannelSubscriptions = (channels, addMessage) => {
-  // debugger
-  if (typeof App !== 'undefined'){
-    channels.forEach(channel => {
-        App[`room${channel.id}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channel.id}, {
-          connected: function() {},
-          disconnected: function() {},
-          received: function(data) {
-            const messageChannelId = JSON.parse(data.message).channel_id;
-            const channelId = JSON.parse(this.identifier).room;
-            if (messageChannelId === channelId) {
-              addMessage(JSON.parse(data['message']));
-            }
-          },
-          speak: function(message) {
-            return this.perform('speak', {
-              message: message
-            });
-          }
-        });
-      }
-    );
-  }
+  channels.forEach( channel => {
+      createChannelSubscription(channel.id, addMessage);
+    }
+  );
 };
 
-export const createChannelSubscription = (channelId, addMessage)  => {
-  if (typeof App !== 'undefined'){
-      App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
-        connected: function() {},
-        disconnected: function() {},
+export const createChannelSubscription = (channelId, addMessage) => {
+  App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         received: function(data) {
-          addMessage(JSON.parse(data['message']));
+          const messageChannelId = JSON.parse(data.message).messageable_id;
+          const channelId = JSON.parse(this.identifier).room; //necessary???
+          if (messageChannelId === channelId) {
+            addMessage(JSON.parse(data.message));
+          }
         },
         speak: function(message) {
           return this.perform('speak', {
@@ -65,8 +50,7 @@ export const createChannelSubscription = (channelId, addMessage)  => {
           });
         }
       });
-    }
-};
+    };
 //
 // export const selectDmNames = (dm, username) => {
 //   const selectedNames = []

@@ -1,32 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { selectDmUsernames } from '../../../selectors/user_selectors';
-
 
 class ChannelIndexItem extends React.Component {
-
-  toggleActive(e) {
-    // move this logic outside
-    $('.selected-li').removeClass('selected-li');
-    $(e.currentTarget).addClass('selected-li');
-  }
-
-
-
-  deleteChannel() {
-    // TODO: only redirect if actually on the dm that ur deleting
-    this.props.deleteChannel(this.props.channel.id).then( () =>
-    this.props.history.push(`/messages/${this.props.defaultChannel}`))
+  isCurrentChannel() {
+    const { type, id } = this.props.currentChannel;
+    if (type == "channel" && id == this.props.channel.id) return true;
+    return false;
   }
 
   render() {
-    const deleteButton = this.props.channel.is_dm
-      ? <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>
-      : <div></div>
+    const channelInfo = this.props.channel;
+    let deleteButton = <div></div>;
+    const title = channelInfo.name;
+    const iconType = "channel-list-item-icon";
+    let className = "channel-list-item";
+    if (this.isCurrentChannel()) {
+      className="channel-list-item selected-li";
+    }
     return (
-        <Link to={ `/messages/${this.props.channel.id}` } >
-          <li className="channel-list-item" onClick={ this.toggleActive }>
+        <Link to={ `/channels/${channelInfo.id}` } >
+          <li className={className}>
             <div className="channel-list-item-container">
               <div className={this.props.iconType}></div>
               <div className="channel-list-item-name">{this.props.title}</div>
@@ -34,18 +28,15 @@ class ChannelIndexItem extends React.Component {
             {deleteButton}
           </li>
         </Link>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
-  const title = ownProps.title
-  ? ownProps.title
-  : selectDmUsernames(state, ownProps.channel)
   return {
-    title
-  }
-}
+    defaultChannel: state.ui.defaultChannel,
+    currentChannel: state.ui.currentChannel
+  };
+};
 
 export default withRouter(connect(mapStateToProps, null)(ChannelIndexItem));

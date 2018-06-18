@@ -10,21 +10,18 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     const addMessage = this.props.addMessage.bind(this);
-    this.props.fetchUsers().then(
-      () => this.props.fetchMessages().then(
-        () => this.props.fetchChannels().then(
-          () => {
-            createChannelSubscriptions(this.props.channels, addMessage);
-            this.props.changeChannel(this.props.match.params.channelId);
-          }
-        )
-      )
-    );
+    this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
+    this.props.fetchUsers().then( () => {
+      this.props.fetchChannelMessages(this.props.currentChannel);
+    });
   }
 
   render() {
-    const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>
-    const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>
+    if (this.props.loading) {
+      return <div>Loading...</div>;
+    }
+    const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
+    const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>;
 
     return (
       <div className="main-container">
@@ -33,6 +30,6 @@ export default class Home extends React.Component {
         <Sidebar />
         <ChannelContainer />
       </div>
-    )
+    );
   }
 }

@@ -17,7 +17,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
   let store;
   if (window.currentUser) {
-    const preloadedState = { session: {currentUser: window.currentUser } };
+    const preloadedState = {
+      session: { currentUser: window.currentUser },
+      ui: {
+        currentChannel: {
+          type: 'channel',
+          id: window.currentUser.default_channel,
+        },
+        defaultChannel: window.defaultChannel
+       }
+    };
     store = configureStore(preloadedState);
     delete window.currentUser;
   } else {

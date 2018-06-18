@@ -1,22 +1,25 @@
-import { fetchMessages, receiveMessage } from '../../actions/message_actions';
-import { fetchChannels, fetchChannel, changeChannel} from '../../actions/channel_actions';
-import { fetchUsers} from '../../actions/user_actions';
+import { fetchChannelMessages, receiveMessage } from '../../actions/message_actions';
+import { fetchChannels, fetchChannel, switchChannel, switchDm} from '../../actions/channel_actions';
+import { fetchUsers, fetchChannelsAndDms } from '../../actions/user_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Home from './home';
-const mapStateToProps = (state) => (
+
+const mapStateToProps = (state, ownProps) => (
   {
+    loading: values(state.entities.channels)[0] === undefined,
     channels: values(state.entities.channels),
+    dms: values(state.entities.dms),
     renderChannelForm: state.ui.modals.newChannel,
-    renderDMForm: state.ui.modals.newDM
+    renderDMForm: state.ui.modals.newDM,
+    currentChannel: state.ui.currentChannel.id
   }
 );
+
 const mapDispatchToProps = (dispatch) => (
   {
-    fetchChannels: () => dispatch(fetchChannels()),
-    fetchChannel: id => dispatch(fetchChannel(id)),
-    changeChannel: id => dispatch(changeChannel(id)),
-    fetchMessages: () => dispatch(fetchMessages()),
+    fetchChannelsAndDms: () => dispatch(fetchChannelsAndDms()),
+    fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
     fetchUsers: () => dispatch(fetchUsers()),
     addMessage: message => dispatch(receiveMessage(message))
   }

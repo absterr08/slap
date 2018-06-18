@@ -1,20 +1,27 @@
 import merge from 'lodash/merge';
-import { CHANGE_CHANNEL } from '../../actions/channel_actions';
-import { RECEIVE_MESSAGE } from '../../actions/message_actions';
-import { RECEIVE_CURRENT_USER } from '../../actions/session_actions'
-import { REMOVE_CHANNEL } from '../../actions/channel_actions'
+import { RECEIVE_CHANNEL, REMOVE_CHANNEL, SWITCH_CHANNEL, SWITCH_DM } from '../../actions/channel_actions';
+import { RECEIVE_DM } from '../../actions/dm_actions';
+import { RECEIVE_CURRENT_USER, LOGOUT} from '../../actions/session_actions';
 
 
 export default (state = null, action) => {
   Object.freeze(state);
   let currentChannel = {};
   switch (action.type) {
-    case CHANGE_CHANNEL:
-      return action.channelId;
-    // case REMOVE_CHANNEL:
-      // maybe pass in the default channel here?
-      // or do nothing bc the redirect already happens elsewhere right
+    case RECEIVE_CHANNEL:
+      return { type: 'channel', id: action.channel.id };
+    case RECEIVE_DM:
+      return { type: 'dm', id: action.dm.id };
+    case SWITCH_CHANNEL:
+      return { type: 'channel', id: action.channelId };
+    case SWITCH_DM:
+      return { type: 'dm', id: action.channelId };
+    case REMOVE_CHANNEL:
+      return { type: 'channel', id: action.channel.defaultChannel }; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
     case RECEIVE_CURRENT_USER:
+      // localStorage.removeItem("currentChannel")
+      return { type: 'channel', id: action.user.default_channel };
+    case LOGOUT:
       return null;
     default:
       return state;

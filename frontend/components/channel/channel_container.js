@@ -1,30 +1,30 @@
-import { changeChannel } from '../../actions/channel_actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { selectCurrentChannelMessages } from '../../selectors/message_selectors';
-import { selectCurrentChannel } from '../../selectors/channel_selectors';
-import { selectChannelUsernames, selectDmUsernames } from '../../selectors/user_selectors';
+import { values } from 'lodash';
+import { selectCurrentChannelMessages, selectOtherUsernames, selectCurrentChannel } from '../../selectors/selectors';
+import { fetchMessages, receiveMessage, fetchDmMessages, fetchChannelMessages } from '../../actions/message_actions';
+import { switchChannel, switchDm } from '../../actions/channel_actions';
 import Channel from './channel';
 
-
 const mapStateToProps = (state, ownProps) => {
-    const channel = selectCurrentChannel(state);
-    const user = state.session.currentUser.user;
-    const users = channel.is_dm ? null : selectChannelUsernames(state)
-    const title = channel.is_dm ? selectDmUsernames(state) : channel.name;
+  const channel = selectCurrentChannel(state);
+  if (!channel) return { loading: true };
   return {
     channel,
-    title,
-    user,
-    messages: selectCurrentChannelMessages(state),
-  }
+    messages: state.entities.messages,
+    user: state.session.currentUser,
+    isDm: channel.is_dm,
+    otherUsernames: selectOtherUsernames(state, channel)
+  };
 };
 
-const mapDispatchToProps = (dispatch) => (
-  {
-    changeChannel: id => dispatch(changeChannel(id)),
-  }
-);
-
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    fetchChannelMessages: (id) => dispatch(fetchChannelMessages(id)),
+    fetchDmMessages: id => dispatch(fetchDmMessages(id)),
+    switchChannel: id => dispatch(switchChannel(id)),
+    switchDm: id => dispatch(switchDm(id))
+  };
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Channel));

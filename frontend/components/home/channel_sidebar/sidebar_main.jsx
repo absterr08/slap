@@ -1,14 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchChannels, deleteChannel } from '../../../actions/channel_actions';
-import { receiveNewChannelModal } from '../../../actions/modal_actions';
-import ChannelIndexItem from './channel_index_item';
-import { selectDms, selectPublicChannels } from '../../../selectors/channel_selectors';
-import { selectChannelUsernames, selectDmUsernames } from '../../../selectors/user_selectors';
 import ChannelSearch from './channel_search';
 
-const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) => {
+import { values } from 'lodash';
+import { deleteChannel } from '../../../actions/channel_actions';
+import { deleteDm } from '../../../actions/dm_actions';
+import { receiveNewChannelModal } from '../../../actions/modal_actions';
+import ChannelIndexItem from './channel_index_item';
+import DmIndexItem from './dm_index_item';
+import { selectDms } from '../../../selectors/selectors';
 
+const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, deleteDm }) => {
   return (
     <ul className="channel-list">
       <ChannelSearch />
@@ -36,12 +38,9 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) 
 
       <ul className="channel-sublist">
         { dms.map((dm, idx) => {
-          return <ChannelIndexItem key={ dm.id }
-            channel={ dm }
-            iconType={ "dm-list-item-icon" }
-            deleteChannel={ deleteChannel }
-            currentUser={ currentUser.user }
-            defaultChannel={ currentUser.defaultChannel} />
+          return <DmIndexItem key={ dm.id }
+            dm={ dm }
+            deleteDm={ deleteDm } />
           })
         }
       </ul>
@@ -49,23 +48,20 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel}) 
   )
 }
 
-
 const mapStateToProps = state => {
-  const currentUser = state.session.currentUser;
   return {
-    channels: selectPublicChannels(state),
-    dms: selectDms(state),
-    currentUser
+    channels: Object.values(state.entities.channels),
+    dms: Object.values(state.entities.dms),
+    currentUser: state.session.currentUser
   }
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchChannels: () => dispatch(fetchChannels()),
     toggleModal: modalType => () => dispatch(receiveNewChannelModal(modalType)),
-    deleteChannel: id => dispatch(deleteChannel(id))
+    deleteChannel: id => dispatch(deleteChannel(id)),
+    deleteDm: id => dispatch(deleteDm(id))
   }
-}
-
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SidebarMain);

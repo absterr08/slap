@@ -4,14 +4,10 @@ class Api::ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.find(params[:id])
+    @channel = Channel.find(params[:id]).includes(:users, :messages)
   end
 
   def create
-    if params[:channel][:is_dm] === "true"
-      create_dm
-      return
-    end
     @channel = Channel.new(channel_params)
     @channel.users = User.all
     if @channel.save
@@ -21,31 +17,22 @@ class Api::ChannelsController < ApplicationController
     end
   end
 
-  def create_dm
-    userIds = params[:channel][:users].map {|id| id.to_i}
-    @channel = Channel.new
-    @channel.is_dm = true
-    @channel.name = "room#{Channel.last.id + 1}"
-    if @channel.save
-      userIds.each do |id|
-        ChannelSubscription.create(user_id: id, channel_id: @channel.id)
-      end
-      render :show
-    else
-      render json: @channel.errors.full_messages.join(', ')
-    end
-  end
-
   def destroy
     @channel = Channel.find(params[:id])
-    if @channel.destroy
-      render :show
+    if @channel
+      if current_user.is_admin?
+        @channel.destroy
+        render :show
+      else
+        render json: "can't do dat", status: 501 # unauthorized?
+      end
     else
-      render json: "channel does not exist!"
+      render json: "channel does not exist!", status: 404
     end
   end
 
+  private
   def channel_params
-    params.require(:channel).permit(:name, :description, :is_dm, :users)
+    params.require(:channel).permit(:name, :description, :users)
   end
 end

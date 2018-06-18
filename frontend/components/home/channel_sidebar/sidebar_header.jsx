@@ -11,14 +11,14 @@ const ChannelSidebar = ({ username, logout }) => {
           <div className="sidebar-header-green-dot"></div>
           <h1 className="username">{username}</h1>
         </div>
-        <button className="logout" onClick={logout}>Log Out</button>
+        <button className="logout" onClick={ logout }>Log Out</button>
       </div>
     )
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    username: state.session.currentUser.user.username
+    username: state.session.currentUser.username
   };
 };
 
