@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ui: {
         currentChannel: {
           type: 'channel',
-          id: window.currentUser.default_channel,
+          id: window.currentUser.defaultChannel,
         },
         defaultChannel: window.defaultChannel
        }

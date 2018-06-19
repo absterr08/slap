@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
     if @user.save
       @user.set_img_url
       login(@user)
-      render partial: 'api/users/current_user', locals: { user: @user }
+      render partial: 'api/users/user', locals: { user: @user }
     else
       render json: @user.errors.full_messages.join(", "), status: 401
     end
@@ -17,7 +17,7 @@ class Api::UsersController < ApplicationController
     @user.set_img_url
     @user.channels = Channel.all
     login(@user)
-    render partial: 'api/users/current_user', locals: { user: @user }
+    render partial: 'api/users/user', locals: { user: @user }
   end
 
   def index

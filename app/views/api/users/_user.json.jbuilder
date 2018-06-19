@@ -1,2 +1,2 @@
 json.extract! user, :id, :username, :img_url
-json.default_channel Channel.first.id
+json.defaultChannel Channel.first.id

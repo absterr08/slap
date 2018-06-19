@@ -20,7 +20,7 @@ export default (state = null, action) => {
       return { type: 'channel', id: action.channel.defaultChannel }; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
     case RECEIVE_CURRENT_USER:
       // localStorage.removeItem("currentChannel")
-      return { type: 'channel', id: action.user.default_channel };
+      return { type: 'channel', id: action.user.defaultChannel };
     case LOGOUT:
       return null;
     default:
