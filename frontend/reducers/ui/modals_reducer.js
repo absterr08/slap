@@ -21,7 +21,7 @@ export default (state = defaultState, action) => {
     case RECEIVE_NEW_DM_MODAL:
       return merge({}, state, { newDM: !state.newDM });
     case OPEN_CHANNEL_SEARCH_MODAL:
-      return merge(defaultState, { channelSearch: true });
+      return merge({}, defaultState, { channelSearch: true });
     case CLOSE_CHANNEL_SEARCH_MODAL:
       return merge(defaultState, { channelSearch: false });
     case RECEIVE_CURRENT_USER:

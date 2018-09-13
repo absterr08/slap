@@ -1,0 +1,19 @@
+.channel-search-modal-background {
+  position: absolute;
+/* top: 20vh; */
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.4);
+}
+
+.channel-search-modal > input {
+  height: 35px;
+  border-radius: 5px;
+  width: 580px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+  position: absolute;
+  top: 20vh;
+  margin: auto;
+  right: 0;
+  left: 0;
+}

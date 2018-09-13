@@ -105,7 +105,7 @@ export default class DMForm extends React.Component {
           <form className="channel-form-container" onSubmit={this.handleSubmit}>
             <h1 className="channel-form-header">Direct messages</h1>
             <input className="channel-form-input"
-              placeHolder="Search users"
+              placeholder="Search users"
               onChange={this.handleInput}
               onKeyDown={this.handleKeyPress}></input>
             <div className= "dm-form-inputs">
