@@ -143,7 +143,16 @@
 }
 
 .channel-search {
+  height: 24px;
+  width: 90%;
+  padding-left: 5px;
   font-size: 13px;
   margin: 10px 5px;
   border-radius: 3px;
+  background: rgb(52,32,50);
+  color: rgb(202,196,201);
+}
+
+.channel-search:hover {
+  background: rgb(42,22,40);
 }
