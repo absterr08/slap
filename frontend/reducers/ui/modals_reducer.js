@@ -10,7 +10,7 @@ import { RECEIVE_CURRENT_USER } from '../../actions/session_actions'
 const defaultState = {
   newChannel: false,
   newDM: false,
-  channelSearch: false
+  channelSearch: true
 };
 
 export default (state = defaultState, action) => {

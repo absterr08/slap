@@ -44,3 +44,9 @@ export const selectCurrentChannel = state => {
     return null;
   }
 };
+
+export const selectSearchedChannels = (state) => {
+  return state.ui.searchedChannels.map((channelId) => {
+    return state.entities.channels[channelId];
+  });
+}

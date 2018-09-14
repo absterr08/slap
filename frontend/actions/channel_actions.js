@@ -5,7 +5,7 @@ export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
 export const SWITCH_DM = "SWITCH_DM";
-export const RECEIVE_CHANNEL_RESULTS = "RECEIVE_CHANNEL_RESULTS";
+export const RECEIVE_SEARCHED_CHANNELS = "RECEIVE_SEARCHED_CHANNELS";
 
 const receiveChannels = channels => {
   return {
@@ -44,7 +44,7 @@ export const switchDm = (channelId) => {
 
 export const receiveChannelResults = channels => {
   return {
-    type: RECEIVE_CHANNEL_RESULTS,
+    type: RECEIVE_SEARCHED_CHANNELS,
     channels
   }
 }
