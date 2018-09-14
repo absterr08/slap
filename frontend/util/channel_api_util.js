@@ -20,10 +20,18 @@ export const createChannel = (channel) => (
 
 export const deleteChannel = (channelId) => (
   $.ajax({
-    method:"DELETE",
-    url:`api/channels/${channelId}`
+    method: "DELETE",
+    url: `api/channels/${channelId}`
   })
 );
+
+export const searchChannels = query => (
+  $.ajax({
+    method: "GET",
+    url: `api/channels/search`,
+    data: { query }
+  })
+)
 
 // dilemma: have one subscription for all channels? or one subscription per channel?
 // one per channel annoying because every message broadcasts to every instance of room_channel

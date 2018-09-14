@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //testing
   window.searchUsers = userActions.searchUsers
+  window.searchChannels = channelActions.searchChannels
 
 
   window.getState = store.getState;

@@ -3,6 +3,11 @@ class Api::ChannelsController < ApplicationController
     @channels = current_user.channels
   end
 
+  def search
+    @channels = Channel.search(params[:query])
+    render :index
+  end
+
   def show
     @channel = Channel.find(params[:id]).includes(:users, :messages)
   end

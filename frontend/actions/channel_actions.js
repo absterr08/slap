@@ -5,6 +5,7 @@ export const RECEIVE_CHANNEL = "RECEIVE_CHANNEL";
 export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
 export const SWITCH_DM = "SWITCH_DM";
+export const RECEIVE_CHANNEL_RESULTS = "RECEIVE_CHANNEL_RESULTS";
 
 const receiveChannels = channels => {
   return {
@@ -41,6 +42,13 @@ export const switchDm = (channelId) => {
   };
 };
 
+export const receiveChannelResults = channels => {
+  return {
+    type: RECEIVE_CHANNEL_RESULTS,
+    channels
+  }
+}
+
 export const fetchChannels = () => dispatch => (
   ChannelApiUtil.fetchChannels().then( channels => dispatch(receiveChannels(channels)))
 );
@@ -56,3 +64,7 @@ export const createChannel = channel => dispatch => (
 export const deleteChannel = channelId => dispatch => (
   ChannelApiUtil.deleteChannel(channelId).then( channel => dispatch(removeChannel(channel)))
 );
+
+export const searchChannels = query => dispatch => (
+  ChannelApiUtil.searchChannels(query).then( results => dispatch(receiveChannelResults(results)))
+)

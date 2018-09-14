@@ -6,4 +6,11 @@ class Channel < ApplicationRecord
   has_many :channel_subscriptions
   has_many :users,
     through: :channel_subscriptions
+
+
+  # define this in ApplicationRecord!
+  def self.search(query)
+    generalized_string = "#{query}%"
+    Channel.where("name like ?", generalized_string)
+  end
 end
