@@ -54,7 +54,7 @@ class ChannelForm extends React.Component {
       this.props.createChannel(this.state).then(
         (channelAction) => {
           channelId = channelAction.channel.id;
-          this.props.history.push(`/channels/${ channelId }`);
+          this.props.history.push(`/messages/${ channelId }`);
         }
       ).then(() => {
         createChannelSubscription(channelId, this.props.addMessage.bind(this));
@@ -76,7 +76,7 @@ class ChannelForm extends React.Component {
           <input className="channel-form-input" onChange={this.handleInput("name")} onKeyUp={this.toggleActive} onKeyDown={this.handleKeyPress}></input>
 
           <p className="channel-form-label">Purpose</p>
-          <input className="channel-form-input"></input>
+          <input className="channel-form-input" onChange={this.handleInput("description")}></input>
 
 {  //        <p>Send invites to:</p>
     //        <input className="channel-form-input"></input

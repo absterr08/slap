@@ -90,7 +90,7 @@ export default class DMForm extends React.Component {
       const addMessage = this.props.addMessage.bind(this);
       this.props.createDm(dm).then( (action) => {
         createChannelSubscription(action.dm.id, addMessage);
-        this.props.history.push(`/dms/${action.dm.id}`);
+        this.props.history.push(`/messages/${action.dm.id}`);
       });
       this.closeModal();
     }
