@@ -8,7 +8,7 @@ import { deleteDm } from '../../../actions/dm_actions';
 import { receiveNewChannelModal } from '../../../actions/modal_actions';
 import ChannelIndexItem from './channel_index_item';
 import DmIndexItem from './dm_index_item';
-import { selectDms } from '../../../selectors/selectors';
+import { selectDms, subscribedChannels } from '../../../selectors/selectors';
 
 const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, deleteDm }) => {
   return (
@@ -50,7 +50,7 @@ const SidebarMain = ({ channels, dms, toggleModal, currentUser, deleteChannel, d
 
 const mapStateToProps = state => {
   return {
-    channels: Object.values(state.entities.channels),
+    channels: subscribedChannels(state),
     dms: Object.values(state.entities.dms),
     currentUser: state.session.currentUser
   }
