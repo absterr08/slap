@@ -1,20 +1,14 @@
-export const fetchMessages = () => (
-  $.ajax({
-    url: '/api/messages'
+export const fetchMessages = (type, id) => {
+  let route;
+  if (type === 'Dm') {
+    route = 'dms';
+  } else if (type === 'Channel') {
+    route = 'channels';
+  }
+  return $.ajax({
+    url: `/api/${route}/${id}/messages`
   })
-);
-
-export const fetchDmMessages = (id) => (
-  $.ajax({
-    url: `/api/dms/${id}/messages`
-  })
-);
-
-export const fetchChannelMessages = (id) => (
-  $.ajax({
-    url: `/api/channels/${id}/messages`
-  })
-);
+};
 
 export const fetchMessage = (messageId) => {
   return $.ajax({

@@ -9,18 +9,17 @@ export default (state = null, action) => {
   let currentChannel = {};
   switch (action.type) {
     case RECEIVE_CHANNEL:
-      return { type: 'channel', id: action.channel.id };
+      return { type: 'Channel', id: action.channel.id };
     case RECEIVE_DM:
-      return { type: 'dm', id: action.dm.id };
+      return { type: 'Dm', id: action.dm.id };
     case SWITCH_CHANNEL:
-      return { type: 'channel', id: action.channelId };
-    case SWITCH_DM:
-      return { type: 'dm', id: action.channelId };
+      return { type: action.channelType, id: action.channelId };
+    // case SWITCH_DM:
+    //   return { type: 'Dm', id: action.channelId };
     case REMOVE_CHANNEL:
-      return { type: 'channel', id: action.channel.defaultChannel }; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
+      return { type: 'Channel', id: action.channel.defaultChannel }; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
     case RECEIVE_CURRENT_USER:
-      // localStorage.removeItem("currentChannel")
-      return { type: 'channel', id: action.user.defaultChannel };
+      return { type: 'Channel', id: action.user.defaultChannel };
     case LOGOUT:
       return null;
     default:

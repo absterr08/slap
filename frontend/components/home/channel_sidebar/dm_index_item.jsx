@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { selectOtherUsernames} from '../../../selectors/selectors';
+import { switchChannel } from '../../../actions/channel_actions';
+
 
 class DmIndexItem extends React.Component {
   isCurrentChannel() {
@@ -12,7 +14,7 @@ class DmIndexItem extends React.Component {
 
   deleteChannel() {
     this.props.deleteDm(this.props.dm.id).then(() =>
-      this.props.history.push(`/channels/${this.props.defaultChannel}`
+      this.props.history.push(`/messages/${this.props.defaultChannel}`
     ));
   }
 
@@ -26,7 +28,8 @@ class DmIndexItem extends React.Component {
         className="channel-list-item selected-li";
       }
     return (
-        <Link to={ `/dms/${dmInfo.id}` } >
+        <Link to={`/messages/${dmInfo.id}`}
+          onClick={this.props.switchChannel(dmInfo.id)}>
           <li className={className}>
             <div className="channel-list-item-container">
               <div className={iconType}></div>
@@ -47,4 +50,11 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(DmIndexItem));
+
+const mapDispatchToProps = dispatch => {
+  return {
+    switchChannel: (id) => () => dispatch(switchChannel('Dm', id))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DmIndexItem));

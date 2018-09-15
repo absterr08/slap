@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
       session: { currentUser: window.currentUser },
       ui: {
         currentChannel: {
-          type: 'channel',
+          type: 'Channel',
           id: window.currentUser.defaultChannel,
         },
         defaultChannel: window.defaultChannel

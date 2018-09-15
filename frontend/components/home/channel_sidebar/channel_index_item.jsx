@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { switchChannel } from '../../../actions/channel_actions';
 
 class ChannelIndexItem extends React.Component {
   isCurrentChannel() {
@@ -10,16 +11,17 @@ class ChannelIndexItem extends React.Component {
   }
 
   render() {
-    const channelInfo = this.props.channel;
+    const channel = this.props.channel;
     let deleteButton = <div></div>;
-    const title = channelInfo.name;
+    const title = channel.name;
     const iconType = "channel-list-item-icon";
     let className = "channel-list-item";
     if (this.isCurrentChannel()) {
       className="channel-list-item selected-li";
     }
     return (
-        <Link to={ `/channels/${channelInfo.id}` } >
+        <Link to={`/messages/${channel.id}`}
+          onClick={this.props.switchChannel(channel.channelType, channel.id)}>
           <li className={className}>
             <div className="channel-list-item-container">
               <div className={this.props.iconType}></div>
@@ -39,4 +41,10 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(ChannelIndexItem));
+const mapDispatchToProps = dispatch => {
+  return {
+    switchChannel: (type, id) => () => dispatch(switchChannel(type, id))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChannelIndexItem));

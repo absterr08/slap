@@ -12,9 +12,10 @@ export default class Home extends React.Component {
   componentDidMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
-    this.props.fetchUsers().then( () => {
-      this.props.fetchChannelMessages(this.props.currentChannel);
-    });
+    this.props.fetchUsers()
+    // this.props.fetchUsers().then( () => {
+    //   this.props.fetchChannelMessages(this.props.currentChannel);
+    // });
   }
 
   render() {

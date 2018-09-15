@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { login, guestSignup } from '../../actions/session_actions';
 
 
-const NavBar = ({ guestSignup }) => {
+const NavBar = ({ guestSignup, loggedIn }) => {
+  if (loggedIn) return <div></div>;
 
   return (
     <div className="nav-bar">
@@ -18,6 +19,12 @@ const NavBar = ({ guestSignup }) => {
 };
 
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: Boolean(state.session.currentUser)
+  };
+};
+
 const mapDispatchToProps = dispatch => (
   {
     demoLogin: () => dispatch(login({ username: 'guestUser', password: 'starwars' })),
@@ -25,4 +32,4 @@ const mapDispatchToProps = dispatch => (
   }
 )
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

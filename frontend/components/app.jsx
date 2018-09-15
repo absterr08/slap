@@ -10,20 +10,20 @@ import Splash from './splash/splash';
 import NavBar from './navbar/navbar';
 
 
+// <AuthRoute path="/" component={ NavBar }/>
 
 const App = () => (
   <div className="app">
+    <NavBar />
     <Switch>
       <ProtectedRoute exact path="/upload" component={avatarUpload} />
-      <ProtectedRoute exact path="/channels/:channelId" component={ HomeContainer } />
-      <ProtectedRoute exact path="/dms/:channelId" component={ HomeContainer } />
+      <ProtectedRoute exact path="/messages/:channelId" component={ HomeContainer } />
       <Switch>
         <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/signup/:email" component={ SessionFormContainer } />
-        <AuthRoute exact path="/" component={ Splash } />
+        <AuthRoute path="/" component={ Splash } />
       </Switch>
     </Switch>
-    <AuthRoute path="/" component={ NavBar }/>
   </div>
 );
 

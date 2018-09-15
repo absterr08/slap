@@ -1,5 +1,5 @@
 json.id dm.id
-json.is_dm true
+json.channelType 'Dm'
 
 json.users do
   json.array! dm.users.ids

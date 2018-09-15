@@ -1,5 +1,5 @@
 json.extract! channel, :id, :name, :description
-json.is_dm false
+json.channelType 'Channel'
 json.defaultChannel Channel.first.id
 
 json.users do

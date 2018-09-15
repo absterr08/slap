@@ -36,11 +36,12 @@ export const selectOtherUsernames = (state, channel) => {
 export const selectCurrentChannel = state => {
   const id = state.ui.currentChannel.id;
   const type = state.ui.currentChannel.type;
-  if (type === "dm") {
+  if (type === "Dm") {
     return state.entities.dms[id];
-  } else if (type === "channel") {
+  } else if (type === "Channel") {
     return state.entities.channels[id];
   } else {
+    console.log('type doesnt match Dm or Channel')
     return null;
   }
 };

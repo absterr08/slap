@@ -29,12 +29,21 @@ const removeChannel = channel => {
   };
 };
 
-export const switchChannel = (channelId) => {
+export const switchChannel = (channelType, channelId) => {
+  console.log('switching channel')
   return {
     type: SWITCH_CHANNEL,
+    channelType,
     channelId
   };
 };
+
+// export const switchChannel = (channelId) => {
+//   return {
+//     type: SWITCH_CHANNEL,
+//     channelId
+//   };
+// };
 
 export const switchDm = (channelId) => {
   return {

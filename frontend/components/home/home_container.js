@@ -21,11 +21,10 @@ const mapStateToProps = (state, ownProps) => (
 const mapDispatchToProps = (dispatch) => (
   {
     fetchChannelsAndDms: () => dispatch(fetchChannelsAndDms()),
-    fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
     fetchUsers: () => dispatch(fetchUsers()),
-    closeChannelSearchModal: () => dispatch(closeChannelSearchModal()),
     addMessage: message => dispatch(receiveMessage(message))
   }
 );
+// fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -14,7 +14,7 @@ export default class MessageForm extends React.Component {
 
   handleKeyUp(e) {
     if (e.keyCode == 13){
-      const messageable_type = this.props.isDm ? "Dm" : "Channel";
+      const messageable_type = this.props.channelType;
       const message = {
         body: this.state.body,
         author_id: this.props.user.id,
