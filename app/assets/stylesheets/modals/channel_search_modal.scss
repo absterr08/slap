@@ -13,11 +13,34 @@
   margin: auto;
   right: 0;
   left: 0;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+  background-color: #ffff;
+  border-radius: 5px;
 }
 
 .channel-search-modal > input {
   height: 35px;
-  border-radius: 5px;
   width: 100%;
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.35);
+  background: none;
+  padding: 8px;
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.channel-search-modal > ul {
+  border-top: 1px solid #e8e8e8;
+}
+
+.channel-search-modal > input:focus {
+  border: none;
+}
+
+.channel-results > li {
+  padding: 7px;
+  padding-left: 15px;
+}
+
+.channel-results > li:hover {
+  background: #2d9ee0;
+  color: #fff;
 }

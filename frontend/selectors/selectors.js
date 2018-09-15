@@ -49,4 +49,10 @@ export const selectSearchedChannels = (state) => {
   return state.ui.searchedChannels.map((channelId) => {
     return state.entities.channels[channelId];
   });
-}
+};
+
+export const subscribedChannels = state => {
+  return state.ui.subscribedChannels.map((channelId) => {
+    return state.entities.channels[channelId];
+  });
+};

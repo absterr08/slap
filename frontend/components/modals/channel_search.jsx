@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeChannelSearchModal } from '../../actions/modal_actions';
-import { searchChannels } from '../../actions/channel_actions';
+import { searchChannels, clearSearchedChannels } from '../../actions/channel_actions';
 import Results from './channel_results';
 
 class ChannelSearch extends React.Component {
@@ -11,6 +11,10 @@ class ChannelSearch extends React.Component {
       query: ''
     }
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount(){
+    this.inputRef.focus();
   }
 
   handleChange(e) {
@@ -27,10 +31,15 @@ class ChannelSearch extends React.Component {
 
 
   render() {
+    const searching = this.state.query === '';
     return (
       <div className='channel-search-modal-background' onClick={this.props.closeChannelSearchModal}>
         <div className='channel-search-modal' onClick={e => e.stopPropagation()}>
-          <input placeholder='find a channel!' value={this.state.query} onChange={this.handleChange}/>
+          <input
+            placeholder='find a channel!'
+            value={this.state.query}
+            onChange={this.handleChange}
+            ref={(input) => this.inputRef = input}/>
           <Results />
         </div>
       </div>
@@ -42,7 +51,8 @@ class ChannelSearch extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     searchChannels: query => dispatch(searchChannels(query)),
-    closeChannelSearchModal: () => dispatch(closeChannelSearchModal())
+    closeChannelSearchModal: () => dispatch(closeChannelSearchModal()),
+    clearSearchResults: () => dispatch(clearSearchedChannels())
   }
 }
 

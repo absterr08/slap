@@ -23,7 +23,7 @@ export default (state = defaultState, action) => {
     case OPEN_CHANNEL_SEARCH_MODAL:
       return merge({}, defaultState, { channelSearch: true });
     case CLOSE_CHANNEL_SEARCH_MODAL:
-      return merge(defaultState, { channelSearch: false });
+      return merge({}, defaultState, { channelSearch: false });
     case RECEIVE_CURRENT_USER:
       return defaultState;
     default:

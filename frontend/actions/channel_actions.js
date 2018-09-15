@@ -6,6 +6,7 @@ export const REMOVE_CHANNEL = "REMOVE_CHANNEL";
 export const SWITCH_CHANNEL = "SWITCH_CHANNEL";
 export const SWITCH_DM = "SWITCH_DM";
 export const RECEIVE_SEARCHED_CHANNELS = "RECEIVE_SEARCHED_CHANNELS";
+export const CLEAR_SEARCHED_CHANNELS = "CLEAR_SEARCHED_CHANNELS";
 
 const receiveChannels = channels => {
   return {
@@ -47,6 +48,12 @@ export const receiveChannelResults = channels => {
     type: RECEIVE_SEARCHED_CHANNELS,
     channels
   }
+}
+
+export const clearSearchedChannels = () => {
+  return {
+    type: CLEAR_SEARCHED_CHANNELS
+  };
 }
 
 export const fetchChannels = () => dispatch => (

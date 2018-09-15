@@ -1,6 +1,6 @@
 import { RECEIVE_SEARCHED_USERS } from '../../actions/user_actions';
 
-export default (state = [20, 21], action) => {
+export default (state = [], action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SEARCHED_USERS:
