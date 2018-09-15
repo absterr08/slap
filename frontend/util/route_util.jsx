@@ -34,11 +34,10 @@ const protectedLink = ({ path, children, loggedIn, openSession }) => (
 )
 
 const mapStateToProps = ({ session: { currentUser }}) => {
-  const defaultChannel = currentUser && currentUser.default_channel
-  const channelId = parseInt(localStorage.getItem("currentChannel")) || defaultChannel
+  const defaultChannel = currentUser && currentUser.defaultChannel
   return {
     loggedIn: Boolean(currentUser),
-    channelId
+    channelId: defaultChannel
   }
 };
 
