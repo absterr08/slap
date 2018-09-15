@@ -18,6 +18,7 @@ export const openChannelSearchModal = () => {
 };
 
 export const closeChannelSearchModal = () => {
+  console.log('CLOSE!')
   return {
     type: CLOSE_CHANNEL_SEARCH_MODAL
   };

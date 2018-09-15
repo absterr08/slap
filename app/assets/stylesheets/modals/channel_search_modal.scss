@@ -35,12 +35,12 @@
   border: none;
 }
 
-.channel-results > li {
+.channel-results > a > li {
   padding: 7px;
   padding-left: 15px;
 }
 
-.channel-results > li:hover {
+.channel-results > a > li:hover {
   background: #2d9ee0;
   color: #fff;
 }
