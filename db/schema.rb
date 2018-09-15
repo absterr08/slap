@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518155316) do
+ActiveRecord::Schema.define(version: 20180915172316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,6 @@ ActiveRecord::Schema.define(version: 20180518155316) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_private"
-    t.string "messageable_type"
-    t.bigint "messageable_id"
-    t.index ["messageable_type", "messageable_id"], name: "index_channels_on_messageable_type_and_messageable_id"
     t.index ["name"], name: "index_channels_on_name"
   end
 
@@ -51,10 +48,7 @@ ActiveRecord::Schema.define(version: 20180518155316) do
     t.string "identifier", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "messageable_type"
-    t.bigint "messageable_id"
     t.index ["identifier"], name: "index_dms_on_identifier"
-    t.index ["messageable_type", "messageable_id"], name: "index_dms_on_messageable_type_and_messageable_id"
   end
 
   create_table "messages", force: :cascade do |t|
