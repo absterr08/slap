@@ -1,31 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import { selectOtherUsernames } from '../../../selectors/selectors';
 import { switchChannel } from '../../../actions/channel_actions';
 
 class ChannelIndexItem extends React.Component {
+
   isCurrentChannel() {
     const { type, id } = this.props.currentChannel;
-    if (type == "channel" && id == this.props.channel.id) return true;
-    return false;
+    return (this.props.channel.channelType === type && this.props.channel.id === id);
+  }
+
+  deleteChannel() {
+    this.props.deleteDm(this.props.channel.id).then(() =>
+      this.props.history.push(`/messages/${this.props.defaultChannel}`
+    ));
   }
 
   render() {
     const channel = this.props.channel;
-    let deleteButton = <div></div>;
-    const title = channel.name;
-    const iconType = "channel-list-item-icon";
+    let title, deleteButton;
+
+    if (channel.channelType === "Dm") {
+      deleteButton = <div className="delete-dm" onClick={this.deleteChannel.bind(this)}>x</div>;
+      title = this.props.otherUsernames;
+    } else {
+      deleteButton = <div></div>;
+      title = channel.name;
+    }
+
     let className = "channel-list-item";
     if (this.isCurrentChannel()) {
       className="channel-list-item selected-li";
     }
+
     return (
         <Link to={`/messages/${channel.id}`}
           onClick={this.props.switchChannel(channel.channelType, channel.id)}>
           <li className={className}>
             <div className="channel-list-item-container">
               <div className={this.props.iconType}></div>
-              <div className="channel-list-item-name">{this.props.title}</div>
+              <div className="channel-list-item-name">{title}</div>
             </div>
             {deleteButton}
           </li>
@@ -36,6 +51,7 @@ class ChannelIndexItem extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    otherUsernames: selectOtherUsernames(state, ownProps.channel).join(', '),
     defaultChannel: state.ui.defaultChannel,
     currentChannel: state.ui.currentChannel
   };

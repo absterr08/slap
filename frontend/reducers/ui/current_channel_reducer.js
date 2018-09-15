@@ -14,8 +14,6 @@ export default (state = null, action) => {
       return { type: 'Dm', id: action.dm.id };
     case SWITCH_CHANNEL:
       return { type: action.channelType, id: action.channelId };
-    // case SWITCH_DM:
-    //   return { type: 'Dm', id: action.channelId };
     case REMOVE_CHANNEL:
       return { type: 'Channel', id: action.channel.defaultChannel }; //change this; shouldnt come from jbuilder every time a channel gets rendered yuck
     case RECEIVE_CURRENT_USER:

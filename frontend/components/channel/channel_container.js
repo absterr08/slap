@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
     channel,
     messages: state.entities.messages,
     user: state.session.currentUser,
-    channelType: channel.channelType,
     otherUsernames: selectOtherUsernames(state, channel)
   };
 };

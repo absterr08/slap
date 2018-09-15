@@ -9,19 +9,19 @@ class Channel extends React.Component {
     if (this.props.match.params.channelId !== prevProps.match.params.channelId) {
       if (this.props.match.path === "/messages/:channelId") {
         const nextChannel = this.props.match.params.channelId;
-        this.props.fetchMessages(this.props.channelType, nextChannel);
+        this.props.fetchMessages(this.props.channel.channelType, nextChannel);
       }
     }
   }
 
   componentDidMount() {
-    this.props.fetchMessages(this.props.channelType, this.props.channel.id);
+    this.props.fetchMessages(this.props.channel.channelType, this.props.channel.id);
   }
 
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
     let title, iconType, description;
-    if (this.props.channelType === 'Dm') {
+    if (this.props.channel.channelType === 'Dm') {
       title = this.props.otherUsernames.join(', ');
       iconType = "dm-header-icon";
     } else {
@@ -43,7 +43,7 @@ class Channel extends React.Component {
         </div>
         <div className="messages-container">
           <MessageIndex messages={ this.props.messages } />
-          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } channelType={this.props.channelType} />
+          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } channelType={this.props.channel.channelType} />
         </div>
       </div>
     );

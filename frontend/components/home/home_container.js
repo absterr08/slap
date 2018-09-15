@@ -1,7 +1,5 @@
-import { fetchChannelMessages, receiveMessage } from '../../actions/message_actions';
-import { fetchChannels, fetchChannel, switchChannel, switchDm} from '../../actions/channel_actions';
+import { receiveMessage } from '../../actions/message_actions';
 import { fetchUsers, fetchChannelsAndDms } from '../../actions/user_actions';
-import { closeChannelSearchModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Home from './home';
@@ -25,6 +23,5 @@ const mapDispatchToProps = (dispatch) => (
     addMessage: message => dispatch(receiveMessage(message))
   }
 );
-// fetchChannelMessages: id => dispatch(fetchChannelMessages(id)),
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
