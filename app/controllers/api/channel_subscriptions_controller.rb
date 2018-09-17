@@ -1,4 +1,4 @@
-class ChannelSubscriptionsController < ApplicationController
+class Api::ChannelSubscriptionsController < ApplicationController
 
   def delete
     channel_sub = current_user.channel_subscriptions.find(params[:channel_id])
@@ -6,7 +6,7 @@ class ChannelSubscriptionsController < ApplicationController
   end
 
   def create
-    ChannelSubscription.create(user_id: current_user.id, channel_id: channel.id)
+    ChannelSubscription.create(user_id: current_user.id, channel_id: params[:channel_id])
   end
 
 end

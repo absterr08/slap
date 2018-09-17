@@ -18,6 +18,20 @@ class Channel extends React.Component {
     this.props.fetchMessages(this.props.channel.channelType, this.props.channel.id);
   }
 
+  messageForm(channel, title) {
+    if (this.props.isMember) {
+      return <MessageForm user={this.props.user} channelId={channel.id} placeHolder={`message ${title}`} channelType={channel.channelType} />
+    } else {
+      return (
+        <div>
+          <p>You are viewing #{channel.name}</p>
+          <p>Created by {channel.creator} on {channel.createdOn}</p>
+          <button onClick={this.props.joinChannel(channel.id)}>Join Channel</button>
+        </div>
+      )
+    }
+  }
+
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
     let title, iconType, description;
@@ -43,7 +57,7 @@ class Channel extends React.Component {
         </div>
         <div className="messages-container">
           <MessageIndex messages={ this.props.messages } />
-          <MessageForm user={ this.props.user } channelId={ this.props.channel.id } placeHolder={ `message ${title}` } channelType={this.props.channel.channelType} />
+          {this.messageForm(this.props.channel, title)}
         </div>
       </div>
     );

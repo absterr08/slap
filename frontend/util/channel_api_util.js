@@ -18,6 +18,22 @@ export const createChannel = (channel) => (
   })
 );
 
+export const createChannelSub = (channelId) => (
+  $.ajax({
+    method: "POST",
+    url: `/api/channel_subscriptions`,
+    data: { channel_id: channelId }
+  })
+)
+
+export const deleteChannelSub = (channelId) => (
+  $.ajax({
+    method: "DELETE",
+    url: `/api/channel_subscriptions`,
+    data: { channel_id: channelId }
+  })
+)
+
 export const deleteChannel = (channelId) => (
   $.ajax({
     method: "DELETE",
