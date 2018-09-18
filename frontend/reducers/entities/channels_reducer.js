@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { RECEIVE_CHANNEL, REMOVE_CHANNEL, RECEIVE_SEARCHED_CHANNELS } from '../../actions/channel_actions';
+import { RECEIVE_CHANNEL, REMOVE_CHANNEL, JOIN_CHANNEL, LEAVE_CHANNEL, RECEIVE_SEARCHED_CHANNELS } from '../../actions/channel_actions';
 import { RECEIVE_CHANNELS_AND_DMS } from '../../actions/user_actions';
 import { RECEIVE_CURRENT_USER } from '../../actions/session_actions';
 import { RECEIVE_MESSAGE } from '../../actions/message_actions';
@@ -8,6 +8,7 @@ import { RECEIVE_MESSAGE } from '../../actions/message_actions';
 export default (state = {}, action) => {
   Object.freeze(state);
   let channel;
+  const newChannel = merge({}, state[action.id]);
   switch (action.type) {
     case RECEIVE_CHANNELS_AND_DMS:
       return action.channels;
@@ -21,9 +22,15 @@ export default (state = {}, action) => {
       delete newChannels[action.channel.id];
       return newChannels;
     case JOIN_CHANNEL:
-      const newChannel = merge({}, state[action.id]);
-      newChannel.users = newChannel.users.concat(action.currUser)
-      return merge({}, state, { [action.id]: newChannel })
+      newChannel.users = newChannel.users.concat(action.currUserId);
+      return merge({}, state, { [action.id]: newChannel });
+    case LEAVE_CHANNEL:
+      const idx = newChannel.users.indexOf(action.currUserId);
+      newChannel.users.splice(idx, 1);
+      const newState = merge({}, state)
+      newState[action.id] = newChannel;
+      debugger
+      return newState;
     case RECEIVE_MESSAGE:
       if (action.message.messageable_type === "Channel") {
         channel = state[action.message.messageable_id];

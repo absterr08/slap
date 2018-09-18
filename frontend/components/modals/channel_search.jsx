@@ -24,7 +24,7 @@ class ChannelSearch extends React.Component {
     this.setState({query: e.target.value}, () => {
       this.timeout = setTimeout( () => {
         this.props.searchChannels(this.state.query)
-      }, 1000);
+      }, 500);
     });
   }
 

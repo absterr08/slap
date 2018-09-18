@@ -9,9 +9,6 @@ import avatarUpload from './user/avatarUpload';
 import Splash from './splash/splash';
 import NavBar from './navbar/navbar';
 
-
-// <AuthRoute path="/" component={ NavBar }/>
-
 const App = () => (
   <div className="app">
     <NavBar />
@@ -19,8 +16,8 @@ const App = () => (
       <ProtectedRoute exact path="/upload" component={avatarUpload} />
       <ProtectedRoute exact path="/messages/:channelId" component={ HomeContainer } />
       <Switch>
-        <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/signup/:email" component={ SessionFormContainer } />
+        <AuthRoute path="/login" component={ SessionFormContainer } />
         <AuthRoute path="/" component={ Splash } />
       </Switch>
     </Switch>

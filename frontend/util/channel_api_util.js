@@ -29,8 +29,7 @@ export const createChannelSub = (channelId) => (
 export const deleteChannelSub = (channelId) => (
   $.ajax({
     method: "DELETE",
-    url: `/api/channel_subscriptions`,
-    data: { channel_id: channelId }
+    url: `/api/channel_subscriptions/${channelId}`
   })
 )
 

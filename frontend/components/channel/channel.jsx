@@ -26,7 +26,7 @@ class Channel extends React.Component {
         <div>
           <p>You are viewing #{channel.name}</p>
           <p>Created by {channel.creator} on {channel.createdOn}</p>
-          <button onClick={this.props.joinChannel(channel.id)}>Join Channel</button>
+          <button onClick={this.props.joinChannel(channel.id, this.props.user.id)}>Join Channel</button>
         </div>
       )
     }
@@ -34,7 +34,7 @@ class Channel extends React.Component {
 
   render() {
     if (this.props.loading) return <h1>Loading...</h1>;
-    let title, iconType, description;
+    let title, iconType, description, leave;
     if (this.props.channel.channelType === 'Dm') {
       title = this.props.otherUsernames.join(', ');
       iconType = "dm-header-icon";
@@ -42,6 +42,13 @@ class Channel extends React.Component {
       title = `${this.props.channel.name}`;
       iconType = "channel-header-icon";
       description = this.props.channel.description;
+    }
+
+    if (this.props.isMember) {
+      leave = <button
+        onClick={this.props.leaveChannel(this.props.channel.id, this.props.user.id)}>
+        Leave channel
+      </button>
     }
 
     return (
@@ -54,9 +61,10 @@ class Channel extends React.Component {
           <div className="channel-header-description">
             {description}
           </div>
+          {leave}
         </div>
         <div className="messages-container">
-          <MessageIndex messages={ this.props.messages } />
+          <MessageIndex messages={this.props.messages} />
           {this.messageForm(this.props.channel, title)}
         </div>
       </div>

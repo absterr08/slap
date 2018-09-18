@@ -10,6 +10,7 @@ import * as userActions from './actions/user_actions';
 import * as modalActions from './actions/modal_actions';
 import * as MessageApiUtil from './util/message_api_util';
 import * as UserApiUtil from './util/user_api_util';
+import * as SessionApiUtil from './util/session_api_util';
 import * as ChannelApiUtil from './util/channel_api_util';
 
 
@@ -41,4 +42,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.getState = store.getState;
   window.dispatch = store.dispatch;
+  window.SessionApiUtil = SessionApiUtil;
 });

@@ -10,7 +10,7 @@ const Auth = ({ component: Component, path, loggedIn, channelId }) => {
     !loggedIn ? (
       <Component {...props} />
     ) : (
-      <Redirect to={`/channels/${channelId}`} />
+      <Redirect to={`/messages/${channelId}`} />
     )
   )} />
 );}

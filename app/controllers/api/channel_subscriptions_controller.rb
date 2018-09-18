@@ -1,7 +1,7 @@
 class Api::ChannelSubscriptionsController < ApplicationController
 
-  def delete
-    channel_sub = current_user.channel_subscriptions.find(params[:channel_id])
+  def destroy
+    channel_sub = current_user.channel_subscriptions.find_by(channel_id:  params[:id])
     channel_sub.destroy
   end
 

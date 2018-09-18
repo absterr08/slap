@@ -73,17 +73,16 @@ export const fetchChannel = (channelId) =>  dispatch => (
 
 export const joinChannel = (channelId, currUserId) => dispatch => (
   ChannelApiUtil.createChannelSub(channelId).then( () => (
-    dispatch(joinChannelAction({id: channelId}))))
+    dispatch(joinChannelAction(channelId, currUserId))))
 );
 
-export const leaveChannel = channelId => dispatch => (
-  ChannelApiUtil.deleteChannelSub(channelId).then( () => dispatch(removeChannel({id: channelId})))
+export const leaveChannel = (channelId, currUserId) => dispatch => (
+  ChannelApiUtil.deleteChannelSub(channelId).then( () => dispatch(leaveChannelAction(channelId, currUserId)))
 );
 
 export const createChannel = channel => dispatch => (
   ChannelApiUtil.createChannel(channel).then( channel => {
     dispatch(receiveChannel(channel));
-    dispatch(joinChannelAction(channel.id));
   })
 );
 
