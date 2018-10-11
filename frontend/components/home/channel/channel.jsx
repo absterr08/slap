@@ -5,18 +5,13 @@ import MessageIndex from './message_index';
 class Channel extends React.Component {
 
   componentDidUpdate(prevProps) {
-
-    if (this.props.match.params.channelId !== prevProps.match.params.channelId) {
-      if (this.props.match.path === "/messages/:channelId") {
-        const nextChannel = this.props.match.params.channelId;
-        debugger
-        this.props.fetchMessages(this.props.channel.channelType, nextChannel);
-      }
+    if (this.props.channel.id !== prevProps.channel.id) {
+      const nextChannel = this.props.channel.id;
+      this.props.fetchMessages(this.props.channel.channelType, nextChannel);
     }
   }
 
   componentDidMount() {
-    debugger
     this.props.fetchMessages(this.props.channel.channelType, this.props.channel.id);
   }
 

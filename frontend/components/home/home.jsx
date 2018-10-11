@@ -16,12 +16,14 @@ export default class Home extends React.Component {
     // this.props.setCurrentChannel(this.props.match.params.channelId)
   }
 
+  componentDidUpdate() {
+    // debugger
+  }
+
   render() {
     if (this.props.loading) {
       // when removing a DM, 'currentChannel' is temporarily undefined until dispatching switchChannel
       // this causes the actual channel component to unmount and then remount when it shouldnt be
-      // also causes a redundant message fetch: happens on compDidMount and then again on didUpdate, all just when removing a DM :(
-      // not a great fix, bc this will unmount the component
       return <div>Loading...</div>;
     }
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
