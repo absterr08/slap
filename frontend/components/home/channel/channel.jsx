@@ -8,6 +8,8 @@ class Channel extends React.Component {
     if (this.props.channel.id !== prevProps.channel.id) {
       const nextChannel = this.props.channel.id;
       this.props.fetchMessages(this.props.channel.channelType, nextChannel);
+    } else if (String(this.props.channel.id) !== this.props.match.params.channelId) {
+      this.props.history.push(`/messages/${this.props.channel.id}`)
     }
   }
 
