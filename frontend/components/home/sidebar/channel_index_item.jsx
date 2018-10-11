@@ -7,8 +7,8 @@ import { switchChannel } from '../../../actions/channel_actions';
 class ChannelIndexItem extends React.Component {
 
   isCurrentChannel() {
-    const { type, id } = this.props.currentChannel;
-    return (this.props.channel.channelType === type && this.props.channel.id === id);
+    const { channelType, id } = this.props.currentChannel;
+    return (this.props.channel.channelType === channelType && this.props.channel.id === id);
   }
 
   deleteChannel() {
@@ -52,8 +52,7 @@ class ChannelIndexItem extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     otherUsernames: selectOtherUsernames(state, ownProps.channel).join(', '),
-    defaultChannel: state.ui.defaultChannel,
-    currentChannel: state.ui.currentChannel
+    defaultChannel: state.ui.defaultChannel
   };
 };
 

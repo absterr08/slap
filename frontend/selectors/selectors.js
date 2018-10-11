@@ -34,7 +34,6 @@ export const selectOtherUsernames = (state, channel) => {
 };
 
 export const selectCurrentChannel = (state) => {
-  debugger
   const id = state.ui.currentChannel.id;
   const type = state.ui.currentChannel.type;
   if (type === "Dm") {

@@ -7,7 +7,7 @@ import { subscribedChannels } from '../../../selectors/selectors';
 import ChannelSearch from './channel_search';
 import ChannelIndexItem from './channel_index_item';
 
-const SidebarMain = ({ channels, dms, toggleModal, deleteChannel, deleteDm }) => {
+const SidebarMain = ({ channels, dms, toggleModal, deleteChannel, deleteDm, currentChannel }) => {
   return (
     <ul className="channel-list">
       <ChannelSearch />
@@ -22,6 +22,7 @@ const SidebarMain = ({ channels, dms, toggleModal, deleteChannel, deleteDm }) =>
             key={ idx }
             channel={ channel }
             iconType={ "channel-list-item-icon" }
+            currentChannel={ currentChannel }
             />
           })
         }
@@ -37,6 +38,7 @@ const SidebarMain = ({ channels, dms, toggleModal, deleteChannel, deleteDm }) =>
           return <ChannelIndexItem
             key={ dm.id }
             channel={ dm }
+            currentChannel={ currentChannel }
             deleteDm={ deleteDm }
             iconType={ "dm-list-item-icon" }
             />

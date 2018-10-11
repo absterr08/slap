@@ -4,9 +4,9 @@ import ChannelSidebarHeader from './sidebar_header';
 import ChannelSidebarMain from './sidebar_main';
 
 
-export default () => (
+export default ({ currentChannel }) => (
   <div className="channel-sidebar">
     <ChannelSidebarHeader />
-    <ChannelSidebarMain />
+    <ChannelSidebarMain currentChannel={currentChannel} />
   </div>
 )

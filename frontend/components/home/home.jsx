@@ -12,7 +12,8 @@ export default class Home extends React.Component {
   componentDidMount() {
     const addMessage = this.props.addMessage.bind(this);
     this.props.fetchChannelsAndDms().then(() => createChannelSubscriptions(this.props.channels.concat(this.props.dms), addMessage));
-    this.props.fetchUsers()
+    this.props.fetchUsers();
+    // this.props.setCurrentChannel(this.props.match.params.channelId)
   }
 
   render() {
@@ -22,14 +23,13 @@ export default class Home extends React.Component {
     const channelForm = this.props.renderChannelForm ? <ChannelForm /> : <div></div>;
     const dmForm = this.props.renderDMForm ? <DMForm /> : <div></div>;
     const channelSearch = this.props.renderChannelSearch ? <ChannelSearch /> : <div></div>;
-
     return (
       <div className="main-container">
         {channelSearch}
         {channelForm}
         {dmForm}
-        <Sidebar />
-        <ChannelContainer />
+        <Sidebar currentChannel={this.props.currentChannel} />
+        <ChannelContainer channel={this.props.currentChannel} />
       </div>
     );
   }
