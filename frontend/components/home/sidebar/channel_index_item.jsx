@@ -11,10 +11,13 @@ class ChannelIndexItem extends React.Component {
     return (this.props.channel.channelType === channelType && this.props.channel.id === id);
   }
 
-  deleteChannel() {
-    this.props.deleteDm(this.props.channel.id).then(() =>
-      this.props.history.push(`/messages/${this.props.defaultChannel}`
-    ));
+  deleteChannel(e) {
+    e.stopPropagation();
+    this.props.deleteDm(this.props.channel.id).then(() => {
+      // not great that im doing both here?
+      this.props.switchChannel("Channel", this.props.defaultChannel)();
+      this.props.history.push(`/messages/${this.props.defaultChannel}`)
+    });
   }
 
   render() {

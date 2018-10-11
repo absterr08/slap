@@ -9,12 +9,14 @@ class Channel extends React.Component {
     if (this.props.match.params.channelId !== prevProps.match.params.channelId) {
       if (this.props.match.path === "/messages/:channelId") {
         const nextChannel = this.props.match.params.channelId;
+        debugger
         this.props.fetchMessages(this.props.channel.channelType, nextChannel);
       }
     }
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchMessages(this.props.channel.channelType, this.props.channel.id);
   }
 

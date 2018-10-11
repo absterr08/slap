@@ -48,6 +48,6 @@ export const createDm = dm => dispatch => (
 
 export const deleteDm = dmId => dispatch => (
   DmApiUtil.deleteDm(dmId).then( (defaultChannel) => {
-    dispatch(removeDm(dmId));
+    return dispatch(removeDm(dmId));
   })
 );

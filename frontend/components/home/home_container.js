@@ -1,4 +1,4 @@
-import { receiveMessage } from '../../actions/message_actions';
+import { receiveMessage, fetchMessages } from '../../actions/message_actions';
 import { fetchUsers, fetchChannelsAndDms } from '../../actions/user_actions';
 import { selectCurrentChannel } from '../../selectors/selectors';
 import { connect } from 'react-redux';
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => (
   {
     fetchChannelsAndDms: () => dispatch(fetchChannelsAndDms()),
     fetchUsers: () => dispatch(fetchUsers()),
-    addMessage: message => dispatch(receiveMessage(message))
+    addMessage: message => dispatch(receiveMessage(message)),
+    fetchMessages: (type, id) => dispatch(fetchMessages(type, id)),
   }
 );
 
