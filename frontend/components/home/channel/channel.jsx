@@ -24,7 +24,6 @@ class Channel extends React.Component {
       return (
         <div>
           <p>You are viewing #{channel.name}</p>
-          <p>Created by {channel.creator} on {channel.createdOn}</p>
           <button onClick={this.props.joinChannel(channel.id, this.props.user.id)}>Join Channel</button>
         </div>
       )

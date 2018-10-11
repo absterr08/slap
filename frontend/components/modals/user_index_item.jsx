@@ -1,8 +1,8 @@
 import React from 'react';
 
-const UserIndexItem = ({ user, addUser, toggleActive }) => {
+const UserIndexItem = ({ user, toggleUser }) => {
   return (
-    <li className="user-list-item" onClick={ addUser }>
+    <li className="user-list-item" onClick={ toggleUser }>
       <div className="user-img"></div>
       <p className="username">{user.username}</p>
     </li>
