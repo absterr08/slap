@@ -4,7 +4,6 @@ import { Switch } from 'react-router';
 import SessionFormContainer from './session_form/session_form_container';
 import { AuthRoute, ProtectedRoute, DefaultRoute } from '../util/route_util';
 import HomeContainer from './home/home_container';
-import ChannelContainer from './channel/channel_container';
 import avatarUpload from './user/avatarUpload';
 import Splash from './splash/splash';
 import NavBar from './navbar/navbar';

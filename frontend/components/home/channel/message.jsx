@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { formatDateTime } from '../../util/message_api_util';
+import { formatDateTime } from '../../../util/message_api_util';
 
 
 const Message = ({ message, currentUser }) => {

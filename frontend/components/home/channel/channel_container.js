@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { values } from 'lodash';
-import { selectOtherUsernames, selectCurrentChannel } from '../../selectors/selectors';
-import { fetchMessages } from '../../actions/message_actions';
-import { joinChannel, leaveChannel } from '../../actions/channel_actions';
+import { selectOtherUsernames, selectCurrentChannel } from '../../../selectors/selectors';
+import { fetchMessages } from '../../../actions/message_actions';
+import { joinChannel, leaveChannel } from '../../../actions/channel_actions';
 import Channel from './channel';
 
 const mapStateToProps = (state, ownProps) => {
-  const channel = selectCurrentChannel(state);
+  const channel = selectCurrentChannel(state, ownProps.match.params.id);
   if (!channel) return { loading: true };
   const currUser = state.session.currentUser;
   const isMember = channel.users.indexOf(currUser.id) >= 0;
