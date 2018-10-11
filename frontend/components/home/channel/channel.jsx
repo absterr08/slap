@@ -46,7 +46,7 @@ class Channel extends React.Component {
       description = this.props.channel.description;
     }
 
-    if (this.props.isMember) {
+    if (this.props.channel.channelType === "Channel" && this.props.isMember) {
       leave = <button
         onClick={this.props.leaveChannel(this.props.channel.id, this.props.user.id)}>
         Leave channel
