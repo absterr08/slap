@@ -42,3 +42,30 @@
   background-repeat: no-repeat;
   padding-left: 5px;
 }
+
+.join-channel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+
+  p {
+    width: auto;
+  }
+
+  button {
+    height: 50px;
+    width: 150px;
+    line-height: 1.2rem;
+    font-size: 20px;
+    background: #2ea664;
+    color: #fff;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: .25rem;
+    box-shadow: none;
+  }
+}
