@@ -22,7 +22,7 @@ class Channel extends React.Component {
       return <MessageForm user={this.props.user} channelId={channel.id} placeHolder={`message ${title}`} channelType={channel.channelType} />
     } else {
       return (
-        <div>
+        <div className="join-channel">
           <p>You are viewing #{channel.name}</p>
           <button onClick={this.props.joinChannel(channel.id, this.props.user.id)}>Join Channel</button>
         </div>
