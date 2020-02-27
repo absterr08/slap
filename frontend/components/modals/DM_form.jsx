@@ -41,6 +41,7 @@ export default class DMForm extends React.Component {
   }
 
   handleInput(e) {
+    // debugger
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
@@ -62,9 +63,9 @@ export default class DMForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (values(this.state.selectedUsers)[0]) {
-
+      // debugger
       const dm = {
-        is_dm: true,
+        is_dm: true, // todo: backend should handle this
         users: Object.keys(this.state.selectedUsers),
         current_user: this.props.currentUser
       };

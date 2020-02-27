@@ -9,6 +9,8 @@ class Api::DmsController < ApplicationController
   end
 
   def create
+    # todo: find_by first?
+    # debugger
     @dm = Dm.new(user_ids: params[:dm][:users].map(&:to_i))
     if @dm.save
       render :show
