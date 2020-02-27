@@ -58,11 +58,13 @@ export const createChannelSubscriptions = (channels, addMessage) => {
 export const createChannelSubscription = (channelId, addMessage) => {
   App[`room${channelId}`] = App.cable.subscriptions.create({channel: "RoomChannel", room: channelId}, {
         received: function(data) {
+          debugger
           addMessage(JSON.parse(data.message));
         },
         speak: function(message) {
+          debugger
           return this.perform('speak', {
-            message: message
+            message
           });
         }
       });
